@@ -10,5 +10,5 @@ import { NgbCarouselModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HeaderComponent {
   title = 'm1p11mean-Toavina-Angela-Front';
-  images = ['assets/hello.png', 'assets/img-7.png', 'assets/3.png'];
+  images = ['assets/hello.png', 'assets/pngegg(2).png', 'assets/3.png'];
 }

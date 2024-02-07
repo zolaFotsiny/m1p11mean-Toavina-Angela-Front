@@ -2,11 +2,12 @@ import { Component } from '@angular/core';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { BodyComponent } from './body/body.component';
+import { BannerComponent } from './banner/banner.component';
 
 
 @Component({
   imports: [
-    HeaderComponent, FooterComponent, BodyComponent
+    HeaderComponent, FooterComponent, BodyComponent, BannerComponent
   ],
   selector: 'app-root',
   templateUrl: './app.component.html',
