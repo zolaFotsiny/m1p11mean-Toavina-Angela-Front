@@ -23,7 +23,7 @@ h3 {
 }
 
 main {
-    background: url('../../assets/0.jpg') no-repeat center center fixed;
+    background: url('/assets/0.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 10px;
 }
