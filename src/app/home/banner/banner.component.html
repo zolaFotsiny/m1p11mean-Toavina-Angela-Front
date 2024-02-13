@@ -1,0 +1,28 @@
+<main>
+    @if (images && images.length >= 3 && ensemblesDeTexte && ensemblesDeTexte.length === 3) {
+    <nz-carousel nzAutoPlay>
+        <div *ngFor="let ensemble of ensemblesDeTexte; let i = index" nz-carousel-content
+            class="custom-carousel-content">
+
+            <div id="hero" class="d-flex align-items-center">
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1 aos-init aos-animate"
+                            data-aos="fade-up" data-aos-delay="200">
+                            <h1>{{ ensemble.titre }}</h1>
+                            <h2>{{ ensemble.sousTitre }}</h2>
+                            <banner-login></banner-login>
+                        </div>
+                        <div class="col-lg-6 order-1 order-lg-2 hero-img aos-init aos-animate" data-aos="zoom-in"
+                            data-aos-delay="200">
+                            <img src="{{ images[i] }}" class="img-fluid animated " alt="">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </nz-carousel>
+    }
+</main>

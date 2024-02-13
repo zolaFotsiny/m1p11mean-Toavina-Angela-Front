@@ -1,20 +1,18 @@
-import { Component } from '@angular/core';
-import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
-import { BodyComponent } from './components/body/body.component';
-import { BannerComponent } from './components/banner/banner.component';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { RouterOutlet } from '@angular/router';
+import { ManagerComponent } from './manager/manager.component';
 
 
 @Component({
-  imports: [
-    HeaderComponent, FooterComponent, BodyComponent, BannerComponent
-  ],
   selector: 'app-root',
+  standalone: true,
+  imports: [RouterOutlet, CommonModule, ManagerComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css',
-  standalone: true // This marks the component as standalone
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
 
-}
 
+
+}

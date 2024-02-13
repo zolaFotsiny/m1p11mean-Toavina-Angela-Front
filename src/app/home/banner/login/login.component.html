@@ -1,0 +1,33 @@
+<div class="d-flex justify-content-center justify-content-lg-start">
+    <button nz-button class="btn-get-started scrollto custom-padding" nzGhost (click)="showModal()">
+        Se Connecter <br>
+    </button>
+    <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkText]="null"
+        [nzCancelText]="null">
+        <ng-container *nzModalContent>
+            <div class="login-container">
+                <h2>Login</h2>
+                <form (ngSubmit)="onSubmit()">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" [(ngModel)]="credentials.email" name="email" class="form-control"
+                            placeholder="Enter Email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="mot_de_passe">Password</label>
+                        <input type="password" id="mot_de_passe" [(ngModel)]="credentials.mot_de_passe"
+                            name="mot_de_passe" class="form-control" placeholder="Enter Password" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </form>
+                <!-- Additional links or information can go here -->
+            </div>
+            <div>
+                <p class="mb-0">Don't have an account? <a href="#!" class="text-white-50 fw-bold">Sign
+                        Up</a>
+                </p>
+            </div>
+
+        </ng-container>
+    </nz-modal>
+</div>
