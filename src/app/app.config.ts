@@ -8,9 +8,9 @@ import fr from '@angular/common/locales/fr';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { provideAnimations } from '@angular/platform-browser/animations';
-
+import { NzTableModule } from 'ng-zorro-antd/table';
 registerLocaleData(fr);
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule), importProvidersFrom(HttpClientModule), provideAnimations()]
+  providers: [NzTableModule,provideRouter(routes), provideNzI18n(fr_FR), importProvidersFrom(FormsModule), importProvidersFrom(HttpClientModule), provideAnimations()]
 };

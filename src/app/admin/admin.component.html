@@ -1,0 +1,63 @@
+<nz-layout class="app-layout">
+  <nz-sider class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null">
+    <div class="sidebar-logo">
+      <a href="https://ng.ant.design/" target="_blank">
+        <img src="https://ng.ant.design/assets/img/logo.svg" alt="logo">
+        <h1>Ant Design Of Angular</h1>
+      </a>
+    </div>
+    <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
+      <li nz-submenu nzOpen nzTitle="Dashboard" nzIcon="dashboard">
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+          <li nz-submenu nzTitle="Client" nzIcon="user">
+            <ul>
+              <li nz-menu-item>Ajout</li>
+              <li nz-menu-item>Liste</li>
+            </ul>
+          </li>
+          <li nz-submenu nzTitle="Employee" nzIcon="team">
+            <ul>
+              <li nz-menu-item>Ajout</li>
+              <li nz-menu-item>Liste</li>
+            </ul>
+          </li>
+          
+        </ul>
+      </li>
+      <li nz-submenu nzOpen nzTitle="Service" nzIcon="form">
+        <ul nz-menu nzTheme="dark" nzMode="inline">
+          <li nz-menu-item [routerLink]="['/admin/saisiservice']">
+            <span nz-icon nzType="file"></span>
+            <span>Rendez-vous</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/admin/service']">
+            <span nz-icon nzType="file"></span>
+            <span>Liste des dendez-vous</span>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <span class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'bars' : 'bars'"
+          ></span>
+        </span>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>
