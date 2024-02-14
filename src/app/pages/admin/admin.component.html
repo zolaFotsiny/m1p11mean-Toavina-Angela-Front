@@ -13,40 +13,41 @@
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu [nzOpen]="true" nzOpen nzTitle="Dashboard" nzIcon="dashboard">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Client" nzIcon="user">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item>Liste</li>
-            </ul>
+        <ul>
+          <li nz-menu-item [routerLink]="['/manager/service/add']">
+            <span nz-icon nzType="file"></span>
+            <span>Chart</span>
           </li>
-          <li nz-submenu nzTitle="Employee" nzIcon="team">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item>Liste</li>
-            </ul>
+          <li nz-menu-item [routerLink]="['/manager/service/add']">
+            <span nz-icon nzType="file"></span>
+            <span>Moyenne de travail</span>
           </li>
-          
+          <li nz-menu-item [routerLink]="['/manager/service']">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Réservation</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/manager/service']">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Chiffre d’affaires</span>
+          </li>
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Finance" nzIcon="dashboard">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Client" nzIcon="user">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item>Liste</li>
-            </ul>
+        <ul>
+          <li nz-menu-item [routerLink]="['/manager/service/add']">
+            <span nz-icon nzType="file"></span>
+            <span>Entrer</span>
           </li>
-          <li nz-submenu nzTitle="Employee" nzIcon="team">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item>Liste</li>
-            </ul>
+          <li nz-menu-item [routerLink]="['/manager/service']">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Sortie</span>
           </li>
-          
         </ul>
       </li>
-      <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Gestion Personnel" nzIcon="dashboard">
+      <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Personnel & Client" nzIcon="dashboard">
         <ul nz-menu nzTheme="dark" nzMode="inline">
           <li nz-submenu nzTitle="Client" nzIcon="user">
             <ul>
@@ -64,14 +65,15 @@
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Gestion Service" nzIcon="form">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
+        <ul>
           <li nz-menu-item [routerLink]="['/manager/service/add']">
             <span nz-icon nzType="file"></span>
-            <span>Nouveaux Service</span>
+            <span>Ajout</span>
           </li>
           <li nz-menu-item [routerLink]="['/manager/service']">
+            <!-- Liste -->
             <span nz-icon nzType="file"></span>
-            <span>Liste services</span>
+            <span>Liste</span>
           </li>
         </ul>
       </li>

@@ -87,7 +87,7 @@ export class ServiceAddComponent {
       type,
       'Success',
       'Nouvelle service ajouter .',
-      { nzPlacement: 'bottomRight' }
+      { nzPlacement: 'topRight' }
     );
   }
 }
