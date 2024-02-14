@@ -1,28 +1,40 @@
-<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+<!-- <h1>Liste Service</h1> -->
+<nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
     <thead>
         <tr>
             <th nzCustomFilter>
-                Name
+                Designation
                 <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
                     <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
             </th>
-            <th>Age</th>
-            <th>Address</th>
+            <th>Prix</th>
+            <th>Duree</th>
+            <th>Commission Pourcentage</th>
+            <th>Date Insertion</th>
+            <th>Etat</th>
+            <!-- <th>Image</th> -->
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let data of nzTable.data">
-            <td>{{ data.name }}</td>
-            <td>{{ data.age }}</td>
-            <td>{{ data.address }}</td>
+        <tr *ngFor="let data of listOfDisplayData">
+            <td>{{ data.designation }}</td>
+            <td>{{ data.prix }}</td>
+            <td>{{ data.duree }}</td>
+            <td>{{ data.commission_pourcentage }}</td>
+            <td>{{ data.date_insertion }}</td>
+            <td>{{ data.etat }}</td>
+            <!-- <td>{{ data.image }}</td> -->
         </tr>
     </tbody>
 </nz-table>
+
 <nz-dropdown-menu #menu="nzDropdownMenu">
     <div class="ant-table-filter-dropdown">
         <div class="search-box">
-            <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+            <input type="text" nz-input placeholder="Search designation" [(ngModel)]="searchValue" />
             <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
             <button nz-button nzSize="small" (click)="reset()">Reset</button>
         </div>

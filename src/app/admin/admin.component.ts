@@ -16,16 +16,16 @@ import { ServiceCreateComponent } from './service-create/service-create.componen
     // imports: [NzLayoutModule,  NzIconModule, NzMenuModule,  RouterOutlet, CommonModule, RouterModule],
 })
 
-export class AdminComponent implements OnInit {
+export class AdminComponent {
     title:string = 'Pelasoa';
     test:string = 'test';
     isCollapsed:boolean = false;
     constructor() { }
 
-    ngOnInit() {
-        // alert('test');
-        console.log(this.test);  // Use "this.test" to access the class property
-    }
+    // ngOnInit() {
+    //     // alert('test');
+    //     console.log(this.test);  // Use "this.test" to access the class property
+    // }
 }
 
 

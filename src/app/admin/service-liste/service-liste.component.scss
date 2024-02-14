@@ -15,3 +15,10 @@
    .search-button {
        margin-right: 8px;
    }
+   .loading-container {
+       display: flex;
+       justify-content: center;
+       align-items: center;
+       height: 100vh;
+       /* Optional: Set the height based on your layout requirements */
+   }

@@ -15,11 +15,11 @@ export class BodyComponent implements OnInit {
   title = 'm1p11mean-Toavina-Angela-Front';
 
   services: any[] = [];
+  isLoading = true; // Add a loading flag
   constructor(private servicesService: ServicesService) { }
 
   ngOnInit(): void {
     console.log('ngOnInit called');
-
     this.servicesService.getServices().subscribe(
       (response: any) => {
         console.log('Raw response:', response);
@@ -31,6 +31,9 @@ export class BodyComponent implements OnInit {
         } else {
           console.error('Invalid response structure:', response);
         }
+
+        // Set loading flag to false once data is obtained
+        this.isLoading = false;
       },
       error => {
         console.error('Error fetching services:', error);

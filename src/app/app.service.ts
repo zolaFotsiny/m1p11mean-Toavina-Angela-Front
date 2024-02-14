@@ -48,4 +48,22 @@ export class ServicesService {
       );
   }
 
+  registerUser(userData: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.post<any>(`${this.apiUrl}/users/register`, userData, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error registering user:', error);
+          return throwError(error);
+        })
+      );
+  }
+
 }

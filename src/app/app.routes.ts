@@ -5,14 +5,16 @@ import { HomeComponent } from './home/home.component';
 import { ServiceCreateComponent } from './manager/service-create/service-create.component';
 import { AdminComponent } from './admin/admin.component';
 import { ServiceListeComponent } from './admin/service-liste/service-liste.component';
+import { ClientAddComponent } from './components/client-add/client-add.component';
+import { ServiceAddComponent } from './components/service-add/service-add.component';
 
 export const routes: Routes = [
     {
         path: 'manager',
         component: ManagerComponent,
         children: [
-            { path: 'saisiservice', component: ServiceCreateComponent },
-            { path: 'service', component: ServiceListeComponent },
+            { path: 'employee', component: ClientAddComponent },
+            { path: 'service', component: ServiceAddComponent },
         ]
     },
     {
