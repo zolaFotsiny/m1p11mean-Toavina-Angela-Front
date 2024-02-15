@@ -120,7 +120,7 @@ h6 {
     transition: all 0.5s;
     z-index: 997;
     padding: 15px 0;
-    background-color: #1c1a1a;
+    background-color: #665d5d;
 
 }
 
@@ -136,11 +136,11 @@ h6 {
     line-height: 1;
     font-weight: 500;
     letter-spacing: 2px;
-    text-transform: uppercase;
+    // text-transform: uppercase;
 }
 
 #header .logo a {
-    color: #444444;
+    color: #ffffff;
 }
 
 #header .logo img {
@@ -400,7 +400,7 @@ h6 {
     height: 520px;
     background: url('/assets/0.jpg') no-repeat center center fixed;
     background-size: cover;
-    margin-top: 5%;
+    margin-top: 6%;
 }
 
 #hero .container {
