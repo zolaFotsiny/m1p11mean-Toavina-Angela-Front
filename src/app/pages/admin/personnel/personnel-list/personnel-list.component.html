@@ -1,1 +1,41 @@
-<p>personnel-list works!</p>
+<nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+<h1>Listes des employees</h1>
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
+    <thead>
+        <tr>
+            <!-- Ajouter des en-têtes pour toutes les propriétés -->
+            <th _ngcontent-c0="">ID</th>
+            <th _ngcontent-c0="">Nom
+                <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th _ngcontent-c0="">Prénom</th>
+            <th _ngcontent-c0="">Email</th>
+            <th _ngcontent-c0="">Type utilisateur</th>
+            <th _ngcontent-c0="">Date de création</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of listOfDisplayData">
+            <!-- Afficher les valeurs de toutes les propriétés -->
+            <td>{{ data._id }}</td>
+            <td>{{ data.id_utilisateur?.nom }}</td>
+            <td>{{ data.id_utilisateur?.prenom }}</td>
+            <td>{{ data.id_utilisateur?.email }}</td>
+            <td>{{ data.id_utilisateur?.type_utilisateur }}</td>
+            <td>{{ data.date_creation }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menu="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <!-- Modifier le placeholder du champ de recherche en fonction de votre structure de données -->
+            <input type="text" nz-input placeholder="Search nom" [(ngModel)]="searchValue" />
+            <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+            <button nz-button nzSize="small" (click)="reset()">Reset</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
