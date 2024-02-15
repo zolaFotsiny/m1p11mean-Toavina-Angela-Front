@@ -16,6 +16,7 @@ export const routes: Routes = [
         children: [
             { path: 'service', component: ServiceListeComponent },
             { path: 'service/add', component: ServiceAddComponent },
+            { path: 'employee', component: PersonnelListComponent },
         ]
     },
 
