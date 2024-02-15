@@ -14,6 +14,10 @@ export class ServicesService {
     return this.http.get<any>(`${this.apiUrl}/services`);;
   }
 
+  getEmployees(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/employees`);;
+  }
+
   login(credentials: { email: string; mot_de_passe: string }): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
