@@ -39,8 +39,12 @@ export class ServicesService {
 
   createService(data: FormData): Observable<any> {
     const httpOptions = {
-      headers: new HttpHeaders()
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
     };
+    console.log('service ', data);
 
     return this.http.post<any>(`${this.apiUrl}/services`, data, httpOptions)
       .pipe(
