@@ -56,8 +56,15 @@ export class ServiceAddComponent {
 
   constructor(private fb: NonNullableFormBuilder, private notification: NzNotificationService) {
     this.validateForm = this.fb.group({
-      nom: ['', [Validators.required], [this.nomAsyncValidator]],
-      prenom: ['', [Validators.required]],
+      nom: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)], [this.nomAsyncValidator]],
+      prenom: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern(/^[a-zA-Z]+$/)
+        ]
+      ],
+
       email: ['', [Validators.email, Validators.required]],
       mot_de_passe: ['', [Validators.required]],
       type_utilisateur: ['employee', [Validators.required]], // Assuming a default value
