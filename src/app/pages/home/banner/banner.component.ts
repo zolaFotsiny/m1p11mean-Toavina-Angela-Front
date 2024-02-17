@@ -13,7 +13,7 @@ import { LoginComponent } from './login/login.component';
   styleUrl: './banner.component.scss'
 })
 export class BannerComponent {
-  images = ['assets/hello.png', 'assets/pngegg(2).png', 'assets/huhu.png'];
+  images = ['assets/nail.png', 'assets/hehe.png', 'assets/pngegg(5).png'];
   ensemblesDeTexte: { titre: string; sousTitre: string }[] = [
     {
       titre: "Se détendre et s'indulger",
