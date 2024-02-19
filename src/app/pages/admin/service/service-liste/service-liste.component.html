@@ -22,9 +22,9 @@
         <tr *ngFor="let data of listOfDisplayData">
             <td>{{ data.designation }}</td>
             <td>{{ data.prix }}</td>
-            <td>{{ data.duree }}</td>
-            <td>{{ data.commission_pourcentage }}</td>
-            <td>{{ data.date_insertion }}</td>
+            <td>{{ getFormattedDuration(data.duree) }}</td>
+            <td>{{ data.commission_pourcentage }}%</td>
+            <td>{{ data.date_insertion | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
             <td>{{ data.etat }}</td>
             <!-- <td>{{ data.image }}</td> -->
         </tr>

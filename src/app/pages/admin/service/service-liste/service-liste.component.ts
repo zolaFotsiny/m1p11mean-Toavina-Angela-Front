@@ -60,7 +60,16 @@ export class ServiceListeComponent implements OnInit {
         item.designation.toLowerCase().includes(this.searchValue.toLowerCase())
     );
   }
+  getFormattedDuration(duree: number): string {
+    const hours = Math.floor(duree / 60);
+    const minutes = duree % 60;
 
+    if (hours > 0) {
+      return `${hours}h ${minutes}min`;
+    } else {
+      return `${minutes}min`;
+    }
+  }
   ngOnInit(): void {
     console.log('ngOnInit called');
 
