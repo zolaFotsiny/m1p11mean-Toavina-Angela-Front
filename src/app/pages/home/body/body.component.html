@@ -57,11 +57,8 @@
 
         <div class="row">
 
-
-
-
-            <ng-container *ngIf="services.length > 0; else emptyList">
-                <ng-container *ngFor="let service of services">
+            <ng-container *ngIf="displayedServices.length > 0; else emptyList">
+                <ng-container *ngFor="let service of displayedServices">
                     <div class="  mt-4 col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate"
                         data-aos="zoom-in" data-aos-delay="100">
                         <div class="icon-box">
@@ -72,9 +69,15 @@
 
                         </div>
                     </div>
-
                 </ng-container>
+
+
+
             </ng-container>
+            <button *ngIf="itemsToShow < services.length" (click)="showMoreServices()"
+                class="btn btn-primary rounded-pill px-2 py-2 mt-4">
+                Afficher plus
+            </button>
 
 
             <ng-template #emptyList>
