@@ -15,6 +15,7 @@ export class BodyComponent implements OnInit {
   title = 'm1p11mean-Toavina-Angela-Front';
 
   services: any[] = [];
+  employee: any[] = [];
   isLoading = true; // Add a loading flag
   constructor(private servicesService: ServicesService) { }
 
@@ -34,6 +35,28 @@ export class BodyComponent implements OnInit {
 
         // Set loading flag to false once data is obtained
         this.isLoading = false;
+      },
+      error => {
+        console.error('Error fetching services:', error);
+      }
+    );
+
+
+
+    this.servicesService.getEmployees().subscribe(
+      (response: any) => {
+        console.log('Employer:', response);
+
+        // Access the 'data' property if it exists
+        if (response && response.data) {
+          this.employee = response.data;
+          console.log('emp:', this.services);
+        } else {
+          console.error('Invalid response structure:', response);
+        }
+
+        // Set loading flag to false once data is obtained
+        // this.isLoading = false;
       },
       error => {
         console.error('Error fetching services:', error);

@@ -1,0 +1,113 @@
+/* Ajoutez ces styles dans votre fichier CSS ou SCSS */
+.carousel-control {
+    display: none;
+}
+
+.carousel-inner {
+    position: relative;
+}
+
+.carousel-inner .carousel-control {
+    display: block;
+}
+
+
+
+h1 {
+    font-weight: 500;
+}
+
+p {
+    font-family: "Lato", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+.DDD {
+    width: 100px;
+    text-align: center;
+    height: 100px;
+}
+
+main {
+    height: 520px;
+    margin-top: 20px;
+}
+
+[nz-carousel-content] {
+
+    display: flex;
+
+    color: #212020;
+    overflow: hidden;
+
+}
+
+[nz-carousel-content] img {
+    max-width: 100%;
+    height: 448px;
+    float: inline-end;
+    margin-right: 25%;
+}
+
+.text-item {
+    float: left;
+    /* Flottement à gauche pour le texte */
+    width: 50%;
+    /* Largeur appropriée pour le texte */
+    margin-top: 12%;
+}
+
+.image-item {
+    float: right;
+    /* Flottement à droite pour l'image */
+    width: 50%;
+    /* Largeur appropriée pour l'image */
+}
+
+
+
+/* Existing styles remain unchanged */
+
+/* Mobile styles */
+@media screen and (max-width: 768px) {
+    main {
+        /* Adjust the height as needed for mobile screens */
+        height: auto;
+        padding: 20px;
+    }
+
+    [nz-carousel-content] {
+        /* Stack the content vertically for smaller screens */
+        flex-direction: column;
+    }
+
+    .text-item,
+    .image-item {
+        /* Take full width on small screens */
+        width: 100%;
+        /* Reset the float since we're stacking now */
+        float: none;
+        /* Add some bottom margin for spacing */
+        margin-bottom: 20px;
+    }
+
+    [nz-carousel-content] img {
+        /* Make the image responsive */
+        height: auto;
+        margin-right: 0;
+
+    }
+
+    h1 {
+        /* Adjust the font size for mobile */
+        font-size: 2em;
+    }
+
+    p {
+        /* Adjust the font size for mobile */
+        font-size: 1em;
+    }
+
+    .custom-padding {
+        padding: 10px;
+    }
+}

@@ -59,11 +59,11 @@
 
 
 
-           
+
             <ng-container *ngIf="services.length > 0; else emptyList">
                 <ng-container *ngFor="let service of services">
-                    <div class="col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in"
-                        data-aos-delay="100">
+                    <div class="  mt-4 col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate"
+                        data-aos="zoom-in" data-aos-delay="100">
                         <div class="icon-box">
                             <div class="icon"><i class="bx bxl-dribbble"></i></div>
                             <h4><a href="">{{ service.designation }}</a></h4>
@@ -106,76 +106,33 @@
         </div>
 
         <div class="row">
-
-            <div class="col-lg-6" data-aos="zoom-in" data-aos-delay="100">
-                <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Walter White</h4>
-                        <span>Chief Executive Officer</span>
-                        <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
-                        <div class="social">
-                            <a href=""><i class="ri-twitter-fill"></i></a>
-                            <a href=""><i class="ri-facebook-fill"></i></a>
-                            <a href=""><i class="ri-instagram-fill"></i></a>
-                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+            <ng-container *ngIf="employee.length > 0; else emptyListEpm">
+                <div *ngFor="let employee of employee" class="col-lg-6  mt-4" data-aos="zoom-in" data-aos-delay="100">
+                    <div class="member d-flex align-items-start">
+                        <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                        <div class="member-info">
+                            <h4>{{employee.id_utilisateur.nom}}</h4>
+                            <span>{{employee.id_utilisateur.prenom}}</span>
+                            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                            <div class="social">
+                                <a href=""><i class="ri-twitter-fill"></i></a>
+                                <a href=""><i class="ri-facebook-fill"></i></a>
+                                <a href=""><i class="ri-instagram-fill"></i></a>
+                                <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </ng-container>
 
-            <div class="col-lg-6 mt-4 mt-lg-0" data-aos="zoom-in" data-aos-delay="200">
-                <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/team/team-2.jpg" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Sarah Jhonson</h4>
-                        <span>Product Manager</span>
-                        <p>Aut maiores voluptates amet et quis praesentium qui senda para</p>
-                        <div class="social">
-                            <a href=""><i class="ri-twitter-fill"></i></a>
-                            <a href=""><i class="ri-facebook-fill"></i></a>
-                            <a href=""><i class="ri-instagram-fill"></i></a>
-                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
-            <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="300">
-                <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/team/team-3.jpg" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>William Anderson</h4>
-                        <span>CTO</span>
-                        <p>Quisquam facilis cum velit laborum corrupti fuga rerum quia</p>
-                        <div class="social">
-                            <a href=""><i class="ri-twitter-fill"></i></a>
-                            <a href=""><i class="ri-facebook-fill"></i></a>
-                            <a href=""><i class="ri-instagram-fill"></i></a>
-                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-lg-6 mt-4" data-aos="zoom-in" data-aos-delay="400">
-                <div class="member d-flex align-items-start">
-                    <div class="pic"><img src="assets/img/team/team-4.jpg" class="img-fluid" alt=""></div>
-                    <div class="member-info">
-                        <h4>Amanda Jepson</h4>
-                        <span>Accountant</span>
-                        <p>Dolorum tempora officiis odit laborum officiis et et accusamus</p>
-                        <div class="social">
-                            <a href=""><i class="ri-twitter-fill"></i></a>
-                            <a href=""><i class="ri-facebook-fill"></i></a>
-                            <a href=""><i class="ri-instagram-fill"></i></a>
-                            <a href=""> <i class="ri-linkedin-box-fill"></i> </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <ng-template #emptyListEpm>
+                <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+            </ng-template>
 
         </div>
+
+
 
     </div>
 </section><!-- End Team Section -->
