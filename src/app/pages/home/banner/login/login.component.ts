@@ -51,7 +51,8 @@ export class LoginComponent {
 
         // Assuming decodedToken is of type JwtPayload or any
         const token = response.data.token;
-        localStorage.setItem('token', token);
+        const tokenBearer = 'Bearer ' + token;
+        localStorage.setItem('token', tokenBearer);
         const decodedToken: any = jwtDecode(response.data.token);
 
         console.log('Decoded Token:', decodedToken);
