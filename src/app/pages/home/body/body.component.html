@@ -59,7 +59,7 @@
 
 
 
-
+           
             <ng-container *ngIf="services.length > 0; else emptyList">
                 <ng-container *ngFor="let service of services">
                     <div class="col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in"
@@ -78,9 +78,7 @@
 
 
             <ng-template #emptyList>
-                <div>
-                    <p>Empty list of services</p>
-                </div>
+                <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
             </ng-template>
 
 

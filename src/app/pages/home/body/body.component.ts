@@ -3,11 +3,11 @@ import { HomeComponent } from '../home.component';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { CommonModule } from '@angular/common';
 import { ServicesService } from '../../../app.service';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @Component({
   selector: 'home-body',
   standalone: true,
-  imports: [CommonModule, NzFlexModule, HomeComponent],
+  imports: [CommonModule, NzFlexModule, HomeComponent, NzSpinModule],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
