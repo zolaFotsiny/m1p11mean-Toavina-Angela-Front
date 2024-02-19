@@ -49,7 +49,6 @@ export class PersonnelListComponent implements OnInit {
   isLoading = true;
   listOfData: EmployeeItem[] = [];
   listOfDisplayData: EmployeeItem[] = [];
-
   constructor(private servicesService: ServicesService) { }
 
   reset(): void {
@@ -61,12 +60,14 @@ export class PersonnelListComponent implements OnInit {
 
   search(): void {
     this.visible = false;
-    this.listOfDisplayData = this.listOfData.filter((item: EmployeeItem) => {
-      const user = item.id_utilisateur;
-      if (user) {
-        const nom = user.nom.toLowerCase().includes(this.searchValue.toLowerCase())
+    this.listOfDisplayData = this.listOfData.filter(
+      (item: EmployeeItem) => {
+        if (item.id_utilisateur) {
+          // console.log('itemmmm', item.id_utilisateur.nom)
+          item.id_utilisateur.nom.toLowerCase().includes(this.searchValue.toLowerCase())
+        }
       }
-    });
+    );
   }
   ngOnInit(): void {
     console.log('ngOnInit called');
@@ -75,22 +76,25 @@ export class PersonnelListComponent implements OnInit {
       (response: any) => {
         console.log('Raw response:', response);
         if (response && response.data) {
-          this.listOfData = response.data.map((item: any) => {
-            const employeeItem: EmployeeItem = {
-              _id: item._id,
-              date_creation: item.date_creation,
-              id_utilisateur: {
-                _id: item.id_utilisateur?._id || '',
-                nom: item.id_utilisateur?.nom || '',
-                prenom: item.id_utilisateur?.prenom || '',
-                email: item.id_utilisateur?.email || '',
-                mot_de_passe: item.id_utilisateur?.mot_de_passe || '',
-                type_utilisateur: item.id_utilisateur?.type_utilisateur || '',
-              },
-            };
-            return employeeItem;
-          });
-          this.listOfDisplayData = [...this.listOfData];
+          console.log('huhuhuhuhuh', response.data);
+          this.listOfData = response.data;
+          this.listOfDisplayData = [...this.listOfData]; // Initialize listOfDisplayData with all services
+          // this.listOfData = response.data.map((item: any) => {
+          //   const employeeItem: EmployeeItem = {
+          //     _id: item._id,
+          //     date_creation: item.date_creation,
+          //     id_utilisateur: {
+          //       _id: item.id_utilisateur?._id || '',
+          //       nom: item.id_utilisateur?.nom || '',
+          //       prenom: item.id_utilisateur?.prenom || '',
+          //       email: item.id_utilisateur?.email || '',
+          //       mot_de_passe: item.id_utilisateur?.mot_de_passe || '',
+          //       type_utilisateur: item.id_utilisateur?.type_utilisateur || '',
+          //     },
+          //   };
+          //   return employeeItem;
+          // });
+          // this.listOfDisplayData = [...this.listOfData];
           console.log('Employees:', this.listOfData);
         } else {
           console.error('Invalid response structure:', response);

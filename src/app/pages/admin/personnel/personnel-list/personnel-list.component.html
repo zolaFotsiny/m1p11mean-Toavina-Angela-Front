@@ -24,7 +24,7 @@
             <td>{{ data.id_utilisateur?.prenom }}</td>
             <td>{{ data.id_utilisateur?.email }}</td>
             <td>{{ data.id_utilisateur?.type_utilisateur }}</td>
-            <td>{{ data.date_creation }}</td>
+            <td>{{ data.date_creation | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
         </tr>
     </tbody>
 </nz-table>
