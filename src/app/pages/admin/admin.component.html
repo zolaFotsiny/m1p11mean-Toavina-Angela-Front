@@ -30,7 +30,7 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Finance" nzIcon="dashboard">
+      <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard">
         <ul>
           <li nz-menu-item [routerLink]="['/manager/service/add']">
             <span nz-icon nzType="file"></span>
@@ -44,20 +44,10 @@
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Personnel & Client" nzIcon="dashboard">
-        <ul nz-menu nzTheme="dark" nzMode="inline">
-          <li nz-submenu nzTitle="Client" nzIcon="user">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item>Liste</li>
-            </ul>
-          </li>
-          <li nz-submenu nzTitle="Employee" nzIcon="team">
-            <ul>
-              <li nz-menu-item>Ajout</li>
-              <li nz-menu-item [routerLink]="['/manager/employee']">Liste</li>
-            </ul>
-          </li>
-
+        <ul>
+          <li nz-menu-item [routerLink]="['/manager/employee']"> Ajout Utilisateur</li>
+          <li nz-menu-item> Liste Client</li>
+          <li nz-menu-item [routerLink]="['/manager/employee']"> Liste Personnel</li>
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Gestion Service" nzIcon="form">

@@ -60,14 +60,18 @@ export class PersonnelListComponent implements OnInit {
 
   search(): void {
     this.visible = false;
-    this.listOfDisplayData = this.listOfData.filter(
-      (item: EmployeeItem) => {
-        if (item.id_utilisateur) {
-          // console.log('itemmmm', item.id_utilisateur.nom)
-          item.id_utilisateur.nom.toLowerCase().includes(this.searchValue.toLowerCase())
+    console.log('resp',
+      this.listOfDisplayData = this.listOfData.filter(
+        (item: EmployeeItem) => {
+          if (item.id_utilisateur) {
+            // console.log('itemmmm', item.id_utilisateur.nom)
+            console.log('itemmmm', item.id_utilisateur.nom.toLowerCase().includes(this.searchValue.toLowerCase()))
+            item.id_utilisateur.nom.toLowerCase().includes(this.searchValue.toLowerCase())
+          }
         }
-      }
-    );
+      )
+    )
+
   }
   ngOnInit(): void {
     console.log('ngOnInit called');
