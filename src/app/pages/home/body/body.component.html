@@ -56,54 +56,40 @@
         </div>
 
         <div class="row">
-
-
-            <!-- <div class="  mt-4 col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate" data-aos="zoom-in"
-                data-aos-delay="100">
-                <div class="icon-box">
-                    <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                    <h4><a href="">test</a></h4>
-                    <p>test </p>
-                    <img [src]="'data:image/png;base64,' + service.image" class="img-fluid">
-                    <span class="favorite-icon">
-                        test
-                        <i class="bx bx-heart"></i>
-                    </span>
-                </div>
-            </div> -->
-
             <ng-container *ngIf="displayedServices.length > 0; else emptyList">
                 <ng-container *ngFor="let service of displayedServices">
-                    <div class="  mt-4 col-xl-3 col-md-6 d-flex align-items-stretch aos-init aos-animate"
-                        data-aos="zoom-in" data-aos-delay="100">
-                        <div class="icon-box">
-                            <div class="icon"><i class="bx bxl-dribbble"></i></div>
-                            <h4><a href="">{{ service.designation }}</a></h4>
-                            <p>{{ service.description }} </p>
-                            <img [src]="'data:image/png;base64,' + service.image" class="img-fluid">
-                            <span class="favorite-icon">
-                                test
-                                <i class="bx bx-heart"></i>
-                            </span>
+                    <div class="col-xl-3 col-md-6 mb-4" data-aos="zoom-in" data-aos-delay="100">
+                        <div class="card custom-card">
+                            <img [src]="'data:image/png;base64,' + service.image" class="card-img-top custom-card-img"
+                                alt="Service Image">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ service.designation }}</h5>
+                                <p class="card-text">{{ service.description }}</p>
+                                <div class="favorite-icon">
+                                    <span>test</span>
+                                    <!-- Utilisez l'icône de favoris de NgZorro -->
+                                    <i nz-icon [nzType]="isFavorited(service) ? 'heart-fill' : 'heart-outline'"
+                                        (click)="toggleFavorite(service)"></i>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </ng-container>
-
-
-
             </ng-container>
+
             <button *ngIf="itemsToShow < services.length" (click)="showMoreServices()"
                 class="btn btn-primary rounded-pill px-2 py-2 mt-4">
                 Afficher plus
             </button>
 
-
             <ng-template #emptyList>
                 <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
             </ng-template>
-
-
         </div>
+
+
+
+
 
     </div>
 </div>
@@ -151,11 +137,13 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Team</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
-                sit in
-                iste officiis commodi quidem hic quas.</p>
+            <h2>Notre Équipe</h2>
+            <p>Découvrez les visages passionnés qui donnent vie à notre salon de beauté. Chacun de nos employés apporte
+                son
+                expertise unique, sa créativité et son dévouement pour offrir à nos clients une expérience
+                exceptionnelle. Nous
+                sommes bien plus qu'une équipe ; nous sommes une famille unie par la passion de la beauté et du
+                bien-être.</p>
         </div>
 
         <div class="row">
@@ -166,7 +154,12 @@
                         <div class="member-info">
                             <h4>{{employee.id_utilisateur.nom}}</h4>
                             <span>{{employee.id_utilisateur.prenom}}</span>
-                            <p>Explicabo voluptatem mollitia et repellat qui dolorum quasi</p>
+                            <p>Rejoignez-nous dans l'univers de la beauté, où chaque membre de notre équipe est dédié à
+                                créer
+                                des expériences uniques et à vous faire sentir exceptionnel. Avec une passion commune
+                                pour
+                                l'innovation et la satisfaction du client, nous sommes fiers de vous offrir des services
+                                personnalisés et de qualité.</p>
                             <div class="social">
                                 <a href=""><i class="ri-twitter-fill"></i></a>
                                 <a href=""><i class="ri-facebook-fill"></i></a>

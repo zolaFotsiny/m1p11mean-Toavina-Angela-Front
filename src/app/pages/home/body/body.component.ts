@@ -4,10 +4,13 @@ import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { CommonModule } from '@angular/common';
 import { ServicesService } from '../../../app.service';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { HeartFill, HeartOutline } from '@ant-design/icons-angular/icons';
+import { NzIconModule } from 'ng-zorro-antd/icon';
+
 @Component({
   selector: 'home-body',
   standalone: true,
-  imports: [CommonModule, NzFlexModule, NzSpinModule],
+  imports: [CommonModule, NzFlexModule, NzSpinModule, NzIconModule],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
@@ -21,8 +24,19 @@ export class BodyComponent implements OnInit {
   employee: any[] = [];
   isLoading = true; // Add a loading flag
 
-  constructor(private servicesService: ServicesService) { }
-
+  constructor(private servicesService: ServicesService) {
+    // this.iconService.addIcon(...[HeartFill, HeartOutline]);
+  }
+  isFavorited(service: any): boolean {
+    // Logique pour déterminer si le service est favori ou non
+    // Retourne true ou false en fonction de la logique d'application
+    return true; // par exemple
+  }
+  toggleFavorite(service: any): void {
+    // Logique pour basculer l'état de favori du service
+    // Par exemple, vous pourriez utiliser une propriété dans le service pour indiquer s'il est favori
+    service.isFavorite = !service.isFavorite;
+  }
   showMoreServices() {
     // Afficher plus d'éléments à chaque clic sur le bouton
     this.itemsToShow += 4; // Ajoute 4 éléments supplémentaires
