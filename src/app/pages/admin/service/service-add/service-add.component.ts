@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { AbstractControl, AsyncValidatorFn, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, NonNullableFormBuilder, ReactiveFormsModule, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
 import { Observable, Observer } from 'rxjs';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
@@ -24,87 +24,51 @@ import { ServicesService } from '../../../../app.service';
   styleUrl: './service-add.component.scss'
 })
 export class ServiceAddComponent {
-  validateForm: FormGroup = this.fb.group({
-    designation: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-    prix: ['', [Validators.pattern(/^[1-9]\d*$/), Validators.required]],
-    duree: ['', Validators.required],
-    commission_pourcentage: ['', [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
-  });
+  serviceForm: FormGroup;
 
-  constructor(private servicesService: ServicesService, private fb: NonNullableFormBuilder, private notification: NzNotificationService, private msg: NzMessageService) {
-    // this.validateForm = this.fb.group({
-    //   designation: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+$/)]],
-    //   prix: ['', [Validators.pattern(/^[1-9]\d*$/), Validators.required]],
-    //   duree: ['', Validators.required],
-    //   commission_pourcentage: ['', [Validators.required, Validators.pattern(/^[1-9]\d*$/)]],
-    // image: ['', [Validators.required]],
-    // });
+  constructor(private fb: FormBuilder, private serviceService: ServicesService) {
+    this.serviceForm = this.fb.group({
+      designation: ['', Validators.required],
+      prix: ['', Validators.required],
+      duree: ['', Validators.required],
+      commission_pourcentage: ['', Validators.required],
+      file: [null, Validators.required], // Use 'file' as the field name for the file
+    });
   }
 
-  file!: File; // Non-null assertion
-  onFileSelected(event: any): void {
-    const selectedFile = event.target.files[0];
-
-    if (selectedFile) {
-      this.file = selectedFile;
-      // You can perform additional actions with the selected file here
+  onFileSelected(event: Event): void {
+    const inputElement = event.target as HTMLInputElement;
+    if (inputElement.files && inputElement.files.length > 0) {
+      const file = inputElement.files[0];
+      this.serviceForm.patchValue({ file });
     }
   }
-  async submitForm(): Promise<void> {
-
-    if (this.validateForm.valid) {
-      if (this.file) {
-        let data = this.validateForm.value;
-        data.file = this.file
-        try {
-          const response = await this.servicesService.createService(data).toPromise();
-          console.log('Service registered successfully:', response);
-          this.validateForm.reset();
-          this.loadTwo();
-        } catch (error) {
-          console.error('Error registering service:', error);
+  onSubmit(): void {
+    console.log('Form submitted'); // Ajout d'un log pour vérifier que la méthode est appelée
+    if (this.serviceForm.valid) {
+      console.log('Form is valid'); // Ajout d'un log pour vérifier que le formulaire est valide
+      const formData = new FormData();
+      formData.append('designation', this.serviceForm.value.designation);
+      formData.append('prix', this.serviceForm.value.prix);
+      formData.append('duree', this.serviceForm.value.duree);
+      formData.append('commission_pourcentage', this.serviceForm.value.commission_pourcentage);
+      formData.append('file', this.serviceForm.value.file);
+      console.log('Form data:', formData); // Ajout d'un log pour vérifier les données du formulaire
+      console.log('Form values:', this.serviceForm.value);
+      this.serviceService.createService(formData).subscribe(
+        (response) => {
+          console.log('Response:', response); // Ajout d'un log pour vérifier la réponse du serveur
+        },
+        (error) => {
+          console.error('Error:', error); // Ajout d'un log pour vérifier les erreurs du serveur
         }
-      } else {
-        this.createNotification('error');
-      }
+      );
     } else {
-      Object.values(this.validateForm.controls).forEach(control => {
-        if (control.invalid) {
-          control.markAsDirty();
-          control.updateValueAndValidity({ onlySelf: true });
-        }
-      });
+      console.log('Form is invalid'); // Ajout d'un log pour vérifier que le formulaire n'est pas valide
     }
   }
 
-  resetForm(e: MouseEvent): void {
-    e.preventDefault();
-    this.validateForm.reset();
-  }
-  //managing button
-  isLoadingOne = false;
-  isLoadingTwo = false;
-  loadOne(): void {
-    this.isLoadingOne = true;
-    setTimeout(() => {
-      this.isLoadingOne = false;
-    }, 2000);
-  }
 
-  loadTwo(): void {
-    this.isLoadingTwo = true;
-    setTimeout(() => {
-      this.isLoadingTwo = false;
-      this.createNotification('success')
-    }, 2000);
-  }
-  //notification success
-  createNotification(type: string): void {
-    this.notification.create(
-      type,
-      'Success',
-      'Nouvelle service ajouter .',
-      { nzPlacement: 'topRight' }
-    );
-  }
+
+
 }
