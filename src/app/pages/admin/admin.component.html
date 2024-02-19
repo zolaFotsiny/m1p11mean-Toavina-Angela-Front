@@ -43,11 +43,20 @@
           </li>
         </ul>
       </li>
-      <li nz-submenu [nzOpen]="false" nzOpen nzTitle="Personnel & Client" nzIcon="dashboard">
+      <li nz-submenu [nzOpen]="false" nzTitle="Personnel & Client" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/employee']"> Ajout Utilisateur</li>
-          <li nz-menu-item> Liste Client</li>
-          <li nz-menu-item [routerLink]="['/manager/employee']"> Liste Personnel</li>
+          <li nz-menu-item [routerLink]="['/manager/addUtilisateur']">
+            <span nz-icon nzType="file"></span>
+            <span>Ajout Utilisateur</span>
+          </li>
+          <li nz-menu-item>
+            <span nz-icon nzType="file"></span>
+            <span>Liste Client</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/manager/employee']">
+            <span nz-icon nzType="file"></span>
+            <span>Liste Personnel</span>
+          </li>
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Gestion Service" nzIcon="form">
