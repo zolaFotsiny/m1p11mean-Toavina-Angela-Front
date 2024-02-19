@@ -1,116 +1,48 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <h2>Ajout de Service</h2>
-    <div nz-row [nzGutter]="16">
-        <div nz-col nzSpan="12">
-            <nz-form-item>
-                <nz-form-control nzHasFeedback [nzErrorTip]="designationErrorTpl">
-                    <nz-form-label nzRequired>Designation service</nz-form-label>
-                    <input nz-input formControlName="designation" placeholder="Designation service*" />
-                    <ng-template #designationErrorTpl let-control>
-                        <div class="error-message" *ngIf="control.errors?.required">
-                            Veuillez saisir la désignation du service!
-                        </div>
-                        <div class="error-message" *ngIf="control.errors?.pattern">
-                            Veuillez saisir une désignation valide (caractères alphabétiques uniquement).
-                        </div>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-            <nz-form-item>
-                <nz-form-control nzHasFeedback [nzErrorTip]="prixErrorTpl" type="number">
-                    <nz-form-label nzRequired>Designation service</nz-form-label>
-                    <input nz-input formControlName="prix" placeholder="Prix*" />
-                    <ng-template #prixErrorTpl let-control>
-                        <div class="error-message" *ngIf="control.errors?.required">
-                            Veuillez saisir le prix!
-                        </div>
-                        <div class="error-message" *ngIf="control.errors?.pattern">
-                            Veuillez saisir un prix valide (caractères alphabétiques uniquement).
-                        </div>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>
+<h1>Ajout service</h1>
+
+<form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="form-group">
+        <label for="designation">Designation:</label>
+        <input type="text" id="designation" formControlName="designation" class="form-control" required />
+        <div class="invalid-feedback">
+            Please provide a designation.
         </div>
     </div>
-    <div nz-row [nzGutter]="16">
-        <div nz-col nzSpan="12">
-            <!-- Duree -->
-            <nz-form-item>
-                <nz-form-control nzHasFeedback [nzErrorTip]="dureeErrorTpl">
-                    <nz-form-label nzRequired>Durée</nz-form-label>
-                    <input nz-input formControlName="duree" placeholder="Durée*" type="time" />
-                    <ng-template #dureeErrorTpl let-control>
-                        <div class="error-message" *ngIf="control.errors?.required">
-                            Veuillez saisir la durée!
-                        </div>
-                        <div class="error-message" *ngIf="control.errors?.pattern">
-                            Veuillez saisir une durée valide.
-                        </div>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col nzSpan="12">
-            <!-- Image -->
-            <nz-form-item>
-                <nz-form-control nzHasFeedback [nzErrorTip]="commissionPourcentageErrorTpl">
-                    <nz-form-label nzRequired>Commission</nz-form-label>
-                    <input nz-input formControlName="commission_pourcentage" placeholder="Commission Pourcentage*" />
-                    <ng-template #commissionPourcentageErrorTpl let-control>
-                        <div class="error-message" *ngIf="control.errors?.required">
-                            Veuillez saisir la commission pourcentage!
-                        </div>
-                        <div class="error-message" *ngIf="control.errors?.pattern">
-                            Veuillez saisir une commission pourcentage valide.
-                        </div>
-                    </ng-template>
-                </nz-form-control>
-            </nz-form-item>
 
+    <div class="form-group">
+        <label for="prix">Prix:</label>
+        <input type="text" id="prix" formControlName="prix" class="form-control" required />
+        <div class="invalid-feedback">
+            Please provide a price.
         </div>
     </div>
-    <!-- 
-    <nz-form-item>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="imageErrorTpl">
-            <nz-form-label nzRequired>Image</nz-form-label>
-            <input nz-input formControlName="image" placeholder="Image*" />
-            <ng-template #imageErrorTpl let-control>
-                <div class="error-message" *ngIf="control.errors?.required">
-                    Veuillez saisir le nom de l'image!
-                </div>
-                <div class="error-message" *ngIf="control.errors?.pattern">
-                    Veuillez saisir une image valide.
-                </div>
-            </ng-template>
-        </nz-form-control>
-    </nz-form-item> -->
 
+    <div class="form-group">
+        <label for="duree">Duree:</label>
+        <input type="text" id="duree" formControlName="duree" class="form-control" required />
+        <div class="invalid-feedback">
+            Please provide a duration.
+        </div>
+    </div>
 
+    <div class="form-group">
+        <label for="commission_pourcentage">Commission Pourcentage:</label>
+        <input type="text" id="commission_pourcentage" formControlName="commission_pourcentage" class="form-control"
+            required />
+        <div class="invalid-feedback">
+            Please provide a commission percentage.
+        </div>
+    </div>
 
+    <div class="form-group">
+        <label for="file">File:</label>
+        <input type="file" id="file" (change)="onFileSelected($event)" class="form-control-file" required />
+        <div class="invalid-feedback">
+            Please provide a file.
+        </div>
+    </div>
 
-
-
-
-
-
-    <!-- Commission Pourcentage -->
-
-
-
-    <nz-form-item>
-        <input type="file" (change)="onFileSelected($event)" />
-
-    </nz-form-item>
-
-    <!-- Submit and Reset Buttons -->
-    <nz-form-item>
-        <nz-form-control>
-            <button nz-button nzType="primary" type="submit" [nzLoading]="isLoadingTwo">
-                <span nz-icon nzType="poweroff"></span> Soumettre
-            </button>
-            <button nz-button (click)="resetForm($event)">Réinitialiser</button>
-        </nz-form-control>
-    </nz-form-item>
+    <div class="form-group">
+        <button type="submit" class="btn btn-primary" [disabled]="!serviceForm.valid">Create Service</button>
+    </div>
 </form>
