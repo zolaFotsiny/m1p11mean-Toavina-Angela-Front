@@ -1,0 +1,56 @@
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="mt-4">
+
+
+    <!-- Choices -->
+    <div formArrayName="choix" class="row">
+        <div *ngFor="let choice of getChoixControls(); let i = index" [formGroupName]="i" class="col-md-12 mb-3">
+            <!-- Service ID -->
+            <div class="row">
+                <!-- Service ID -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_service" class="form-label">Service ID:</label>
+                    <select class="form-select" id="id_service" formControlName="id_service"
+                        aria-label="multiple select example" [(ngModel)]="selectedValue">
+                        <ng-container *ngFor="let option of listOfSelectedValue">
+                            <option [value]="option._id">{{ option.designation }}</option>
+                        </ng-container>
+                    </select>
+                </div>
+
+
+                <!-- Employee ID -->
+                <div class="col-md-6 mb-3">
+                    <label for="id_employee" class="form-label">Employee ID:</label>
+                    <input type="text" id="id_employee" formControlName="id_employee" class="form-control">
+
+                    <select class="form-select" id="id_employee" formControlName="id_employee"
+                        aria-label="multiple select example">
+                        <ng-container *ngFor="let option of listOfSelectedValueEmp">
+                            <option [value]="option._id">{{ option.designation }}</option>
+                        </ng-container>
+                    </select>
+                </div>
+
+            </div>
+            <div class="col-md-6 mb-3">
+                <button type="button" class="btn btn-danger" (click)="removeChoiceRow(i)">Remove</button>
+            </div>
+        </div>
+        <button type="button" class="btn btn-success" (click)="addChoiceRow()">Add Choice</button>
+    </div>
+
+    <!-- Date and Time -->
+    <div class="mb-3">
+        <label for="date_heure" class="form-label">Date and Time:</label>
+        <input type="datetime-local" id="date_heure" formControlName="date_heure" class="form-control">
+    </div>
+
+    <!-- State -->
+    <div class="mb-3">
+        <label for="etat" class="form-label">State:</label>
+        <input type="number" id="etat" formControlName="etat" class="form-control">
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

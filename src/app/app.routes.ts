@@ -8,6 +8,7 @@ import { ServiceListeComponent } from './pages/admin/service/service-liste/servi
 import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChartsComponent } from './pages/admin/charts/charts.component';
+import { RendezvousComponent } from './pages/client/rendezvous/rendezvous.component';
 
 
 export const routes: Routes = [
@@ -24,7 +25,19 @@ export const routes: Routes = [
         ]
     },
 
-    { path: 'client', component: ClientComponent },
+    {
+        path: 'client', component: ClientComponent,
+
+        children: [
+
+            { path: 'rendezvous/add', component: RendezvousComponent },
+
+        ]
+    },
+
+
+
+
     { path: 'home', component: HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
 ];
