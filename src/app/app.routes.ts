@@ -8,6 +8,7 @@ import { ServiceListeComponent } from './pages/admin/service/service-liste/servi
 import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
 
+
 export const routes: Routes = [
 
     {
@@ -16,6 +17,7 @@ export const routes: Routes = [
         children: [
             { path: 'service', component: ServiceListeComponent },
             { path: 'service/add', component: ServiceAddComponent },
+            { path: 'client/add', component: ClientAddComponent },
             { path: 'employee', component: PersonnelListComponent },
         ]
     },
