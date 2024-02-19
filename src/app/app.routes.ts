@@ -7,6 +7,7 @@ import { PersonnelListComponent } from './pages/admin/personnel/personnel-list/p
 import { ServiceListeComponent } from './pages/admin/service/service-liste/service-liste.component';
 import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
+import { ChartsComponent } from './pages/admin/charts/charts.component';
 
 
 export const routes: Routes = [
@@ -19,6 +20,7 @@ export const routes: Routes = [
             { path: 'service/add', component: ServiceAddComponent },
             { path: 'addUtilisateur', component: ClientAddComponent },
             { path: 'employee', component: PersonnelListComponent },
+            { path: 'chart', component: ChartsComponent },
         ]
     },
 
