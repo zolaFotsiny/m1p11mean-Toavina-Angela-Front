@@ -14,7 +14,7 @@
                 <li><a class="nav-link scrollto" href="#team">Team</a></li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
-
+                <i *ngIf="isSmallScreen" class="bi bi-list mobile-nav-toggle" (click)="open(content)"></i>
                 <li class="dropdown">
                     <a href="#">
                         <i class="bi bi-bell custom-icon-size"></i>
@@ -49,46 +49,54 @@
 
 
 
-            <i *ngIf="isSmallScreen" class="bi bi-list mobile-nav-toggle" (click)="toggleMobileNav()"></i>
+            <i *ngIf="isSmallScreen" class="bi bi-list mobile-nav-toggle" (click)="open(content)"></i>
 
-            <ul class="mobile-nav" *ngIf="isSmallScreen && isMobileNavOpen">
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <!-- ... Ajoutez d'autres liens ... -->
+    <ng-template #content let-offcanvas>
+        <div class="offcanvas-header">
+            <img class="logoImg" src="assets/logo/logo.png" alt="">
+            <h1 class="logo me-auto sacramento-regular">
+                <a href="index.html">Beauty Fly</a>
+            </h1>
+            <button type="button" class="btn-close" aria-label="Close" (click)="offcanvas.dismiss('Cross click')"></button>
+        </div>
+        <div class="offcanvas-body ">
+            <div class="d-flex align-items-center navMobilecontainer">
+                <ul >
+                    <li [routerLink]="['/client/espaceClient']">
+                        <a class="nav-link">
+                            <i class="bi bi-person-circle custom-icon-size"></i>
+                            <span> Profil</span>
+                        </a>
+                    </li>
+                    <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <!-- <li><a class="nav-link   scrollto" href="#portfolio">Portfolio</a></li> -->
+                    <li><a class="nav-link scrollto" href="#team">Team</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                    <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
+                   
+                   
+                   <div class="alignerCote">
 
-                <li class="dropdown">
-                    <a href="#">
-                        <i class="bi bi-bell custom-icon-size"></i>
-                    </a>
-                    <ul>
-                        <li class="d-flex align-items-center">
-                            <a href="#" class="d-flex align-items-center">
-                                <i class="bi bi-alarm"></i>
-                                <span class="ms-2">Rendez-vous dans 2 jours</span>
-                            </a>
-                        </li>
+                      
+                    <li id="navbar" class="navbar" >
+                        <div></div>
+                        <banner-login></banner-login>
+                        
+                    </li>
+                </div>
 
-                        <li class="d-flex align-items-center">
-                            <a href="#" class="d-flex align-items-center">
-                                <i class="bi bi-alarm"></i>
-                                <span class="ms-2">Rendez-vous dans 2 jours</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
 
-                <!-- ... Ajoutez d'autres liens ... -->
+                </ul>
+            </div>
+            <!-- Mobile Navigation Toggle -->
+           
+          
+        </div>
+    </ng-template>
 
-                <li [routerLink]="['/client/espaceClient']">
-                    <a class="nav-link">
-                        <i class="bi bi-person-circle custom-icon-size"></i>
-                    </a>
-                </li>
-                <li>
-                    <banner-login></banner-login>
-                </li>
-            </ul>
+            <!-- <button *ngIf="isSmallScreen" class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo offcanvas</button> -->
 
 
 

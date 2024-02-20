@@ -32,19 +32,47 @@
     /* Ajustez la taille selon vos besoins */
 }
 
-/* ... autres styles */
+/* Existing styles remain unchanged */
 
+/* New styles for responsiveness */
+
+/* Mobile Navigation */
 .mobile-nav {
-    list-style: none;
+    display: none;
+    /* Hide by default */
+    flex-direction: column;
+    position: absolute;
+    top: 70px;
+    /* Adjust as needed */
+    left: 0;
+    width: 100%;
+    background-color: #fff;
+    /* Adjust background color as needed */
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+    z-index: 1000;
     padding: 0;
+    /* Remove padding to align items */
 }
 
-.mobile-nav li {
-    margin: 10px 0;
+.navMobilecontainer{
+    // background-color: red;
+    padding: 20px 20px;
+    ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            li{
+                font-family: cursive;
+            padding: 20px;  
+            }
+        }
 }
 
-.mobile-nav-toggle {
-    cursor: pointer;
+.alignerCote{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-end
 }
-
-/* ... autres styles */

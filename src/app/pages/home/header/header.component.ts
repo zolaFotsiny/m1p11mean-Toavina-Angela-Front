@@ -1,11 +1,13 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, TemplateRef } from '@angular/core';
 import { LoginComponent } from '../banner/login/login.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgbOffcanvas, NgbOffcanvasConfig } from '@ng-bootstrap/ng-bootstrap';
 @Component({
   selector: 'app-header',
   standalone: true,
   imports: [LoginComponent, RouterModule, CommonModule],
+  providers: [NgbOffcanvasConfig, NgbOffcanvas],
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
@@ -18,7 +20,19 @@ export class HeaderComponent {
   toggleMobileNav() {
     this.isMobileNavOpen = !this.isMobileNavOpen;
   }
+  constructor(
+    config: NgbOffcanvasConfig,
+    private offcanvasService: NgbOffcanvas,
+  ) {
+    // customize default values of offcanvas used by this component tree
+    config.position = 'end';
+    config.backdropClass = 'bg-info';
+    config.keyboard = false;
+  }
 
+  open(content: TemplateRef<any>) {
+    this.offcanvasService.open(content);
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
