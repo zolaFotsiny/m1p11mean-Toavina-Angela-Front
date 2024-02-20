@@ -24,7 +24,7 @@ export class LoginComponent {
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
+    console.log('Button ok test clicked!');
     this.isVisible = false;
   }
 
