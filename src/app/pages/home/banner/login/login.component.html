@@ -1,7 +1,9 @@
 <div class="d-flex justify-content-center justify-content-lg-start">
-    <button nz-button class="btn-get-started scrollto custom-padding" nzGhost (click)="showModal()">
+    <!-- <button nz-button class="btn-get-started scrollto custom-padding" nzGhost (click)="showModal()">
         Se Connecter <br>
-    </button>
+    </button> -->
+    <a class="getstarted scrollto" (click)="showModal()">Se connecter</a>
+
     <nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" [nzOkText]="null"
         [nzCancelText]="null">
         <ng-container *nzModalContent>

@@ -3,12 +3,11 @@ import { Component } from '@angular/core';
 import { NzButtonModule } from 'ng-zorro-antd/button';
 import { NzCarouselModule } from 'ng-zorro-antd/carousel';
 import { NzModalModule } from 'ng-zorro-antd/modal';
-import { LoginComponent } from './login/login.component';
 
 @Component({
   selector: 'home-banner',
   standalone: true,
-  imports: [NzCarouselModule, CommonModule, LoginComponent],
+  imports: [NzCarouselModule, CommonModule],
   templateUrl: './banner.component.html',
   styleUrl: './banner.component.scss'
 })
