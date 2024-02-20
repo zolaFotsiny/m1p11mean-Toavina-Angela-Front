@@ -11,7 +11,7 @@
     /* Set the desired height for the smaller header */
     background-color: #fff;
     /* Set the background color for the smaller header */
-transition: height 0.9s ease-in-out, background-color 0.9s ease-in-out;
+    transition: height 0.9s ease-in-out, background-color 0.9s ease-in-out;
     /* Add a smooth transition effect */
 }
 
@@ -20,8 +20,31 @@ transition: height 0.9s ease-in-out, background-color 0.9s ease-in-out;
     transition: color 0.5s ease-in-out;
     /* Adjust the logo size for the smaller header */
 }
+
 .small-header h1 a {
     color: transparent;
     transition: color 0.5s ease-in-out;
     /* Slower transition effect for text color */
 }
+
+.custom-icon-size {
+    font-size: 24px;
+    /* Ajustez la taille selon vos besoins */
+}
+
+/* ... autres styles */
+
+.mobile-nav {
+    list-style: none;
+    padding: 0;
+}
+
+.mobile-nav li {
+    margin: 10px 0;
+}
+
+.mobile-nav-toggle {
+    cursor: pointer;
+}
+
+/* ... autres styles */
