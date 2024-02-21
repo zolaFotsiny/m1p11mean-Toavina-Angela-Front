@@ -5,10 +5,11 @@ import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { CalendarRendezVousComponent } from './calendar-rendez-vous/calendar-rendez-vous.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { RendezvousComponent } from './rendezvous/rendezvous.component';
+import { FavorisComponent } from './favoris/favoris.component';
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent],
+  imports: [HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, FavorisComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })

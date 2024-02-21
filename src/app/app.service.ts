@@ -6,7 +6,8 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
+  // private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
+  private apiUrl = 'http://localhost:3000';
 
   constructor(private http: HttpClient) { }
 
@@ -102,6 +103,22 @@ export class ServicesService {
       })
     };
     return this.http.get<any>(`${this.apiUrl}/taches`, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error fetching tasks:', error);
+          return throwError(error);
+        })
+      );
+  }
+  getRendezVous(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+    return this.http.get<any>(`${this.apiUrl}/rendezvous`, httpOptions)
       .pipe(
         catchError(error => {
           // Handle errors here
