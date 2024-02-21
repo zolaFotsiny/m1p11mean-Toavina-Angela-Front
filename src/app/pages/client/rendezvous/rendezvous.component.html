@@ -1,8 +1,8 @@
-<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="mt-4">
+<form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="row php-email-form">
 
 
     <!-- Choices -->
-    <div formArrayName="choix" class="row">
+    <div formArrayName="choix" class="row ">
         <div *ngFor="let choice of getChoixControls(); let i = index" [formGroupName]="i" class="col-md-12 mb-3">
             <!-- Service ID -->
             <div class="row">
@@ -21,7 +21,7 @@
                 <!-- Employee ID -->
                 <div class="col-md-6 mb-3">
                     <label for="id_employee" class="form-label">Employee ID:</label>
-                    <input type="text" id="id_employee" formControlName="id_employee" class="form-control">
+
 
                     <select class="form-select" id="id_employee" formControlName="id_employee"
                         aria-label="multiple select example">
