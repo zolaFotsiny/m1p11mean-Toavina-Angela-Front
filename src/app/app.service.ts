@@ -93,4 +93,39 @@ export class ServicesService {
       );
   }
 
+
+  getTaches(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+    return this.http.get<any>(`${this.apiUrl}/taches`, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error fetching tasks:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+  validateTask(id_tache: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.put<any>(`${this.apiUrl}/taches/validateTask/${id_tache}`, {}, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error validating task:', error);
+          return throwError(error);
+        })
+      );
+  }
 }

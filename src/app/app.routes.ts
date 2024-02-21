@@ -9,6 +9,8 @@ import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChartsComponent } from './pages/admin/charts/charts.component';
 import { RendezvousComponent } from './pages/client/rendezvous/rendezvous.component';
+import { DragComponent } from './pages/client/drag/drag.component';
+
 
 
 export const routes: Routes = [
@@ -22,6 +24,7 @@ export const routes: Routes = [
             { path: 'addUtilisateur', component: ClientAddComponent },
             { path: 'employee', component: PersonnelListComponent },
             { path: 'chart', component: ChartsComponent },
+            { path: 'drag', component: DragComponent },
         ]
     },
 
