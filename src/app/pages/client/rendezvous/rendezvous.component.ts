@@ -62,7 +62,7 @@ export class RendezvousComponent implements OnInit {
       (response: any) => {
         if (response && response.data) {
           const data = response.data as Optione[];
-          console.error('Invalid response structure:', data);
+          console.log('Invalid response structure:', data);
           this.listOfSelectedValueEmp = data.map(optione => ({
             designation: optione.id_utilisateur.nom,
             _id: optione._id
