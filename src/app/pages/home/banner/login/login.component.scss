@@ -12,3 +12,26 @@
 .myindex{
     z-index:1000 !important;
 }
+
+
+/* In your Angular component's styles file, e.g., client.component.scss */
+
+.user-info-box {
+    border: 1px solid #ccc;
+    padding: 15px;
+    text-align: center;
+    background-color: #f8f9fa;
+}
+
+.user-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.user-details p {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.5;
+}

@@ -1,5 +1,45 @@
 <app-header></app-header>
+<hr>
+<hr>
+<hr>
+<hr>
+<hr>
 
-<div class="mt-5">
-    <h1>test</h1>
+<div class="row">
+
 </div>
+<section id="why-us" class="why-us ">
+    <!-- <h1>{{email}}</h1> -->
+    <div class="container">
+        <div class="row">
+            <!-- First column with 75% width -->
+            <div class="col-md-9">
+                <!-- Your content for the first column goes here -->
+                <div>
+                    <p>This is the 75% width content.</p>
+                </div>
+            </div>
+
+            <!-- Second column with 25% width -->
+            <div class="col-md-3">
+                <!-- User info box -->
+                <div class="user-info-box">
+                    <!-- Image -->
+                    <img src="assets/avatar.jpg" alt="User Image" class="user-image">
+                    <!-- User details -->
+                    <div class="user-details">
+                        <p><strong>Nom:</strong> {{nom}}</p>
+                        <p><strong>Prenom:</strong> {{prenom}}</p>
+                        <p><strong>Contact:</strong> 123-456-7890</p>
+                        <p><strong>Email:</strong> {{email}}</p>
+                        <div class="text-center mt-2">
+                            <button type="button" class="btn btn-outline-success">
+                                Changer information
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section><!-- End Why Us Section -->

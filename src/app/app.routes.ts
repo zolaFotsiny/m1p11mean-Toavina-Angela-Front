@@ -29,9 +29,7 @@ export const routes: Routes = [
         path: 'client', component: ClientComponent,
 
         children: [
-            { path: 'espaceClient', component: ClientComponent },
             { path: 'rendezvous/add', component: RendezvousComponent },
-
         ]
     },
 

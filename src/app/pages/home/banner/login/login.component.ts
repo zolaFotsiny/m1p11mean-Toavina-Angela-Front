@@ -47,7 +47,7 @@ export class LoginComponent {
       response => {
         // Handle successful login, e.g., save token to localStorage
         localStorage.setItem('token', response.data.token);
-        console.log('Login successful', localStorage.getItem('token'));
+        // console.log('Login successful', localStorage.getItem('token'));
 
         // Assuming decodedToken is of type JwtPayload or any
         const token = response.data.token;
@@ -62,6 +62,8 @@ export class LoginComponent {
           if (decodedToken.type_utilisateur === 'manager') {
             this.router.navigate(['/manager']);
           } else {
+            // alert('ato')
+            // console.log('token info',decodedToken);
             this.router.navigate(['/client']);
           }
         } else {
