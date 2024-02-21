@@ -6,40 +6,64 @@
 <hr>
 
 <div class="row">
+    <section id="why-us" class="why-us">
+        <div class="container">
+            <div class="row">
+                <!-- First column with 75% width -->
+                <div class="col-md-9">
+                    <!-- Your content for the first column goes here -->
+                    <div class="styled-box">
+                        <!-- Button to open the modal for "Mes rendez-vous" -->
+                        <button type="button" class="btn btn-outline-success mr-5" (click)="openModal('calendar')">
+                            Mes rendez-vous
+                        </button>
+                        <!-- Button to open the modal for "Ajout rendez-vous" -->
+                        <button type="button" class="btn btn-outline-success" (click)="openModal('addRdv')">
+                            Ajout rendez-vous
+                        </button>
 
-</div>
-<section id="why-us" class="why-us ">
-    <!-- <h1>{{email}}</h1> -->
-    <div class="container">
-        <div class="row">
-            <!-- First column with 75% width -->
-            <div class="col-md-9">
-                <!-- Your content for the first column goes here -->
-                <div class="styled-box">
-                    <app-calendar-rendez-vous></app-calendar-rendez-vous>
+                        <!-- Modal content -->
+                        <ng-template #content let-modal>
+                            <div class="modal-header">
+                                <h4 class="modal-title">Nouveaux rendez-vous</h4>
+                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <!-- Use ngIf to dynamically display different content based on the selected modalContent -->
+                                <ng-container *ngIf="modalContent === 'calendar'; else otherContent">
+                                    <app-calendar-rendez-vous></app-calendar-rendez-vous>
+                                </ng-container>
+                                <ng-template #otherContent>
+                                    <app-rendezvous></app-rendezvous>
+                                </ng-template>
+                            </div>
+                        </ng-template>
+                    </div>
                 </div>
-            </div>
 
-            <!-- Second column with 25% width -->
-            <div class="col-md-3">
-                <!-- User info box -->
-                <div class="user-info-box">
-                    <!-- Image -->
-                    <img src="assets/avatar.jpg" alt="User Image" class="user-image">
-                    <!-- User details -->
-                    <div class="user-details">
-                        <p><strong>Nom:</strong> {{nom}}</p>
-                        <p><strong>Prenom:</strong> {{prenom}}</p>
-                        <p><strong>Contact:</strong> 123-456-7890</p>
-                        <p><strong>Email:</strong> {{email}}</p>
-                        <div class="text-center mt-2">
-                            <button type="button" class="btn btn-outline-success">
-                                Changer information
-                            </button>
+                <!-- Second column with 25% width -->
+                <div class="col-md-3">
+                    <!-- User info box -->
+                    <div class="user-info-box">
+                        <!-- Image -->
+                        <img src="assets/avatar.jpg" alt="User Image" class="user-image">
+                        <!-- User details -->
+                        <div class="user-details">
+                            <p><strong>Nom:</strong> {{nom}}</p>
+                            <p><strong>Prenom:</strong> {{prenom}}</p>
+                            <p><strong>Contact:</strong> 123-456-7890</p>
+                            <p><strong>Email:</strong> {{email}}</p>
+                            <div class="text-center mt-2">
+                                <button type="button" class="btn btn-outline-success">
+                                    Changer information
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</section><!-- End Why Us Section -->
+    </section><!-- End Why Us Section -->
+</div>
