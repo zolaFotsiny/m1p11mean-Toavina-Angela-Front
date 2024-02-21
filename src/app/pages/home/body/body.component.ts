@@ -6,11 +6,12 @@ import { ServicesService } from '../../../app.service';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { HeartFill, HeartOutline } from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { RendezvousComponent } from '../../client/rendezvous/rendezvous.component';
 
 @Component({
   selector: 'home-body',
   standalone: true,
-  imports: [CommonModule, NzFlexModule, NzSpinModule, NzIconModule],
+  imports: [CommonModule, NzFlexModule, NzSpinModule, NzIconModule, RendezvousComponent],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
