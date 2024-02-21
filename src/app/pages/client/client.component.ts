@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HeaderComponent } from '../home/header/header.component';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
+import { CalendarRendezVousComponent } from './calendar-rendez-vous/calendar-rendez-vous.component';
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [HeaderComponent],
+  imports: [HeaderComponent, CalendarRendezVousComponent],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
