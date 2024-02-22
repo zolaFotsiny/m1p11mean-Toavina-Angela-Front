@@ -1,8 +1,9 @@
 <div class="row">
     <div class="col-lg-6">
-        <h2>To do</h2>
+
         <div class="container" cdkDropList id="todo" [cdkDropListConnectedTo]="['done']" [cdkDropListData]="todo"
-            (cdkDropListDropped)="drop($event)">
+            (cdkDropListDropped)="drop($event)" style="border: 1px solid black; padding: 10px;">
+            <h2>To do</h2>
             <div class="item" cdkDrag *ngFor="let item of todo">
                 <nz-ribbon nzText="To do">
                     <nz-card nzTitle="Tickets fanandramana beetay" nzSize="small">{{item.date_debut}} </nz-card>
@@ -12,9 +13,10 @@
     </div>
 
     <div class="col-lg-6">
-        <h2>Done</h2>
-        <div class="container" cdkDropList id="done" [cdkDropListConnectedTo]="['done']" [cdkDropListData]="done"
-            (cdkDropListDropped)="drop($event)">
+
+        <div class="container" cdkDropList id="done" [cdkDropListConnectedTo]="['todo']" [cdkDropListData]="done"
+            (cdkDropListDropped)="drop($event)" style="border: 1px solid black; padding: 10px;">
+            <h2>Done</h2>
             <div class="item" cdkDrag *ngFor="let item of done">
                 <nz-ribbon nzText="Done" nzColor="green">
                     <nz-card nzTitle="Tickets fanandramana beetay" nzSize="small">{{item.date_debut}} </nz-card>
