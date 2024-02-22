@@ -10,6 +10,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ChartsComponent } from './pages/admin/charts/charts.component';
 import { RendezvousComponent } from './pages/client/rendezvous/rendezvous.component';
 import { DragComponent } from './pages/client/drag/drag.component';
+import { CommissionComponent } from './pages/admin/commission/commission.component';
 
 
 
@@ -25,6 +26,7 @@ export const routes: Routes = [
             { path: 'employee', component: PersonnelListComponent },
             { path: 'chart', component: ChartsComponent },
             { path: 'drag', component: DragComponent },
+            { path: 'commission', component: CommissionComponent },
         ]
     },
 

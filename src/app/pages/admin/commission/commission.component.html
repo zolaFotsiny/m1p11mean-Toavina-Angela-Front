@@ -1,0 +1,109 @@
+<div class="section-title">
+    <h2>Liste des comissions</h2>
+
+</div>
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th nzCustomFilter>
+                Nom
+                <nz-filter-trigger [(nzVisible)]="visibleNom" [nzActive]="searchValueNom.length > 0"
+                    [nzDropdownMenu]="menuNom">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Prénom
+                <nz-filter-trigger [(nzVisible)]="visiblePrenom" [nzActive]="searchValuePrenom.length > 0"
+                    [nzDropdownMenu]="menuPrenom">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Email
+                <nz-filter-trigger [(nzVisible)]="visibleEmail" [nzActive]="searchValueEmail.length > 0"
+                    [nzDropdownMenu]="menuEmail">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Montant
+                <nz-filter-trigger [(nzVisible)]="visibleTache" [nzActive]="searchValueTache.length > 0"
+                    [nzDropdownMenu]="menuTache">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                ID de la commission
+                <nz-filter-trigger [(nzVisible)]="visibleCommission" [nzActive]="searchValueCommission.length > 0"
+                    [nzDropdownMenu]="menuCommission">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of nzTable.data">
+            <td>{{ data.id_employee.id_utilisateur.nom }}</td>
+            <td>{{ data.id_employee.id_utilisateur.prenom }}</td>
+            <td>{{ data.id_employee.id_utilisateur.email }}</td>
+            <td>{{ data.montant }}</td>
+            <td>{{ data._id }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menuNom="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueNom" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchNom()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetNom()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuPrenom="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValuePrenom" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchPrenom()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetPrenom()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuEmail="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueEmail" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchEmail()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetEmail()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuTache="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueTache" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchTache()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetTache()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuCommission="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueCommission" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchCommission()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetCommission()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>

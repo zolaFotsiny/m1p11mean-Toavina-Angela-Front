@@ -111,6 +111,22 @@ export class ServicesService {
         })
       );
   }
+  getComissions(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+    return this.http.get<any>(`${this.apiUrl}/comission`, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error fetching tasks:', error);
+          return throwError(error);
+        })
+      );
+  }
   getRendezVous(): Observable<any[]> {
     const httpOptions = {
       headers: new HttpHeaders({
