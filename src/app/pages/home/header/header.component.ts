@@ -33,6 +33,14 @@ export class HeaderComponent {
   open(content: TemplateRef<any>) {
     this.offcanvasService.open(content);
   }
+  get isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    // Rediriger l'utilisateur vers la page de connexion ou actualiser la page
+  }
 
   @HostListener('window:resize', ['$event'])
   onResize(event: Event) {
