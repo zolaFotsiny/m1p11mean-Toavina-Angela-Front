@@ -1,5 +1,10 @@
-<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-    <h2>Ajout de Client</h2>
+<div class="section-title">
+    <h2>Ajout Utilisateur</h2>
+
+</div>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="needs-validation">
+
 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Nom</nz-form-label>
