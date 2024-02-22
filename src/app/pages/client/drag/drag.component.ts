@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { NzBadgeModule } from 'ng-zorro-antd/badge';
 import { NzCardModule } from 'ng-zorro-antd/card';
 import { ServicesService } from '../../../app.service';
+import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
@@ -20,7 +21,7 @@ interface Tache {
 @Component({
   selector: 'app-drag',
   standalone: true,
-  imports: [DragDropModule, CommonModule, NzBadgeModule, NzCardModule],
+  imports: [DragDropModule, CommonModule, NzBadgeModule, NzCardModule, NgbPopoverModule],
   templateUrl: './drag.component.html',
   styleUrl: './drag.component.scss'
 })
