@@ -7,7 +7,7 @@ import { Observable, catchError, throwError } from 'rxjs';
 })
 export class ServicesService {
   // private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
-  private apiUrl = 'http://localhost:3000';
+  private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 

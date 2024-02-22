@@ -1,8 +1,9 @@
-import { Component, HostListener, TemplateRef } from '@angular/core';
+import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { LoginComponent } from '../banner/login/login.component';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbOffcanvas, NgbOffcanvasConfig } from '@ng-bootstrap/ng-bootstrap';
+
 @Component({
   selector: 'app-header',
   standalone: true,
@@ -11,18 +12,18 @@ import { NgbOffcanvas, NgbOffcanvasConfig } from '@ng-bootstrap/ng-bootstrap';
   templateUrl: './header.component.html',
   styleUrl: './header.component.scss'
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit{
   isSmallHeader: boolean = false;
   // Ajoutez ces propriétés à votre composant
   isMobileNavOpen = false;
   isSmallScreen = window.innerWidth < 768; // Vous pouvez ajuster la largeur selon vos besoins
 
-  toggleMobileNav() {
-    this.isMobileNavOpen = !this.isMobileNavOpen;
+  ngOnInit(): void {
+
   }
   constructor(
     config: NgbOffcanvasConfig,
-    private offcanvasService: NgbOffcanvas,
+    private offcanvasService: NgbOffcanvas
   ) {
     // customize default values of offcanvas used by this component tree
     config.position = 'end';
@@ -30,6 +31,9 @@ export class HeaderComponent {
     config.keyboard = false;
   }
 
+  toggleMobileNav() {
+    this.isMobileNavOpen = !this.isMobileNavOpen;
+  }
   open(content: TemplateRef<any>) {
     this.offcanvasService.open(content);
   }

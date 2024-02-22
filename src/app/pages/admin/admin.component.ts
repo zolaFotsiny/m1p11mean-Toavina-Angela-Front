@@ -5,7 +5,10 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 
+
+
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
+import { SocketService } from '../../socket.service';
 @Component({
     selector: 'app-admin',
     standalone:true,
@@ -15,16 +18,28 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
     // imports: [NzLayoutModule,  NzIconModule, NzMenuModule,  RouterOutlet, CommonModule, RouterModule],
 })
 
-export class AdminComponent {
+export class AdminComponent implements OnInit {
     title:string = 'Pelasoa';
     test:string = 'test';
     isCollapsed:boolean = false;
-    constructor() { }
+    constructor(
+        private socketService: SocketService
+    ) { 
 
-    // ngOnInit() {
-    //     // alert('test');
-    //     console.log(this.test);  // Use "this.test" to access the class property
-    // }
+        this.socketService.listenForRdvEvent().subscribe((data) => {
+            console.log('Received rdv event:', data);
+            // Do something with the received data
+        });
+    }
+
+
+// Somewhere in your component or service code
+
+
+    ngOnInit() {
+    //   this.socketService.connect();
+        
+    }
 }
 
 
