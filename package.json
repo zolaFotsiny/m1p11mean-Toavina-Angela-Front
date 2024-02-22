@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --port 0 --open",
+    "start": "ng serve --port 0 --open --proxy-config proxy.conf.json",
+    "change": "nvm use  20.8.0",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
@@ -28,6 +29,7 @@
     "ng-drag-drop": "^5.0.0",
     "ng-zorro-antd": "^17.2.0",
     "rxjs": "~7.8.0",
+    "socket.io-client": "^4.7.4",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
