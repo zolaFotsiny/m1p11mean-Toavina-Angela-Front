@@ -86,13 +86,32 @@
     </ul>
   </nz-sider>
   <nz-layout>
+
+
     <nz-header>
       <div class="app-header">
         <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
           <span class="trigger" nz-icon [nzType]="isCollapsed ? 'bars' : 'bars'"></span>
         </span>
+
+
+
+        <span class="notification-icon">
+          <span class="trigger">
+            <i class="bi bi-bell"></i>
+
+            <span class="badge" *ngIf="showNotif">1</span>
+          </span>
+        </span>
+
+
+
       </div>
     </nz-header>
+
+
+
+
     <nz-content>
       <div class="inner-content" style="height: auto;">
         <router-outlet></router-outlet>

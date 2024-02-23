@@ -78,3 +78,33 @@ nz-content {
     background: #fff;
     height: 100%;
 }
+
+
+
+
+
+
+
+
+
+.notification-icon {
+    position: relative;
+    display: inline-block;
+    /* Ajout de cette propriété pour que la div occupe seulement la largeur du contenu */
+}
+
+.notification-icon .trigger {
+    display: inline-block;
+    /* Pour que la div occupe seulement la largeur du contenu */
+}
+
+.notification-icon .badge {
+    position: absolute;
+    top: 15px;
+    right: -9px;
+    background-color: red;
+    color: white;
+    // padding: 4px 8px;
+    border-radius: 60%;
+    font-size: 8px;
+}

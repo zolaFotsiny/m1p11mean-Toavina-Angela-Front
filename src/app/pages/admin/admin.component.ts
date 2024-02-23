@@ -11,34 +11,38 @@ import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { SocketService } from '../../socket.service';
 @Component({
     selector: 'app-admin',
-    standalone:true,
+    standalone: true,
     templateUrl: './admin.component.html',
     styleUrls: ['./admin.component.scss'],
-    imports: [ CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, NzBreadCrumbModule,   RouterModule, NzLayoutModule, NzIconModule, NzMenuModule, RouterOutlet, CommonModule, RouterModule],
+    imports: [CommonModule, RouterOutlet, NzIconModule, NzLayoutModule, NzMenuModule, NzBreadCrumbModule, RouterModule, NzLayoutModule, NzIconModule, NzMenuModule, RouterOutlet, CommonModule, RouterModule],
     // imports: [NzLayoutModule,  NzIconModule, NzMenuModule,  RouterOutlet, CommonModule, RouterModule],
 })
 
 export class AdminComponent implements OnInit {
-    title:string = 'Pelasoa';
-    test:string = 'test';
-    isCollapsed:boolean = false;
+    title: string = 'Pelasoa';
+    test: string = 'test';
+    isCollapsed: boolean = false;
+    showNotif: boolean = false;
+
     constructor(
         private socketService: SocketService
-    ) { 
+    ) {
 
         this.socketService.listenForRdvEvent().subscribe((data) => {
+            if (data) {
+                this.showNotif = true;
+            }
             console.log('Received rdv event:', data);
-            // Do something with the received data
         });
     }
 
 
-// Somewhere in your component or service code
+    // Somewhere in your component or service code
 
 
     ngOnInit() {
-    //   this.socketService.connect();
-        
+        //   this.socketService.connect();
+
     }
 }
 
