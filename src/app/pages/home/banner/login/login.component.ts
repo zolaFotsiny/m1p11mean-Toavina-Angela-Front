@@ -16,12 +16,9 @@ import { ServicesService } from '../../../../app.service';
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
-
+  loading = false;
   isVisible = false;
-  credentials = {
-    email: '',  // Valeur par défaut pour l'e-mail
-    mot_de_passe: 'cmcm'      // Valeur par défaut pour le mot de passe
-  };
+  credentials: { email: string, mot_de_passe: string } = { email: '', mot_de_passe: 'cmcm' };
 
   showModal(): void {
     this.isVisible = true;
@@ -41,44 +38,53 @@ export class LoginComponent {
 
   constructor(private servicesService: ServicesService, private router: Router) { }
 
+  isValidForm(): boolean {
+    return !!this.credentials.email && !!this.credentials.mot_de_passe;
+  }
+
   onSubmit(): void {
-    console.log('test', this.credentials);
+    // console.log('test', this.credentials);
+    if (this.isValidForm()) {
+      // Votre logique de soumission ici
+      this.loading = true;
+      this.servicesService.login(this.credentials).subscribe(
+        response => {
+          this.loading = false;
+          // Handle successful login, e.g., save token to localStorage
+          localStorage.setItem('token', response.data.token);
+          // console.log('Login successful', localStorage.getItem('token'));
 
-    this.servicesService.login(this.credentials).subscribe(
-      response => {
-        // Handle successful login, e.g., save token to localStorage
-        localStorage.setItem('token', response.data.token);
-        // console.log('Login successful', localStorage.getItem('token'));
+          // Assuming decodedToken is of type JwtPayload or any
+          const token = response.data.token;
+          const tokenBearer = 'Bearer ' + token;
+          localStorage.setItem('token', tokenBearer);
+          const decodedToken: any = jwtDecode(response.data.token);
 
-        // Assuming decodedToken is of type JwtPayload or any
-        const token = response.data.token;
-        const tokenBearer = 'Bearer ' + token;
-        localStorage.setItem('token', tokenBearer);
-        const decodedToken: any = jwtDecode(response.data.token);
+          console.log('Decoded Token:', decodedToken);
 
-        console.log('Decoded Token:', decodedToken);
+          // Check if 'type_utilisateur' exists in the decoded token
+          if (decodedToken && decodedToken.type_utilisateur) {
+            console.log('test', decodedToken.type_utilisateur);
 
-        // Check if 'type_utilisateur' exists in the decoded token
-        if (decodedToken && decodedToken.type_utilisateur) {
-          console.log('test', decodedToken.type_utilisateur);
-
-          if (decodedToken.type_utilisateur === 'manager') {
-            this.router.navigate(['/manager']);
+            if (decodedToken.type_utilisateur === 'manager') {
+              this.router.navigate(['/manager/chart']);
+            } else {
+              // alert('ato')
+              // console.log('token info',decodedToken);
+              this.router.navigate(['/client']);
+            }
           } else {
-            // alert('ato')
-            // console.log('token info',decodedToken);
-            this.router.navigate(['/client']);
+            // Handle the case where 'type_utilisateur' is not present in the token
+            console.error('Property type_utilisateur is missing in the decoded token.');
           }
-        } else {
-          // Handle the case where 'type_utilisateur' is not present in the token
-          console.error('Property type_utilisateur is missing in the decoded token.');
+        },
+        error => {
+          // Handle login error
+          console.error('Login failed', error);
         }
-      },
-      error => {
-        // Handle login error
-        console.error('Login failed', error);
-      }
-    );
+      );
+    }
+
   }
 
 

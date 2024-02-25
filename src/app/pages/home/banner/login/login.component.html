@@ -13,25 +13,32 @@
                         <div class="login-container">
                             <h2 class="text-center mb-4">Login</h2>
                             <form (ngSubmit)="onSubmit()" class="d-flex flex-column">
-                                <div class="form-group">
+                                <div class="form-group"
+                                    [ngClass]="{'has-error': emailField.invalid && emailField.touched}">
                                     <label for="email">Email</label>
-                                    <!-- <input type="email" id="email" [ngModel]="credentials.email" name="email"
-                                        class="form-control" placeholder="Enter Email" required> -->
-                                    <select id="email" [(ngModel)]="credentials.email" name="email" class="form-control"
-                                        required>
+                                    <select id="email" [(ngModel)]="credentials.email" name="email"
+                                        #emailField="ngModel" class="form-control" required>
                                         <option value="admin@gmail.com">admin&#64;gmail.com</option>
                                         <option value="client@gmail.com">client&#64;gmail.com</option>
                                         <!-- Ajoutez d'autres options au besoin -->
                                     </select>
+                                    <div *ngIf="emailField.invalid && emailField.touched" class="help-block">Veuillez
+                                        sélectionner une option valide.
+                                    </div>
                                 </div>
+
                                 <div class="form-group mt-3">
                                     <label for="mot_de_passe">Password</label>
                                     <input type="password" id="mot_de_passe" [ngModel]="credentials.mot_de_passe"
                                         name="mot_de_passe" class="form-control" placeholder="Enter Password" required>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-primary btn-block ghost-button">Se
-                                        Connecter</button>
+                                    <button type="submit" class="btn btn-primary btn-block ghost-button"
+                                        [disabled]="loading || !isValidForm()">
+                                        <span *ngIf="!loading">Se Connecter</span>
+                                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+                                            aria-hidden="true"></span>
+                                    </button>
                                 </div>
                             </form>
 
