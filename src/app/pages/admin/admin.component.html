@@ -15,11 +15,7 @@
             <span>Chart</span>
           </li>
 
-          <li nz-menu-item [routerLink]="['/manager/service']">
-            <!-- Liste -->
-            <span nz-icon nzType="file"></span>
-            <span>Réservation</span>
-          </li>
+
           <li nz-menu-item [routerLink]="['/manager/drag']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
@@ -34,14 +30,20 @@
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/service/add']">
-            <span nz-icon nzType="file"></span>
-            <span>Entrer</span>
-          </li>
           <li nz-menu-item [routerLink]="['/manager/service']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
-            <span>Sortie</span>
+            <span>Réservation</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/manager/sortie/add']">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Saisie Sortie</span>
+          </li>
+          <li nz-menu-item [routerLink]="['/manager/sortie']">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Liste Sortie</span>
           </li>
         </ul>
       </li>

@@ -1,0 +1,42 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="sortieForm" novalidate>
+    <div class="form-group">
+        <label for="libele">Libellé</label>
+        <input type="text" class="form-control" id="libele" formControlName="libele" required>
+        <div *ngIf="sortieForm.get('libele')?.invalid && (sortieForm.get('libele')?.dirty || sortieForm.get('libele')?.touched)"
+            class="invalid-feedback">
+            Libellé est requis.
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="description">Description</label>
+        <textarea class="form-control" id="description" formControlName="description" required></textarea>
+        <div *ngIf="sortieForm.get('description')?.invalid && (sortieForm.get('description')?.dirty || sortieForm.get('description')?.touched)"
+            class="invalid-feedback">
+            Description.
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="montant">Montant</label>
+        <input type="number" class="form-control" id="montant" formControlName="montant" required>
+        <div *ngIf="sortieForm.get('montant')!.invalid && (sortieForm.get('montant')!.dirty || sortieForm.get('montant')!.touched)"
+            class="invalid-feedback">
+            Montant est requis.
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" id="date" formControlName="date" required>
+        <div *ngIf="sortieForm.get('date')!.invalid && (sortieForm.get('date')!.dirty || sortieForm.get('date')!.touched)"
+            class="invalid-feedback">
+            Date est requis.
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="loading">
+        <span *ngIf="!loading">Soumettre</span>
+        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+    </button>
+</form>

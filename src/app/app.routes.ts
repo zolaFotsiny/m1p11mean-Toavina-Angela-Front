@@ -11,6 +11,8 @@ import { ChartsComponent } from './pages/admin/charts/charts.component';
 import { RendezvousComponent } from './pages/client/rendezvous/rendezvous.component';
 import { DragComponent } from './pages/client/drag/drag.component';
 import { CommissionComponent } from './pages/admin/commission/commission.component';
+import { SortieComponent } from './pages/admin/finance/sortie/sortie.component';
+import { SaisiesortieComponent } from './pages/admin/finance/saisiesortie/saisiesortie.component';
 
 
 
@@ -20,6 +22,8 @@ export const routes: Routes = [
         path: 'manager',
         component: AdminComponent,
         children: [
+            { path: 'sortie/add', component: SaisiesortieComponent },
+            { path: 'sortie', component: SortieComponent },
             { path: 'service', component: ServiceListeComponent },
             { path: 'service/add', component: ServiceAddComponent },
             { path: 'addUtilisateur', component: ClientAddComponent },
