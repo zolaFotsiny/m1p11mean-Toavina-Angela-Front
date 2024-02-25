@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import Chart from 'chart.js/auto'; // Import Chart.js directly for type safety
+import Chart from 'chart.js/auto';
 
 @Component({
   selector: 'app-charts',
@@ -8,44 +8,61 @@ import Chart from 'chart.js/auto'; // Import Chart.js directly for type safety
 })
 export class ChartsComponent implements OnInit {
 
-  labels: string[] = ['January', 'February', 'March', 'April', 'May', 'June'];
-  data: number[] = [40, 55, 60, 45, 70, 50];
+  labels: string[] = ['jean', 'Paul', 'Luc'];
+  data: number[] = [40, 55, 60];
 
   ngOnInit(): void {
     this.createChart();
   }
 
   createChart() {
-    const ctx = document.getElementById('myChart') as HTMLCanvasElement | null;
+    const bar = document.getElementById('myChart') as HTMLCanvasElement | null;
+    const moyenneTravail = document.getElementById('myChart2') as HTMLCanvasElement | null;
 
-    if (ctx) {
-      new Chart(ctx, {
-        type: 'line',
+    if (bar) {
+      new Chart(bar, {
+        type: 'bar',  // Change the type to 'bar'
         data: {
           labels: this.labels,
           datasets: [{
             label: 'Monthly Sales',
             data: this.data,
-            backgroundColor: 'rgba(0, 128, 0, 0.2)',
-            borderColor: 'rgba(0, 128, 0, 1)',
-            pointRadius: 5,
-            pointHoverRadius: 10,
-            pointHitRadius: 30,
-            pointBackgroundColor: 'rgba(0, 128, 0, 1)',
-            pointBorderColor: 'white',
-            pointBorderWidth: 2
+            backgroundColor: ['rgba(0, 128, 0)', 'rgba(255, 0, 0)', 'rgba(0, 0, 255)', 'rgba(255, 255, 0)', 'rgba(128, 0, 128)', 'rgba(0, 255, 255)'],
+            borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)', 'rgba(128, 0, 128, 1)', 'rgba(0, 255, 255, 1)'],
+            borderWidth: 1
           }]
         },
         options: {
           scales: {
             y: {
-              beginAtZero: true,
-              reverse: false // Use directly within the 'y' object
+              beginAtZero: true
             }
           }
         }
       });
+    } else {
+      console.error('Canvas element with ID "myChart" not found.');
+    }
 
+
+    if (moyenneTravail) {
+      new Chart(moyenneTravail, {
+        type: 'doughnut',  // Change the type to 'doughnut'
+        data: {
+          labels: this.labels,
+          datasets: [{
+            label: 'Monthly Sales',
+            data: this.data,
+            backgroundColor: ['rgba(0, 128, 0)', 'rgba(255, 0, 0)', 'rgba(0, 0, 255)', 'rgba(255, 255, 0)', 'rgba(128, 0, 128)', 'rgba(0, 255, 255)'],
+            borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)', 'rgba(128, 0, 128, 1)', 'rgba(0, 255, 255, 1)'],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          cutout: '70%',  // Adjust the cutout percentage to control the size of the hole in the doughnut chart
+        }
+
+      });
     } else {
       console.error('Canvas element with ID "myChart" not found.');
     }

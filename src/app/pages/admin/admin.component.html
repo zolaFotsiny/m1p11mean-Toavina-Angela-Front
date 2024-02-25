@@ -14,21 +14,12 @@
             <span nz-icon nzType="file"></span>
             <span>Chart</span>
           </li>
-          <li nz-menu-item [routerLink]="['/manager/service/add']">
-            <span nz-icon nzType="file"></span>
-            <span>Moyenne de travail</span>
-          </li>
+
           <li nz-menu-item [routerLink]="['/manager/service']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
             <span>Réservation</span>
           </li>
-          <li nz-menu-item [routerLink]="['/manager/service']">
-            <!-- Liste -->
-            <span nz-icon nzType="file"></span>
-            <span>Chiffre d’affaires</span>
-          </li>
-
           <li nz-menu-item [routerLink]="['/manager/drag']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
@@ -113,7 +104,7 @@
 
 
     <nz-content>
-      <div class="inner-content" style="height: auto;">
+      <div class="inner-content">
         <router-outlet></router-outlet>
       </div>
     </nz-content>

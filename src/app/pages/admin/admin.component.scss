@@ -77,6 +77,9 @@ nz-content {
     padding: 24px;
     background: #fff;
     height: 100%;
+    /* Utilisez 100% de la hauteur disponible */
+    overflow-y: auto;
+    /* Activer le défilement vertical si nécessaire */
 }
 
 
@@ -107,4 +110,20 @@ nz-content {
     // padding: 4px 8px;
     border-radius: 60%;
     font-size: 8px;
+}
+
+.menu-sidebar {
+    height: 100vh;
+    /* 100% de la hauteur de la vue */
+    overflow-y: auto;
+    /* Activer le défilement vertical si nécessaire */
+}
+
+.inner-content {
+    padding: 24px;
+    background: #fff;
+    height: 100%;
+    /* La hauteur de la partie intérieure doit remplir la hauteur du nz-content */
+    overflow-y: auto;
+    /* Activer le défilement vertical si nécessaire */
 }
