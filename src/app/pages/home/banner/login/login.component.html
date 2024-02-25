@@ -15,19 +15,26 @@
                             <form (ngSubmit)="onSubmit()" class="d-flex flex-column">
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" [(ngModel)]="credentials.email" name="email"
-                                        class="form-control" placeholder="Enter Email" required>
+                                    <!-- <input type="email" id="email" [ngModel]="credentials.email" name="email"
+                                        class="form-control" placeholder="Enter Email" required> -->
+                                    <select id="email" [(ngModel)]="credentials.email" name="email" class="form-control"
+                                        required>
+                                        <option value="admin@gmail.com">admin&#64;gmail.com</option>
+                                        <option value="client@gmail.com">client&#64;gmail.com</option>
+                                        <!-- Ajoutez d'autres options au besoin -->
+                                    </select>
                                 </div>
                                 <div class="form-group mt-3">
                                     <label for="mot_de_passe">Password</label>
-                                    <input type="password" id="mot_de_passe" [(ngModel)]="credentials.mot_de_passe"
+                                    <input type="password" id="mot_de_passe" [ngModel]="credentials.mot_de_passe"
                                         name="mot_de_passe" class="form-control" placeholder="Enter Password" required>
                                 </div>
                                 <div class="text-center mt-3">
-                                    <button type="submit" class="btn btn-primary btn-block  ghost-button">Se
+                                    <button type="submit" class="btn btn-primary btn-block ghost-button">Se
                                         Connecter</button>
                                 </div>
                             </form>
+
                         </div>
                         <div class="text-center mt-3">
                             <p class="mb-0">Don't have an account? <a href="#!" class="text-primary fw-bold">Sign Up</a>

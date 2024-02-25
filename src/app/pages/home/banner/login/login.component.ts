@@ -18,6 +18,10 @@ import { ServicesService } from '../../../../app.service';
 export class LoginComponent {
 
   isVisible = false;
+  credentials = {
+    email: '',  // Valeur par défaut pour l'e-mail
+    mot_de_passe: 'cmcm'      // Valeur par défaut pour le mot de passe
+  };
 
   showModal(): void {
     this.isVisible = true;
@@ -33,16 +37,13 @@ export class LoginComponent {
     this.isVisible = false;
   }
 
-  credentials = {
-    email: '',
-    mot_de_passe: ''
-  };
-
 
 
   constructor(private servicesService: ServicesService, private router: Router) { }
 
   onSubmit(): void {
+    console.log('test', this.credentials);
+
     this.servicesService.login(this.credentials).subscribe(
       response => {
         // Handle successful login, e.g., save token to localStorage
@@ -59,6 +60,8 @@ export class LoginComponent {
 
         // Check if 'type_utilisateur' exists in the decoded token
         if (decodedToken && decodedToken.type_utilisateur) {
+          console.log('test', decodedToken.type_utilisateur);
+
           if (decodedToken.type_utilisateur === 'manager') {
             this.router.navigate(['/manager']);
           } else {
