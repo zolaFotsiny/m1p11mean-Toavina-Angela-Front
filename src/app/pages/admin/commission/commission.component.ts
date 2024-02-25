@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -92,12 +92,10 @@ export class CommissionComponent {
         item.id_employee.id_utilisateur.prenom.toLowerCase().includes(this.searchValuePrenom.toLowerCase())
     );
   }
-
   resetEmail(): void {
     this.searchValueEmail = '';
     this.searchEmail();
   }
-
   searchEmail(): void {
     this.visibleEmail = false;
     this.listOfDisplayData = this.listOfData.filter(
@@ -105,12 +103,10 @@ export class CommissionComponent {
         item.id_employee.id_utilisateur.email.toLowerCase().includes(this.searchValueEmail.toLowerCase())
     );
   }
-
   resetTache(): void {
     this.searchValueTache = '';
     this.searchTache();
   }
-
   searchTache(): void {
     this.visibleTache = false;
     this.listOfDisplayData = this.listOfData.filter(
@@ -118,12 +114,10 @@ export class CommissionComponent {
         item.id_tache._id.toLowerCase().includes(this.searchValueTache.toLowerCase())
     );
   }
-
   resetCommission(): void {
     this.searchValueCommission = '';
     this.searchCommission();
   }
-
   searchCommission(): void {
     this.visibleCommission = false;
     this.listOfDisplayData = this.listOfData.filter(

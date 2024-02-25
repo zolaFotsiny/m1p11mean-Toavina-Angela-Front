@@ -59,10 +59,12 @@ export class RendezvousComponent implements OnInit {
 
 
     this.serviceService.getEmployees().subscribe(
+
       (response: any) => {
+        console.log('employeee:');
         if (response && response.data) {
           const data = response.data as Optione[];
-          console.log('Invalid response structure:', data);
+          console.log('employeee:', data);
           this.listOfSelectedValueEmp = data.map(optione => ({
             designation: optione.id_utilisateur.nom,
             _id: optione._id
@@ -93,16 +95,23 @@ export class RendezvousComponent implements OnInit {
     this.myForm = this.fb.group({
       id_client: ['', Validators.required],
       choix: this.fb.array([
-        this.createChoiceFormGroup('', ''),
-        // Add more static choices as needed
+        this.createChoiceFormGroup('', ''), // Initialise the first form group in the array
       ]),
       date_heure: ['', Validators.required],
       etat: [1, Validators.required]
     });
   }
 
+
+  createChoiceFormGroup(service: string, employee: string): FormGroup {
+    return this.fb.group({
+      id_service: [service, Validators.required],
+      id_employee: [employee, Validators.required]
+    });
+  }
+
   addChoiceRow() {
-    const newChoiceFormGroup = this.createChoiceFormGroup('', ''); // You can pass initial values if needed
+    const newChoiceFormGroup = this.createChoiceFormGroup('', ''); // Pass initial values if needed
     (this.myForm.get('choix') as FormArray).push(newChoiceFormGroup);
   }
 
@@ -122,13 +131,7 @@ export class RendezvousComponent implements OnInit {
     return (this.myForm.get('choix') as FormArray)?.controls || [];
   }
 
-  // Helper method to create a FormGroup for choices
-  createChoiceFormGroup(serviceValue: string, employeeValue: string): FormGroup {
-    return this.fb.group({
-      id_service: [serviceValue, Validators.required],
-      id_employee: [employeeValue]
-    });
-  }
+
 
   // Add more helper methods as needed for dynamic form manipulation
 
@@ -146,7 +149,7 @@ export class RendezvousComponent implements OnInit {
     this.serviceService.addrendezvous(formDataAsJson).subscribe(
       response => {
         // Handle successful registration
-        console.log('User registered successfully:', Response); // change 'response' to 'Response'
+        console.log('RDV registered successfully:', Response); // change 'response' to 'Response'
         // You can also reset the form here if needed
         this.myForm.reset();
       },

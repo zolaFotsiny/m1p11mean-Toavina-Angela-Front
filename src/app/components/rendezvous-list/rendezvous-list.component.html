@@ -1,0 +1,51 @@
+<div class="section-title">
+    <h2>Liste des rendez-vous</h2>
+</div>
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th nzCustomFilter>
+                Date de début
+                <nz-filter-trigger [(nzVisible)]="visibleDateDebut" [nzActive]="searchValueDateDebut.length > 0"
+                    [nzDropdownMenu]="menuDateDebut">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Nom
+                <nz-filter-trigger [(nzVisible)]="visibleNom" [nzActive]="searchValueNom.length > 0"
+                    [nzDropdownMenu]="menuNom">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let data of nzTable.data">
+            <td>{{ data.taches[0].date_debut }}</td>
+            <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menuDateDebut="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueDateDebut" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchDateDebut()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetDateDebut()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuNom="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchValueNom" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchNom()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetNom()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>

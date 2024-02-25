@@ -6,10 +6,11 @@ import { CalendarRendezVousComponent } from './calendar-rendez-vous/calendar-ren
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { RendezvousComponent } from './rendezvous/rendezvous.component';
 import { FavorisComponent } from './favoris/favoris.component';
+import { RouterModule, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, FavorisComponent],
+  imports: [HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, RouterModule, FavorisComponent, RouterOutlet],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })

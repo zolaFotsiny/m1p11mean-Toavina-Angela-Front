@@ -1,13 +1,15 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="row php-email-form">
-
-
     <!-- Choices -->
-    <div formArrayName="choix" class="row ">
+    <div formArrayName="choix" class="row g-3">
+        <h4>Choix <button type="button" class="btn btn-secondary me-2" (click)="addChoiceRow()"><i
+                    class="bi bi-plus"></i></button></h4>
+        <hr>
         <div *ngFor="let choice of getChoixControls(); let i = index" [formGroupName]="i" class="col-md-12 mb-3">
             <!-- Service ID -->
-            <div class="row">
+            <div class="row g-3">
+
                 <!-- Service ID -->
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-2">
                     <label for="id_service" class="form-label">Service ID:</label>
                     <select class="form-select" id="id_service" formControlName="id_service"
                         aria-label="multiple select example" [(ngModel)]="selectedValue">
@@ -17,12 +19,9 @@
                     </select>
                 </div>
 
-
                 <!-- Employee ID -->
-                <div class="col-md-6 mb-3">
+                <div class="col-md-4 mb-2">
                     <label for="id_employee" class="form-label">Employee ID:</label>
-
-
                     <select class="form-select" id="id_employee" formControlName="id_employee"
                         aria-label="multiple select example">
                         <ng-container *ngFor="let option of listOfSelectedValueEmp">
@@ -31,12 +30,15 @@
                     </select>
                 </div>
 
+                <div class="col-md-2 mb-2 d-flex align-items-end">
+                    <button type="button" class="btn btn-secondary" (click)="removeChoiceRow(i)"><i
+                            class="bi bi-dash-lg"></i></button>
+                </div>
+
             </div>
-            <div class="col-md-6 mb-3">
-                <button type="button" class="btn btn-danger" (click)="removeChoiceRow(i)">Remove</button>
-            </div>
+
         </div>
-        <button type="button" class="btn btn-success" (click)="addChoiceRow()">Add Choice</button>
+        <hr>
     </div>
 
     <!-- Date and Time -->
@@ -46,10 +48,11 @@
     </div>
 
     <!-- State -->
+    <!-- State -->
     <div class="mb-3">
-        <label for="etat" class="form-label">State:</label>
-        <input type="number" id="etat" formControlName="etat" class="form-control">
+        <input type="hidden" id="etat" formControlName="etat" class="form-control">
     </div>
+
 
     <!-- Submit Button -->
     <button type="submit" class="btn btn-primary">Submit</button>

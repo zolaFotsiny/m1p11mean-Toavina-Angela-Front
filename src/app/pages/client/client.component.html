@@ -13,6 +13,31 @@
                 <div class="col-md-9">
                     <!-- Your content for the first column goes here -->
                     <div class="styled-box">
+
+
+
+
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item">
+                                <a class="nav-link  active" href="#">Mes favoris</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link " aria-current="page"
+                                    [routerLink]="['/client/rendezvous/list']">Rendez-vous</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Calendrier</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">Historique</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link disabled" aria-disabled="true">Paiement</a>
+                            </li>
+                        </ul>
+
+
+
                         <!-- Button to open the modal for "Mes rendez-vous" -->
                         <button type="button" class="btn btn-outline-success mr-5" (click)="openModal('calendar')">
                             Mes rendez-vous
@@ -45,9 +70,7 @@
 
 
                     <hr>
-
-                    <!-- favoris -->
-                    <app-favoris></app-favoris>
+                    <router-outlet></router-outlet>
 
 
 
