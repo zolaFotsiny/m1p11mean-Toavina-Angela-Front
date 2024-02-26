@@ -9,6 +9,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
 import { SocketService } from '../../socket.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
     selector: 'app-admin',
     standalone: true,
@@ -33,12 +34,18 @@ export class AdminComponent implements OnInit {
 
 
     constructor(
-        private socketService: SocketService, private router: Router
+        private socketService: SocketService, private router: Router, private notification: NzNotificationService
     ) {
 
         this.socketService.listenForRdvEvent().subscribe((data) => {
             if (data) {
                 this.showNotif = true;
+                this.notification.create(
+                    'success',
+                    'Notification',
+                    'Nouveaux rendez vous!',
+                    { nzPlacement: 'bottomLeft' }
+                );
             }
             console.log('Received rdv event:', data);
         });
