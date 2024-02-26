@@ -19,6 +19,9 @@ export class ServicesService {
     return this.http.get<any>(`${this.apiUrl}/employees`);;
   }
 
+  getRdvCountPerDay(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/rendezvous/stat/getRdvCountPerDay`);;
+  }
 
   login(credentials: { email: string; mot_de_passe: string }): Observable<any> {
     const httpOptions = {
@@ -154,6 +157,8 @@ export class ServicesService {
         })
       );
   }
+
+
 
   validateTask(id_tache: string): Observable<any> {
     const httpOptions = {

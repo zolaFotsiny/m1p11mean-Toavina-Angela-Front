@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
+import { ServicesService } from '../../../app.service';
 
 @Component({
   selector: 'app-charts',
@@ -8,11 +9,28 @@ import Chart from 'chart.js/auto';
 })
 export class ChartsComponent implements OnInit {
 
-  labels: string[] = ['jean', 'Paul', 'Luc'];
-  data: number[] = [40, 55, 60];
+  constructor(private servicesService: ServicesService) { }
+
+
+  labels: string[] = [];
+  data: number[] = [];
 
   ngOnInit(): void {
-    this.createChart();
+    this.servicesService.getRdvCountPerDay().subscribe(
+      (response: any) => {
+        console.log('Raw response:', response);
+        if (response && response.labels && response.data) {
+          this.labels = response.labels;
+          this.data = response.data;
+        } else {
+          console.error('Invalid response structure:', response);
+        }
+        this.createChart();
+      },
+      (error) => {
+        console.error('Error fetching services:', error);
+      }
+    );
   }
 
   createChart() {
@@ -25,19 +43,25 @@ export class ChartsComponent implements OnInit {
         data: {
           labels: this.labels,
           datasets: [{
-            label: 'Monthly Sales',
+            label: 'Reservation(s)',
             data: this.data,
-            backgroundColor: ['rgba(0, 128, 0)', 'rgba(255, 0, 0)', 'rgba(0, 0, 255)', 'rgba(255, 255, 0)', 'rgba(128, 0, 128)', 'rgba(0, 255, 255)'],
-            borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)', 'rgba(128, 0, 128, 1)', 'rgba(0, 255, 255, 1)'],
+
             borderWidth: 1
           }]
         },
         options: {
+
           scales: {
             y: {
               beginAtZero: true
             }
-          }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Le nombre de réservation par jour'
+            }
+          },
         }
       });
     } else {
@@ -53,8 +77,8 @@ export class ChartsComponent implements OnInit {
           datasets: [{
             label: 'Monthly Sales',
             data: this.data,
-            backgroundColor: ['rgba(0, 128, 0)', 'rgba(255, 0, 0)', 'rgba(0, 0, 255)', 'rgba(255, 255, 0)', 'rgba(128, 0, 128)', 'rgba(0, 255, 255)'],
-            borderColor: ['rgba(0, 128, 0, 1)', 'rgba(255, 0, 0, 1)', 'rgba(0, 0, 255, 1)', 'rgba(255, 255, 0, 1)', 'rgba(128, 0, 128, 1)', 'rgba(0, 255, 255, 1)'],
+            backgroundColor: ['#6bc513', 'lightgray', 'lightblue', 'yellow'],
+            borderColor: ['#6bc513', 'lightgray', 'lightblue', 'yellow'],
             borderWidth: 1
           }]
         },
