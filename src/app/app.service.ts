@@ -19,6 +19,7 @@ export class ServicesService {
     return this.http.get<any>(`${this.apiUrl}/employees`);;
   }
 
+
   login(credentials: { email: string; mot_de_passe: string }): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -36,7 +37,17 @@ export class ServicesService {
       );
   }
 
-
+  // Method to get a Rendezvous by its id
+  findRdvById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/rendezvous/${id}`)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching Rendezvous with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
 
   createService(data: FormData): Observable<any> {
     const httpOptions = {

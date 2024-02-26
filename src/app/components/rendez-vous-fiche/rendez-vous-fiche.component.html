@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <h2>Fiche Rendez-vous </h2>
+    <p><strong>Date de Rendez-vous:</strong> {{ rendezvous.date_heure | date:'short' }}</p>
+    <h3>Liste de réservation</h3> <!-- Add this line -->
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Date de début</th>
+                <th>Nom de l'employé</th>
+                <th>Email de l'employé</th>
+                <th>Service</th>
+                <th>Prix</th>
+                <th>Durée</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let tache of rendezvous.taches">
+                <td>{{ tache.date_debut | date:'short' }}</td>
+                <td>{{ tache.id_employee.id_utilisateur.nom }}</td>
+                <td>{{ tache.id_employee.id_utilisateur.email }}</td>
+                <td>{{ tache.id_service.designation }}</td>
+                <td>{{ tache.id_service.prix }}</td>
+                <td>{{ tache.id_service.duree }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button class="btn btn-primary">Payer</button>
+</div>

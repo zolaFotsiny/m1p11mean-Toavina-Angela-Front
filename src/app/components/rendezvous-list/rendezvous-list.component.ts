@@ -7,6 +7,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { FormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ServicesService } from '../../../app/app.service';
+import { RouterModule } from '@angular/router';
 
 interface RendezvousItem {
   _id: string;
@@ -58,7 +59,7 @@ interface RendezvousItem {
     CommonModule,
     NzDropDownModule,
     FormsModule,
-    NzIconModule
+    NzIconModule, RouterModule
   ],
   templateUrl: './rendezvous-list.component.html',
   styleUrl: './rendezvous-list.component.scss'

@@ -18,12 +18,16 @@
                     <span nz-icon nzType="search"></span>
                 </nz-filter-trigger>
             </th>
+            <th>
+                Fiche
+            </th>
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of nzTable.data">
             <td>{{ data.taches[0].date_debut }}</td>
             <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
+            <td><a [routerLink]="['/client/rendezvous', data._id]">Voir la fiche</a></td>
         </tr>
     </tbody>
 </nz-table>

@@ -12,11 +12,12 @@
                 <div class="col-md-4 mb-2">
                     <label for="id_service" class="form-label">Service ID:</label>
                     <select class="form-select" id="id_service" formControlName="id_service"
-                        aria-label="multiple select example" [(ngModel)]="selectedValue">
+                        aria-label="multiple select example">
                         <ng-container *ngFor="let option of listOfSelectedValue">
                             <option [value]="option._id">{{ option.designation }}</option>
                         </ng-container>
                     </select>
+
                 </div>
 
                 <!-- Employee ID -->

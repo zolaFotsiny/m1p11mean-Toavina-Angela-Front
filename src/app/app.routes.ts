@@ -14,6 +14,7 @@ import { CommissionComponent } from './pages/admin/commission/commission.compone
 import { SortieComponent } from './pages/admin/finance/sortie/sortie.component';
 import { SaisiesortieComponent } from './pages/admin/finance/saisiesortie/saisiesortie.component';
 import { RendezvousListComponent } from './components/rendezvous-list/rendezvous-list.component';
+import { RendezVousFicheComponent } from './components/rendez-vous-fiche/rendez-vous-fiche.component';
 
 
 
@@ -41,6 +42,7 @@ export const routes: Routes = [
         children: [
             { path: 'rendezvous/add', component: RendezvousComponent },
             { path: 'rendezvous/list', component: RendezvousListComponent },
+            { path: 'rendezvous/:id', component: RendezVousFicheComponent },
         ]
     },
 
