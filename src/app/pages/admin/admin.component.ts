@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
@@ -24,8 +24,16 @@ export class AdminComponent implements OnInit {
     isCollapsed: boolean = false;
     showNotif: boolean = false;
 
+
+    logout() {
+        localStorage.removeItem('token');
+        this.router.navigate(['/']);
+        // Rediriger l'utilisateur vers la page de connexion ou actualiser la page
+    }
+
+
     constructor(
-        private socketService: SocketService
+        private socketService: SocketService, private router: Router
     ) {
 
         this.socketService.listenForRdvEvent().subscribe((data) => {

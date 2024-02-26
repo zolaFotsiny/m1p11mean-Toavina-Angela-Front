@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, TemplateRef } from '@angular/core';
 import { LoginComponent } from '../banner/login/login.component';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbOffcanvas, NgbOffcanvasConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,7 +23,8 @@ export class HeaderComponent implements OnInit{
   }
   constructor(
     config: NgbOffcanvasConfig,
-    private offcanvasService: NgbOffcanvas
+    private offcanvasService: NgbOffcanvas,
+    private router: Router
   ) {
     // customize default values of offcanvas used by this component tree
     config.position = 'end';
@@ -43,6 +44,7 @@ export class HeaderComponent implements OnInit{
 
   logout() {
     localStorage.removeItem('token');
+    this.router.navigate(['/']);
     // Rediriger l'utilisateur vers la page de connexion ou actualiser la page
   }
 

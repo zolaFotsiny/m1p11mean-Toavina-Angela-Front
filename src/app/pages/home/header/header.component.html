@@ -36,25 +36,33 @@
 
                     </ul>
                 </li>
-                <li class="dropdown" [routerLink]="['/client/espaceClient']">
+                <li [routerLink]="['/client/espaceClient']">
                     <a class="nav-link">
                         <i class="bi bi-person-circle custom-icon-size"></i>
                     </a>
                     <ul>
 
-
-                        <li *ngIf="isUserLoggedIn" class="dropdown">
+<!-- 
+                        <!-- <li *ngIf="isUserLoggedIn" class="dropdown">
                             <a href="#" class="d-flex align-items-center" (click)="logout()">
                                 <i class="bi bi-alarm"></i>
                                 <span class="ms-2">Deconnection</span>
                             </a>
-                        </li>
+                        </li> --> 
 
                     </ul>
                 </li>
-                <li>
+            <li>
+                <ng-container *ngIf="isUserLoggedIn; else loginBanner">
+                    <a class="logout scrollto"  (click)="logout()">Déconnexion</a>
+                    <!-- <button type="submit" class="ml-5 btn btn-danger btn-block ghost" (click)="logout()"> -->
+                        <!-- <span>Déconnexion</span> -->
+                    <!-- </button> -->
+                </ng-container>
+                <ng-template #loginBanner>
                     <banner-login></banner-login>
-                </li>
+                </ng-template>
+            </li>
             </ul>
 
 

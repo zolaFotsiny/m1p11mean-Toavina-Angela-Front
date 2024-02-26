@@ -199,6 +199,22 @@ h6 {
     color: #fff;
     background: #6bc513;
 }
+.navbar .logout,
+.navbar .logout:focus {
+    padding: 8px 20px;
+    margin-left: 30px;
+    border-radius: 50px;
+    color: rgb(52 58 64);
+    font-size: 14px;
+    border: 2px solid #c51313;
+    font-weight: 600;
+}
+
+.navbar .logout:hover,
+.navbar .logout:focus:hover {
+    color: #fff;
+    background: #c51313;
+}
 
 .navbar .dropdown ul {
     display: block;
