@@ -1,9 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ServicesService } from '../../../app.service';
-
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 @Component({
   selector: 'app-charts',
+  standalone:true,
+  imports: [
+    NzSpinModule,
+  ],
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.scss']
 })
@@ -14,10 +18,13 @@ export class ChartsComponent implements OnInit {
 
   labels: string[] = [];
   data: number[] = [];
+  loading:boolean = false;
 
   ngOnInit(): void {
+    this.loading= true;
     this.servicesService.getRdvCountPerDay().subscribe(
       (response: any) => {
+        this.loading= false;
         console.log('Raw response:', response);
         if (response && response.labels && response.data) {
           this.labels = response.labels;
@@ -28,6 +35,7 @@ export class ChartsComponent implements OnInit {
         this.createChart();
       },
       (error) => {
+        this.loading= false;
         console.error('Error fetching services:', error);
       }
     );

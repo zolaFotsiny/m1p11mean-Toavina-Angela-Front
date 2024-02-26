@@ -41,6 +41,7 @@
         </div>
     </div>
     <hr />
+    <nz-spin [nzSpinning]="loading" [nzTip]="'Chargement en cours...'">
     <div class="row">
         <div class="col-md-8">
             <canvas id="myChart"></canvas>
@@ -49,14 +50,15 @@
             <canvas id="myChart2"></canvas>
         </div>
 
-
         <hr />
-
+        
         <!-- Deuxième rangée pour les cartes -->
-
+        
     </div>
+</nz-spin>
     <!-- <div class="row">
         <div class="col-md-6">
             <canvas id="myChart2"></canvas>
         </div>
     </div> -->
+
