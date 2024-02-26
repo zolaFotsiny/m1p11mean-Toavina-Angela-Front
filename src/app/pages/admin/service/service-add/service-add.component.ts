@@ -13,20 +13,26 @@ import { NzMessageService } from 'ng-zorro-antd/message';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ServicesService } from '../../../../app.service';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
+
 
 // import { ServicesService } from '../../app.service';
 // import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 @Component({
   selector: 'app-service-add',
   standalone: true,
-  imports: [NzIconModule, NzFormModule, NzUploadModule, NzInputModule, ReactiveFormsModule, CommonModule, NzButtonModule, NzInputNumberModule],
+  imports: [
+    NzButtonModule,
+    NzSpinModule,
+    NzSpinModule,NzIconModule, NzFormModule, NzUploadModule, NzInputModule, ReactiveFormsModule, CommonModule, NzButtonModule, NzInputNumberModule],
   templateUrl: './service-add.component.html',
   styleUrl: './service-add.component.scss'
 })
 export class ServiceAddComponent {
   serviceForm: FormGroup;
+  loading = false;
 
-  constructor(private fb: FormBuilder, private serviceService: ServicesService) {
+  constructor(private fb: FormBuilder, private serviceService: ServicesService, private notification: NzNotificationService) {
     this.serviceForm = this.fb.group({
       designation: ['', Validators.required],
       prix: ['', Validators.required],
@@ -43,30 +49,50 @@ export class ServiceAddComponent {
       this.serviceForm.patchValue({ file });
     }
   }
+
+
   onSubmit(): void {
-    console.log('Form submitted'); // Ajout d'un log pour vérifier que la méthode est appelée
+    console.log('Form submitted');
     if (this.serviceForm.valid) {
-      console.log('Form is valid'); // Ajout d'un log pour vérifier que le formulaire est valide
+      console.log('Form is valid');
+
+      // Activer le chargement
+      this.loading = true;
+
       const formData = new FormData();
       formData.append('designation', this.serviceForm.value.designation);
       formData.append('prix', this.serviceForm.value.prix);
       formData.append('duree', this.serviceForm.value.duree);
       formData.append('commission_pourcentage', this.serviceForm.value.commission_pourcentage);
       formData.append('file', this.serviceForm.value.file);
-      console.log('Form data:', formData); // Ajout d'un log pour vérifier les données du formulaire
+      console.log('Form data:', formData);
       console.log('Form values:', this.serviceForm.value);
+
       this.serviceService.createService(formData).subscribe(
         (response) => {
-          console.log('Response:', response); // Ajout d'un log pour vérifier la réponse du serveur
+          console.log('Response:', response);
+          this.notification.create(
+            'success',
+            'Success',
+            'Nouvelle service ajoutée.',
+            { nzPlacement: 'bottomRight' }
+          );
+
+          // Désactiver le chargement après la réponse du serveur
+          this.loading = false;
         },
         (error) => {
-          console.error('Error:', error); // Ajout d'un log pour vérifier les erreurs du serveur
+          console.error('Error:', error);
+
+          // Désactiver le chargement en cas d'erreur du serveur
+          this.loading = false;
         }
       );
     } else {
-      console.log('Form is invalid'); // Ajout d'un log pour vérifier que le formulaire n'est pas valide
+      console.log('Form is invalid');
     }
   }
+
 
 
 

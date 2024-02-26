@@ -4,9 +4,9 @@
 </div>
 <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Designation</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="nomErrorTpl">
-            <input type="text" nz-input formControlName="designation" placeholder="designation" />
+        <!-- <nz-form-label [nzSpan]="7" nzRequired>Designation</nz-form-label> -->
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="text" nz-input formControlName="designation" placeholder="Désignation" />
             <ng-template #nomErrorTpl let-control>
                 @if (control.errors?.['required']) {
                 Veuillez saisir votre nom!
@@ -16,9 +16,9 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Prix</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="nomErrorTpl">
-            <input type="number" nz-input formControlName="prix" placeholder="prix" />
+        <!-- <nz-form-label [nzSpan]="7" nzRequired>Prix</nz-form-label> -->
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="number" nz-input formControlName="prix" placeholder="Prix" />
             <ng-template #nomErrorTpl let-control>
                 @if (control.errors?.['required']) {
                 Veuillez saisir votre prix!
@@ -28,9 +28,9 @@
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Duree</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="nomErrorTpl">
-            <input type="number" nz-input formControlName="duree" placeholder="duree" />
+        <!-- <nz-form-label [nzSpan]="7" nzRequired>Duree</nz-form-label> -->
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="number" nz-input formControlName="duree" placeholder="Durée" />
             <ng-template #nomErrorTpl let-control>
                 @if (control.errors?.['required']) {
                 Veuillez saisir votre duree!
@@ -42,8 +42,8 @@
 
 
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Duree</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+        <!-- <nz-form-label [nzSpan]="7" nzRequired>Commission</nz-form-label> -->
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
             <input type="number" nz-input formControlName="commission_pourcentage"
                 placeholder="commission_pourcentage" />
             <ng-template #nomErrorTpl let-control>
@@ -57,18 +57,23 @@
 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>File</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
             <input type="file" id="file" (change)="onFileSelected($event)" class="form-control-file" required />
             <ng-template #nomErrorTpl let-control>
                 @if (control.errors?.['required']) {
-                Veuillez saisir votre duree!
+                Veuillez choisir un image!
                 }
             </ng-template>
         </nz-form-control>
     </nz-form-item>
 
+    
+
     <div class="form-group">
-        <button type="submit" class="btn btn-primary" [disabled]="!serviceForm.valid">Create Service</button>
+        <button type="submit" class="btn btn-primary btn-block ghost-button"  [disabled]="!serviceForm.valid">
+            <span *ngIf="!loading">Create Service</span>
+            <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        </button>
     </div>
 
 
