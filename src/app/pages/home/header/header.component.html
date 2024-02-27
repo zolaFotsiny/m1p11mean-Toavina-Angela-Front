@@ -15,7 +15,7 @@
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
                 <!-- <li><a class="getstarted scrollto" href="#about">Get Started</a></li> -->
                 <i *ngIf="isSmallScreen" class="bi bi-list mobile-nav-toggle" (click)="open(content)"></i>
-                <li class="dropdown">
+                <li *ngIf="isUserLoggedIn" class="dropdown">
                     <a href="#">
                         <i class="bi bi-bell custom-icon-size"></i>
                     </a>
@@ -36,7 +36,7 @@
 
                     </ul>
                 </li>
-                <li [routerLink]="['/client/rendezvous/list']">
+                <li *ngIf="isUserLoggedIn" [routerLink]="['/client/rendezvous/list']">
                     <a class="nav-link">
                         <i class="bi bi-person-circle custom-icon-size"></i>
                     </a>
@@ -44,9 +44,6 @@
                 <li>
                     <ng-container *ngIf="isUserLoggedIn; else loginBanner">
                         <a class="logout scrollto" (click)="logout()">Déconnexion</a>
-                        <!-- <button type="submit" class="ml-5 btn btn-danger btn-block ghost" (click)="logout()"> -->
-                        <!-- <span>Déconnexion</span> -->
-                        <!-- </button> -->
                     </ng-container>
                     <ng-template #loginBanner>
                         <banner-login></banner-login>
