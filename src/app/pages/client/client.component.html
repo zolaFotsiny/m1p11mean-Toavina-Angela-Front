@@ -4,6 +4,25 @@
 <hr>
 <hr>
 <hr>
+<!-- Modal content -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Nouveaux rendez-vous</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <ng-container *ngIf="modalContent === 'calendar'">
+            <app-calendar-rendez-vous></app-calendar-rendez-vous>
+        </ng-container>
+
+        <ng-container *ngIf="modalContent === 'editUser'">
+            <p>Ceci est le contenu du modal de modification d'utilisateur.</p>
+        </ng-container>
+    </div>
+</ng-template>
 
 <div class="row">
     <section id="why-us" class="why-us">
@@ -26,7 +45,7 @@
                                     [routerLink]="['/client/rendezvous/list']">Rendez-vous</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#">Calendrier</a>
+                                <a class="nav-link" (click)="openModal('calendar')">Calendrier</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link disabled" aria-disabled="true">Historique</a>
@@ -39,32 +58,6 @@
 
 
 
-                        <!-- Button to open the modal for "Mes rendez-vous" -->
-                        <button type="button" class="btn btn-outline-success mr-5" (click)="openModal('calendar')">
-                            Mes rendez-vous
-                        </button>
-                        <!-- Button to open the modal for "Ajout rendez-vous" -->
-                        &nbsp;
-
-
-                        <!-- Modal content -->
-                        <ng-template #content let-modal>
-                            <div class="modal-header">
-                                <h4 class="modal-title">Nouveaux rendez-vous</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <!-- Use ngIf to dynamically display different content based on the selected modalContent -->
-                                <ng-container *ngIf="modalContent === 'calendar'; else otherContent">
-                                    <app-calendar-rendez-vous></app-calendar-rendez-vous>
-                                </ng-container>
-                                <ng-template #otherContent>
-                                    <app-rendezvous></app-rendezvous>
-                                </ng-template>
-                            </div>
-                        </ng-template>
                     </div>
 
 
@@ -90,7 +83,7 @@
                             <p><strong>Contact:</strong> 123-456-7890</p>
                             <p><strong>Email:</strong> {{email}}</p>
                             <div class="text-center mt-2">
-                                <button type="button" class="btn btn-outline-success">
+                                <button type="button" class="btn btn-outline-success" (click)="openModal('editUser')">
                                     Changer information
                                 </button>
                             </div>
@@ -100,13 +93,6 @@
             </div>
         </div>
     </section><!-- End Why Us Section -->
-
-
-
-    <!-- favoris -->
-    <section id="why-us" class="why-us">
-
-    </section>
 
 
 </div>

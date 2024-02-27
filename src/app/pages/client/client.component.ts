@@ -7,10 +7,12 @@ import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { RendezvousComponent } from './rendezvous/rendezvous.component';
 import { FavorisComponent } from './favoris/favoris.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, RouterModule, FavorisComponent, RouterOutlet],
+  imports: [FormsModule, HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, RouterModule, FavorisComponent, RouterOutlet],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })
@@ -46,6 +48,7 @@ export class ClientComponent implements OnInit {
 
 
   openModal(content: any) {
+    // alert(content)
     const modalOptions: NgbModalOptions = {
       centered: true,
       size: 'lg'

@@ -36,21 +36,10 @@
 
                     </ul>
                 </li>
-                <li [routerLink]="['/client/espaceClient']">
+                <li [routerLink]="['/client']">
                     <a class="nav-link">
                         <i class="bi bi-person-circle custom-icon-size"></i>
                     </a>
-                    <ul>
-
-<!-- 
-                        <!-- <li *ngIf="isUserLoggedIn" class="dropdown">
-                            <a href="#" class="d-flex align-items-center" (click)="logout()">
-                                <i class="bi bi-alarm"></i>
-                                <span class="ms-2">Deconnection</span>
-                            </a>
-                        </li> --> 
-
-                    </ul>
                 </li>
             <li>
                 <ng-container *ngIf="isUserLoggedIn; else loginBanner">
