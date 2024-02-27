@@ -17,6 +17,7 @@
             <th _ngcontent-c0="">Email</th>
             <th _ngcontent-c0="">Type utilisateur</th>
             <th _ngcontent-c0="">Date de création</th>
+            <th _ngcontent-c0="">Action</th>
         </tr>
     </thead>
     <tbody>
@@ -28,6 +29,8 @@
             <td>{{ data.id_utilisateur?.email }}</td>
             <td>{{ data.id_utilisateur?.type_utilisateur }}</td>
             <td>{{ data.date_creation | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+            <button nz-button nzType="primary" *ngIf="data" (click)="navigateToClientFiche(data._id)">Voir la
+                fiche</button>
         </tr>
     </tbody>
 </nz-table>

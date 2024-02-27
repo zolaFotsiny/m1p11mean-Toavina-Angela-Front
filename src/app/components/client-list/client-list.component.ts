@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { Router } from '@angular/router';
 
 
 
@@ -42,7 +43,7 @@ export class ClientListComponent implements OnInit {
   isLoading = true;
   listOfData: ClientItem[] = [];
   listOfDisplayData: ClientItem[] = [];
-  constructor(private servicesService: ServicesService) { }
+  constructor(private servicesService: ServicesService, private router: Router) { }
 
   reset(): void {
     this.searchValue = '';
@@ -84,6 +85,11 @@ export class ClientListComponent implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+
+
+  navigateToClientFiche(clientId: string): void {
+    this.router.navigate(['manager/client', clientId]);
   }
 
 }

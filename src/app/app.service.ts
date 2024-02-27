@@ -70,6 +70,21 @@ export class ServicesService {
       );
   }
 
+
+
+  // Method to get a Rendezvous by its id
+  findClientById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/client/${id}`)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching client with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
+
+
   payerRdv(id: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/rendezvous/payer/${id}`, {})
       .pipe(

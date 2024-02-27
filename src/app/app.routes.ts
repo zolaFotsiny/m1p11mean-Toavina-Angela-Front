@@ -18,6 +18,7 @@ import { RendezVousFicheComponent } from './components/rendez-vous-fiche/rendez-
 import { PaiementComponent } from './components/paiement/paiement.component';
 import { PaiementListComponent } from './components/paiement-list/paiement-list.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
+import { ClientFicheComponent } from './components/client-fiche/client-fiche.component';
 
 
 
@@ -38,6 +39,7 @@ export const routes: Routes = [
             { path: 'drag', component: DragComponent },
             { path: 'commission', component: CommissionComponent },
             { path: 'client', component: ClientListComponent },
+            { path: 'client/:id', component: ClientFicheComponent },
         ]
     },
 
