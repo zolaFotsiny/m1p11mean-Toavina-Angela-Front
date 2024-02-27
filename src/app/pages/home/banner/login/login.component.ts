@@ -101,7 +101,7 @@ export class LoginComponent {
             } else {
               // alert('ato')
               // console.log('token info',decodedToken);
-              this.router.navigate(['/client']);
+              this.router.navigate(['/client/rendezvous/list']);
             }
           } else {
             // Handle the case where 'type_utilisateur' is not present in the token
@@ -125,7 +125,7 @@ export class LoginComponent {
         response => {
           // Handle successful registration
           localStorage.setItem('token', response.data.token);
-          this.router.navigate(['/client']);
+          this.router.navigate(['/client/rendezvous/list']);
           this.loading = false;
         },
         error => {
