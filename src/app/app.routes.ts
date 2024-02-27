@@ -19,6 +19,8 @@ import { PaiementComponent } from './components/paiement/paiement.component';
 import { PaiementListComponent } from './components/paiement-list/paiement-list.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { ClientFicheComponent } from './components/client-fiche/client-fiche.component';
+import { PermissionGuard } from './utils/guards/permission.guard';
+import { DeniedComponent } from './utils/guards/denied/denied.component';
 
 
 
@@ -27,6 +29,7 @@ export const routes: Routes = [
     {
         path: 'manager',
         component: AdminComponent,
+        canActivate: [PermissionGuard], 
         children: [
             { path: 'sortie/add', component: SaisiesortieComponent },
             { path: 'sortie', component: SortieComponent },
@@ -58,6 +61,8 @@ export const routes: Routes = [
 
 
 
+    { path: 'denied', component: DeniedComponent },
     { path: 'home', component: HomeComponent },
     { path: '', redirectTo: 'home', pathMatch: 'full' },
+
 ];

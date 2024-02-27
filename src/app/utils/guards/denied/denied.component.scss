@@ -1,0 +1,8 @@
+ img {
+     width: 100vw;
+     /* 100% de la largeur de la fenêtre */
+     height: 100vh;
+     /* 100% de la hauteur de la fenêtre */
+     object-fit: cover;
+     /* Pour s'assurer que l'image couvre complètement le conteneur */
+ }

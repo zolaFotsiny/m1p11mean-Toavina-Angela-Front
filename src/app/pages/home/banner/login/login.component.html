@@ -18,6 +18,7 @@
                             <h2 *ngIf="isSignUpMode" class="text-center mb-4 sacramento-regular" style="color:#6bc513">
                                 Inscription</h2>
                             <hr>
+
                             <form *ngIf="!isSignUpMode" (ngSubmit)="onSubmit()" class="d-flex flex-column">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': emailField.invalid && emailField.touched}">
