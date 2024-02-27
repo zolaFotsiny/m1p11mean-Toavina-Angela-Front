@@ -1,0 +1,90 @@
+<div class="section-title">
+    <h2>Liste des paiements</h2>
+</div>
+
+<nz-table #nzTable [nzData]="filteredPaiements" nzTableLayout="fixed">
+    <thead>
+        <tr>
+            <th nzCustomFilter>
+                Montant Total
+                <nz-filter-trigger [(nzVisible)]="visibleMontantTotal"
+                    [nzActive]="searchFields.montant_total.length > 0" [nzDropdownMenu]="menuMontantTotal">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Date de Paiement
+                <nz-filter-trigger [(nzVisible)]="visibleDatePaiement"
+                    [nzActive]="searchFields.date_paiement.length > 0" [nzDropdownMenu]="menuDatePaiement">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                Mode de Paiement
+                <nz-filter-trigger [(nzVisible)]="visibleModePaiement"
+                    [nzActive]="searchFields.mode_paiement.length > 0" [nzDropdownMenu]="menuModePaiement">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+            <th nzCustomFilter>
+                État
+                <nz-filter-trigger [(nzVisible)]="visibleEtat" [nzActive]="searchFields.etat.length > 0"
+                    [nzDropdownMenu]="menuEtat">
+                    <span nz-icon nzType="search"></span>
+                </nz-filter-trigger>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let paiement of nzTable.data">
+            <td>{{ paiement.montant_total }}</td>
+            <td>{{ paiement.date_paiement | date:'short' }}</td>
+            <td>{{ paiement.mode_paiement }}</td>
+            <td>{{ paiement.etat }}</td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<nz-dropdown-menu #menuMontantTotal="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchFields.montant_total" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchMontantTotal()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetMontantTotal()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuDatePaiement="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchFields.date_paiement" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchDatePaiement()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetDatePaiement()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuModePaiement="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchFields.mode_paiement" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchModePaiement()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetModePaiement()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>
+
+<nz-dropdown-menu #menuEtat="nzDropdownMenu">
+    <div class="ant-table-filter-dropdown">
+        <div class="search-box">
+            <input type="text" nz-input placeholder="Recherche" [(ngModel)]="searchFields.etat" />
+            <button nz-button nzSize="small" nzType="primary" (click)="searchEtat()"
+                class="search-button">Recherche</button>
+            <button nz-button nzSize="small" (click)="resetEtat()">Réinitialiser</button>
+        </div>
+    </div>
+</nz-dropdown-menu>

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ServicesService } from '../../../../app.service';
+import { ServicesService } from '../../app.service';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormsModule } from '@angular/forms';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
@@ -11,9 +11,7 @@ import { NzTableModule } from 'ng-zorro-antd/table';
 
 
 
-
-
-interface EmployeeItem {
+interface ClientItem {
   _id: string;
   id_utilisateur: {
     _id: string;
@@ -25,13 +23,8 @@ interface EmployeeItem {
   } | null;
   date_creation: string;
 }
-
-
-
-
-
 @Component({
-  selector: 'app-personnel-list',
+  selector: 'app-client-list',
   standalone: true,
   imports: [NzTableModule,
     NzSpinModule,
@@ -40,15 +33,15 @@ interface EmployeeItem {
     NzDropDownModule,
     FormsModule,
     NzIconModule],
-  templateUrl: './personnel-list.component.html',
-  styleUrl: './personnel-list.component.scss'
+  templateUrl: './client-list.component.html',
+  styleUrl: './client-list.component.scss'
 })
-export class PersonnelListComponent implements OnInit {
+export class ClientListComponent implements OnInit {
   searchValue = '';
   visible = false;
   isLoading = true;
-  listOfData: EmployeeItem[] = [];
-  listOfDisplayData: EmployeeItem[] = [];
+  listOfData: ClientItem[] = [];
+  listOfDisplayData: ClientItem[] = [];
   constructor(private servicesService: ServicesService) { }
 
   reset(): void {
@@ -61,7 +54,7 @@ export class PersonnelListComponent implements OnInit {
   search(): void {
     this.visible = false;
     this.listOfDisplayData = this.listOfData.filter(
-      (item: EmployeeItem) => {
+      (item: ClientItem) => {
         if (item.id_utilisateur) {
           return item.id_utilisateur.nom.toLowerCase().includes(this.searchValue.toLowerCase());
         }
@@ -73,7 +66,7 @@ export class PersonnelListComponent implements OnInit {
   ngOnInit(): void {
     console.log('ngOnInit called');
 
-    this.servicesService.getEmployees().subscribe(
+    this.servicesService.getClients().subscribe(
       (response: any) => {
         console.log('Raw response:', response);
         if (response && response.data) {

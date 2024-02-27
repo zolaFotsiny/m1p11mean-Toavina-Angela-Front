@@ -19,6 +19,12 @@ export class ServicesService {
     return this.http.get<any>(`${this.apiUrl}/employees`);;
   }
 
+
+  getClients(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/client`);;
+  }
+
+
   getRdvCountPerDay(): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/rendezvous/stat/getRdvCountPerDay`);;
   }
@@ -52,6 +58,17 @@ export class ServicesService {
       );
   }
 
+  // Method to get a Rendezvous by its id
+  findEmpById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/employees/${id}`)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching employees with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
 
   payerRdv(id: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/rendezvous/payer/${id}`, {})
@@ -173,6 +190,22 @@ export class ServicesService {
       );
   }
 
+  getPaiement(): Observable<any[]> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+    return this.http.get<any>(`${this.apiUrl}/paiement`, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error fetching tasks:', error);
+          return throwError(error);
+        })
+      );
+  }
 
 
   validateTask(id_tache: string): Observable<any> {

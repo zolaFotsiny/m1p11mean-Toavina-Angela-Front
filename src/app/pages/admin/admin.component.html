@@ -30,7 +30,7 @@
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/service']">
+          <li nz-menu-item [routerLink]="['/manager/rendezvous/list']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
             <span>Réservation</span>
@@ -53,7 +53,7 @@
             <span nz-icon nzType="file"></span>
             <span>Ajout Utilisateur</span>
           </li>
-          <li nz-menu-item>
+          <li nz-menu-item [routerLink]="['/manager/client']">
             <span nz-icon nzType="file"></span>
             <span>Liste Client</span>
           </li>
@@ -96,10 +96,10 @@
             <span class="badge" *ngIf="showNotif">1</span>
           </span>
         </span>
-          <span class="space"></span>
-          <button type="submit" class="ml-5 btn btn-danger btn-block ghost" (click)="logout()">
-            <span >Déconnection</span>
-          </button>
+        <span class="space"></span>
+        <button type="submit" class="ml-5 btn btn-danger btn-block ghost" (click)="logout()">
+          <span>Déconnection</span>
+        </button>
 
       </div>
     </nz-header>

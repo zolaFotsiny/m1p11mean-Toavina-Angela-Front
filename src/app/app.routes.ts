@@ -16,6 +16,8 @@ import { SaisiesortieComponent } from './pages/admin/finance/saisiesortie/saisie
 import { RendezvousListComponent } from './components/rendezvous-list/rendezvous-list.component';
 import { RendezVousFicheComponent } from './components/rendez-vous-fiche/rendez-vous-fiche.component';
 import { PaiementComponent } from './components/paiement/paiement.component';
+import { PaiementListComponent } from './components/paiement-list/paiement-list.component';
+import { ClientListComponent } from './components/client-list/client-list.component';
 
 
 
@@ -35,6 +37,7 @@ export const routes: Routes = [
             { path: 'chart', component: ChartsComponent },
             { path: 'drag', component: DragComponent },
             { path: 'commission', component: CommissionComponent },
+            { path: 'client', component: ClientListComponent },
         ]
     },
 
@@ -46,6 +49,7 @@ export const routes: Routes = [
             { path: 'rendezvous/list', component: RendezvousListComponent },
             { path: 'rendezvous/:id', component: RendezVousFicheComponent },
             { path: 'payer/:id', component: PaiementComponent },
+            { path: 'paiement', component: PaiementListComponent },
         ]
     },
 

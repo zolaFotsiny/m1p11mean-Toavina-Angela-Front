@@ -1,9 +1,15 @@
 <div class="section-title">
     <h2>Liste des rendez-vous</h2>
 </div>
-<button type="button" class="btn btn-outline-success" (click)="openModal('addRdv')">
-    Ajout rendez-vous
-</button>
+<p>
+
+    Ajout rendez-vous:
+    <button type="button" class="btn btn-outline-success" ngbTooltip="Cliquez ici pour ajouter un rendez-vous"
+        (click)="openModal('addRdv')">
+        <i class="bi bi-plus-lg"></i>
+    </button>
+</p>
+
 
 <!-- Modal content -->
 <ng-template #content let-modal>
@@ -58,7 +64,10 @@
             <td>{{ data._id }}</td>
             <td>{{ data.taches[0].date_debut }}</td>
             <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
-            <td>{{ data.etat }}</td>
+            <td>
+                <span *ngIf="data.etat === 1" class="badge text-bg-primary">non payee</span>
+                <span *ngIf="data.etat === 51" class="badge text-bg-success">paye</span>
+            </td>
             <td><a [routerLink]="['/client/rendezvous', data._id]">Voir la fiche</a></td>
         </tr>
     </tbody>
