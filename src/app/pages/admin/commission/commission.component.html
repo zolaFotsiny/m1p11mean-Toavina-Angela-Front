@@ -1,6 +1,6 @@
 <div class="section-title">
     <h2>Liste des comissions</h2>
-
+    <nz-spin [nzSpinning]="isLoading" [nzTip]="'Chargement en cours...'"></nz-spin>
 </div>
 <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
     <thead>
@@ -47,7 +47,7 @@
             <td>{{ data.id_employee.id_utilisateur.nom }}</td>
             <td>{{ data.id_employee.id_utilisateur.prenom }}</td>
             <td>{{ data.id_employee.id_utilisateur.email }}</td>
-        <td>{{ data.montant.toLocaleString('mg-MG', { style: 'decimal' }) }}</td>
+            <td>{{ data.montant.toLocaleString('mg-MG', { style: 'decimal' }) }}</td>
 
 
             <!-- <td>{{ data._id }}</td> -->

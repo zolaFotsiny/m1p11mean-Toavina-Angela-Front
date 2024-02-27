@@ -1,7 +1,8 @@
 <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
 <div class="section-title">
     <h2>Listes des clients</h2>
-    <!-- <h2>Liste des comissions</h2> -->
+    <nz-spin [nzSpinning]="isLoading" [nzTip]="'Chargement en cours...'"></nz-spin>
+
 </div>
 <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
     <thead>
@@ -29,8 +30,11 @@
             <td>{{ data.id_utilisateur?.email }}</td>
             <td>{{ data.id_utilisateur?.type_utilisateur }}</td>
             <td>{{ data.date_creation | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-            <button nz-button nzType="primary" *ngIf="data" (click)="navigateToClientFiche(data._id)">Voir la
+            <!-- <button nz-button nzType="primary" *ngIf="data" (click)="navigateToClientFiche(data._id)">Voir la
+                fiche</button> -->
+            <button nz-button nzType="primary" *ngIf="data" (click)="openModalClientFiche(data._id)">Voir la
                 fiche</button>
+
         </tr>
     </tbody>
 </nz-table>

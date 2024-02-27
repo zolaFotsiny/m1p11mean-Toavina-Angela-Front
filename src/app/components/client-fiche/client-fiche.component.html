@@ -1,7 +1,16 @@
-<div>
-    <h2>Client Details</h2>
-    <p><strong>ID:</strong> {{ client.id_utilisateur._id }}</p>
-    <p><strong>Name:</strong> {{ client.id_utilisateur.nom }} {{ client.id_utilisateur.prenom }}</p>
-    <p><strong>Email:</strong> {{ client.id_utilisateur.email }}</p>
-    <p><strong>Creation Date:</strong> {{ client.date_creation }}</p>
+<div class="modal-content">
+    <div class="modal-header">
+        <h2>Client Details</h2> <!-- En-tête  ici -->
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div>
+            <p><strong>ID:</strong> {{ client.id_utilisateur._id }}</p>
+            <p><strong>Name:</strong> {{ client.id_utilisateur.nom }} {{ client.id_utilisateur.prenom }}</p>
+            <p><strong>Email:</strong> {{ client.id_utilisateur.email }}</p>
+            <p><strong>Creation Date:</strong> {{ client.date_creation }}</p>
+        </div>
+    </div>
 </div>

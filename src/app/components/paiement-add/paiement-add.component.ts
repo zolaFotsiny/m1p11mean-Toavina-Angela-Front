@@ -8,11 +8,11 @@ import { ServicesService } from '../../app.service';
   selector: 'app-paiement',
   standalone: true,
   imports: [CommonModule, FormsModule],
-  templateUrl: './paiement.component.html',
-  styleUrl: './paiement.component.scss'
+  templateUrl: './paiement-add.component.html',
+  styleUrl: './paiement-add.component.scss'
 
 })
-export class PaiementComponent implements OnInit {
+export class PaiementAddComponent implements OnInit {
   paiement: any;
 
   constructor(private route: ActivatedRoute, private servicesService: ServicesService) { }
