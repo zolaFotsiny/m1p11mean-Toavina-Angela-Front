@@ -1,9 +1,35 @@
 <div class="section-title">
     <h2>Liste des rendez-vous</h2>
 </div>
+<button type="button" class="btn btn-outline-success" (click)="openModal('addRdv')">
+    Ajout rendez-vous
+</button>
+
+<!-- Modal content -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Nouveaux rendez-vous</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+
+        <ng-container *ngIf="modalContent === 'calendar'; else otherContent">
+
+        </ng-container>
+        <ng-template #otherContent>
+            <app-rendezvous></app-rendezvous>
+        </ng-template>
+    </div>
+</ng-template>
 <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
     <thead>
         <tr>
+            <th>
+                ID
+            </th>
             <th nzCustomFilter>
                 Date de début
                 <nz-filter-trigger [(nzVisible)]="visibleDateDebut" [nzActive]="searchValueDateDebut.length > 0"
@@ -19,14 +45,20 @@
                 </nz-filter-trigger>
             </th>
             <th>
+                etat
+            </th>
+            <th>
                 Fiche
             </th>
+
         </tr>
     </thead>
     <tbody>
         <tr *ngFor="let data of nzTable.data">
+            <td>{{ data._id }}</td>
             <td>{{ data.taches[0].date_debut }}</td>
             <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
+            <td>{{ data.etat }}</td>
             <td><a [routerLink]="['/client/rendezvous', data._id]">Voir la fiche</a></td>
         </tr>
     </tbody>

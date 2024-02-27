@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -8,6 +8,8 @@ import { FormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ServicesService } from '../../../app/app.service';
 import { RouterModule } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { RendezvousComponent } from '../../pages/client/rendezvous/rendezvous.component';
 
 interface RendezvousItem {
   _id: string;
@@ -59,7 +61,7 @@ interface RendezvousItem {
     CommonModule,
     NzDropDownModule,
     FormsModule,
-    NzIconModule, RouterModule
+    NzIconModule, RouterModule, RendezvousComponent
   ],
   templateUrl: './rendezvous-list.component.html',
   styleUrl: './rendezvous-list.component.scss'
@@ -74,8 +76,13 @@ export class RendezvousListComponent implements OnInit {
   isLoading = true;
   listOfData: RendezvousItem[] = [];
   listOfDisplayData: RendezvousItem[] = [];
+  @ViewChild('content') content: any;
+  modalContent: any;
 
-  constructor(private servicesService: ServicesService) { }
+
+  constructor(private modalService: NgbModal, private servicesService: ServicesService) { }
+
+
 
   resetDateDebut(): void {
     this.searchValueDateDebut = '';
@@ -125,6 +132,28 @@ export class RendezvousListComponent implements OnInit {
       (error: any) => {
         console.error('Error fetching rendezvous:', error);
         this.isLoading = false;
+      }
+    );
+  }
+
+
+
+  openModal(content: any) {
+    const modalOptions: NgbModalOptions = {
+      centered: true,
+      size: 'lg'
+    };
+
+    this.modalContent = content; // Set the content for the modal
+
+    const modalRef = this.modalService.open(this.content, modalOptions);
+
+    modalRef.result.then(
+      (result) => {
+        // Handle modal close
+      },
+      (reason) => {
+        // Handle modal dismiss
       }
     );
   }

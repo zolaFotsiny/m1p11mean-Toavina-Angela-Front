@@ -3,7 +3,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ServicesService } from '../../../app.service';
-import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Option {
   _id: any;
@@ -35,7 +35,7 @@ export class RendezvousComponent implements OnInit {
   listOfTagOptionsEmp: Array<{ _id: string; designation: string }> = []; // Define the correct type here
   selectedValue = 'Default';
 
-  constructor(private fb: FormBuilder, private serviceService: ServicesService) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private serviceService: ServicesService) { }
 
   ngOnInit(): void {
     this.serviceService.getServices().subscribe(
@@ -152,11 +152,13 @@ export class RendezvousComponent implements OnInit {
         console.log('RDV registered successfully:', Response); // change 'response' to 'Response'
         // You can also reset the form here if needed
         this.myForm.reset();
+        this.modalService.dismissAll();
       },
       error => {
         // Handle registration error
         console.error('Error registering user:', error);
       }
+
     );
 
 

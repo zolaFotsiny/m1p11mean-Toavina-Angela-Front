@@ -25,7 +25,14 @@
         </tbody>
     </table>
 
-    <button class="btn btn-primary" routerLink="/client/payer/{{rendezvous._id}}">Payer</button>
+    <div class="container mt-5">
+        <!-- ... -->
+        <button *ngIf="rendezvous.etat !== 51" class="btn btn-primary"
+            routerLink="/client/payer/{{rendezvous._id}}">Payer</button>
+        <button *ngIf="rendezvous.etat === 51" class="btn btn-primary"
+            routerLink="/client/payer/{{rendezvous._id}}">Fiche paiement</button>
+    </div>
+
 
 
 </div>

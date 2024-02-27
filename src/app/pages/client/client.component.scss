@@ -6,10 +6,7 @@
 
 .user-info-box {
     background-color: #f0f0f0;
-    /* Set your desired background color */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    /* Set your desired shadow */
-    border-radius: 10px;
+
     padding: 15px;
     text-align: left;
     /* Align text to the left */
@@ -36,4 +33,35 @@
     /* Set your desired border-radius for rounded corners */
     padding: 20px;
     /* Adjust padding as needed */
+}
+
+
+/* Ajouter des transitions pour une expérience utilisateur plus fluide */
+.user-info-box,
+.user-details p,
+.user-image {
+    transition: all 0.3s ease;
+}
+
+/* Ajouter un effet de survol à l'image de l'utilisateur */
+.user-image:hover {
+    transform: scale(1.1);
+}
+
+/* Utiliser une police moderne pour les détails de l'utilisateur */
+.user-details p {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Utiliser des couleurs vives pour le bouton */
+.btn-outline-success {
+    color: #fff;
+    background-color: #6bc513;
+    border-color: #6bc513;
+}
+
+.btn-outline-success:hover {
+    color: #6bc513;
+    background-color: #fff;
+    border-color: #6bc513;
 }

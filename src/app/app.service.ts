@@ -52,6 +52,19 @@ export class ServicesService {
       );
   }
 
+
+  payerRdv(id: string): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/rendezvous/payer/${id}`, {})
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching Rendezvous with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
+
+
   createService(data: FormData): Observable<any> {
     const httpOptions = {
       headers: new HttpHeaders({
@@ -107,6 +120,8 @@ export class ServicesService {
         })
       );
   }
+
+
 
 
   getTaches(): Observable<any[]> {
