@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
-import { ServicesService } from '../../../app.service';
+import { ServicesService } from '../../../../app.service';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 interface Option {
@@ -24,10 +24,10 @@ interface Optione {
   selector: 'app-rendezvous',
   standalone: true,
   imports: [NzSelectModule, CommonModule, FormsModule, ReactiveFormsModule, NgbDropdownModule],
-  templateUrl: './rendezvous.component.html',
-  styleUrls: ['./rendezvous.component.scss']
+  templateUrl: './rendezvous-add.component.html',
+  styleUrls: ['./rendezvous-add.component.scss']
 })
-export class RendezvousComponent implements OnInit {
+export class RendezvousAddComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
   listOfSelectedValue: Array<{ _id: string; designation: string }> = [];
   listOfSelectedValueEmp: Array<{ _id: string; designation: string }> = [];

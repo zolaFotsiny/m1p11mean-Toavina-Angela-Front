@@ -4,7 +4,7 @@ import { HeaderComponent } from '../home/header/header.component';
 import { JwtPayload, jwtDecode } from 'jwt-decode';
 import { CalendarRendezVousComponent } from './calendar-rendez-vous/calendar-rendez-vous.component';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { RendezvousComponent } from './rendezvous/rendezvous.component';
+import { RendezvousAddComponent } from './rendezvous/rendezvous-add/rendezvous-add.component';
 import { FavorisComponent } from './favoris/favoris.component';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -12,7 +12,7 @@ import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-client',
   standalone: true,
-  imports: [FormsModule, HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousComponent, RouterModule, FavorisComponent, RouterOutlet],
+  imports: [FormsModule, HeaderComponent, CalendarRendezVousComponent, CommonModule, RendezvousAddComponent, RouterModule, FavorisComponent, RouterOutlet],
   templateUrl: './client.component.html',
   styleUrl: './client.component.scss'
 })

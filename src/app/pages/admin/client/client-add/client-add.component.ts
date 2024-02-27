@@ -4,7 +4,7 @@ import { Observable, Observer } from 'rxjs';
 import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { CommonModule } from '@angular/common';
-import { ServicesService } from '../../app.service';
+import { ServicesService } from '../../../../app.service';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-client-add',

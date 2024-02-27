@@ -6,10 +6,10 @@ import { CommonModule } from '@angular/common';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { FormsModule } from '@angular/forms';
 import { NzIconModule } from 'ng-zorro-antd/icon';
-import { ServicesService } from '../../../app/app.service';
+import { ServicesService } from '../../../../app.service';
 import { RouterModule } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
-import { RendezvousComponent } from '../../pages/client/rendezvous/rendezvous.component';
+import { RendezvousAddComponent } from '../rendezvous-add/rendezvous-add.component';
 
 interface RendezvousItem {
   _id: string;
@@ -61,7 +61,7 @@ interface RendezvousItem {
     CommonModule,
     NzDropDownModule,
     FormsModule,
-    NzIconModule, RouterModule, RendezvousComponent, NgbTooltip
+    NzIconModule, RouterModule, RendezvousAddComponent, NgbTooltip
   ],
   templateUrl: './rendezvous-list.component.html',
   styleUrl: './rendezvous-list.component.scss'

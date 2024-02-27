@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { ServicesService } from '../../app.service';
+import { ServicesService } from '../../../../app.service';
 
 @Component({
   selector: 'app-paiement',

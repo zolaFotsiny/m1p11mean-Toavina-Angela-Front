@@ -1,7 +1,7 @@
 import { HttpClientModule } from '@angular/common/http';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { ServicesService } from '../../app.service';
+import { ServicesService } from '../../../../app.service';
 import { CommonModule } from '@angular/common';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzInputModule } from 'ng-zorro-antd/input';

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, RouterModule } from '@angular/router';
 import { NzTableModule } from 'ng-zorro-antd/table';
-import { ServicesService } from '../../app.service';
+import { ServicesService } from '../../../../app.service';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { FormsModule } from '@angular/forms';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
