@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ServicesService } from '../../app.service';
+import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-client-fiche',
@@ -10,17 +11,20 @@ import { ServicesService } from '../../app.service';
   styleUrl: './client-fiche.component.scss'
 })
 export class ClientFicheComponent implements OnInit {
+
+  @Input() clientId!: string;
+
   client: any;
 
   constructor(
     private route: ActivatedRoute,
-    private servicesService: ServicesService
+    private servicesService: ServicesService,
+    public activeModal: NgbActiveModal // Injection de NgbActiveModal
   ) { }
 
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
-    if (id !== null) {
-      this.servicesService.findClientById(id).subscribe(
+    if (this.clientId !== null) {
+      this.servicesService.findClientById(this.clientId).subscribe(
         data => {
           console.log("ggggggggggggggggggggggg", data.data);
           this.client = data.data;

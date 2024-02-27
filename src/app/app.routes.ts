@@ -15,7 +15,7 @@ import { SortieComponent } from './pages/admin/finance/sortie/sortie.component';
 import { SaisiesortieComponent } from './pages/admin/finance/saisiesortie/saisiesortie.component';
 import { RendezvousListComponent } from './components/rendezvous-list/rendezvous-list.component';
 import { RendezVousFicheComponent } from './components/rendez-vous-fiche/rendez-vous-fiche.component';
-import { PaiementComponent } from './components/paiement/paiement.component';
+import { PaiementAddComponent } from './components/paiement-add/paiement-add.component';
 import { PaiementListComponent } from './components/paiement-list/paiement-list.component';
 import { ClientListComponent } from './components/client-list/client-list.component';
 import { ClientFicheComponent } from './components/client-fiche/client-fiche.component';
@@ -53,7 +53,7 @@ export const routes: Routes = [
             { path: 'rendezvous/add', component: RendezvousComponent },
             { path: 'rendezvous/list', component: RendezvousListComponent },
             { path: 'rendezvous/:id', component: RendezVousFicheComponent },
-            { path: 'payer/:id', component: PaiementComponent },
+            { path: 'payer/:id', component: PaiementAddComponent },
             { path: 'paiement', component: PaiementListComponent },
         ]
     },
