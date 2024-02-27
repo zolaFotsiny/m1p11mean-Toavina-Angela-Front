@@ -74,7 +74,7 @@ export class ServiceAddComponent {
           this.notification.create(
             'success',
             'Success',
-            'Nouvelle service ajoutée.',
+            'Opération réussie.',
             { nzPlacement: 'bottomRight' }
           );
 

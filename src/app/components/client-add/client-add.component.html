@@ -2,7 +2,7 @@
     <h2>Ajout Utilisateur</h2>
 
 </div>
-
+<div class="center-form">
 <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" class="needs-validation">
 
 
@@ -44,8 +44,8 @@
     </nz-form-item>
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>Mot de passe</nz-form-label>
-        <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="Veuillez entrer votre mot de passe!">
-            <input nz-input type="password" formControlName="mot_de_passe" />
+        <nz-form-control [nzSpan]="12"   nzHasFeedback nzErrorTip="Veuillez entrer votre mot de passe!">
+            <input nz-input type="password" placeholder="Mot de passe" formControlName="mot_de_passe" />
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
@@ -63,9 +63,9 @@
         </nz-form-control>
     </nz-form-item>
     <nz-form-item>
-        <nz-form-label [nzSpan]="7" nzRequired>Type d'utilisateur</nz-form-label>
+        <!-- <nz-form-label [nzSpan]="7" nzRequired>Type d'utilisateur</nz-form-label> -->
         <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="typeUtilisateurErrorTpl">
-            <input nz-input formControlName="type_utilisateur" placeholder="Type d'utilisateur" />
+            <input nz-input formControlName="type_utilisateur" placeholder="Type d'utilisateur" type="hidden"/>
             <ng-template #typeUtilisateurErrorTpl let-control>
                 @if (control.errors?.['required']) {
                 Veuillez sélectionner le type d'utilisateur!
@@ -73,10 +73,20 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item>
-    <nz-form-item>
+
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-block ghost-button" [disabled]="!validateForm.valid">
+                <span *ngIf="!loading">Soumettre</span>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            </button>
+        </div>
+
+    <!-- <nz-form-item>
         <nz-form-control [nzOffset]="7" [nzSpan]="12">
             <button nz-button nzType="primary" [disabled]="!validateForm.valid">Soumettre</button>
             <button nz-button (click)="resetForm($event)">Réinitialiser</button>
         </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
 </form>
+</div>

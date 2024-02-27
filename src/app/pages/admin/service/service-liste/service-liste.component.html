@@ -1,6 +1,9 @@
 <!-- <h1>Liste Service</h1> -->
+<div class="section-title">
+    <!-- <h2>Liste des comissions</h2> -->
+    <h2>Listes des services</h2>
 
-<h1>Listes des services</h1>
+</div>
 <nz-spin [nzSpinning]="isLoading" [nzTip]="'Chargement en cours...'">
 <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
     <thead>
@@ -16,7 +19,7 @@
             <th>Commission Pourcentage</th>
             <th>Date Insertion</th>
             <th>Etat</th>
-            <!-- <th>Image</th> -->
+            <!-- <th>-+++++++++++++++Image</th> -->
         </tr>
     </thead>
     <!-- <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"> -->

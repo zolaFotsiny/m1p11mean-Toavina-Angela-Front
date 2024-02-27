@@ -5,6 +5,7 @@ import { NzFormModule } from 'ng-zorro-antd/form';
 import { NzInputModule } from 'ng-zorro-antd/input';
 import { CommonModule } from '@angular/common';
 import { ServicesService } from '../../app.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 @Component({
   selector: 'app-client-add',
   standalone: true,
@@ -21,7 +22,7 @@ export class ClientAddComponent {
     type_utilisateur: FormControl<string>;
     confirm: FormControl<string>;
   }>;
-
+  loading = false;
 
   submitForm(): void {
     const formDataAsJson = JSON.stringify(this.validateForm.value);
@@ -29,17 +30,26 @@ export class ClientAddComponent {
 
     // Check if the form is valid
     if (this.validateForm.valid) {
+      this.loading = true;
       // Call the registerUser method from ServicesService
       this.servicesService.registerUser(formDataAsJson).subscribe(
         response => {
           // Handle successful registration
           console.log('User registered successfully:', Response); // change 'response' to 'Response'
           // You can also reset the form here if needed
+          this.notification.create(
+            'success',
+            'Success',
+            'Opération réussie.',
+            { nzPlacement: 'bottomRight' }
+          );
           this.validateForm.reset();
+          this.loading = false;
         },
         error => {
           // Handle registration error
           console.error('Error registering user:', error);
+          this.loading = false;
         }
       );
     }
@@ -71,7 +81,7 @@ export class ClientAddComponent {
     return {};
   };
 
-  constructor(private fb: NonNullableFormBuilder, private servicesService: ServicesService) {
+  constructor(private fb: NonNullableFormBuilder, private servicesService: ServicesService, private notification: NzNotificationService) {
     this.validateForm = this.fb.group({
       nom: ['', [Validators.required], [this.nomAsyncValidator]],
       prenom: ['', [Validators.required]],
