@@ -11,8 +11,14 @@
                 <div class="row justify-content-center align-items-center vh-90">
                     <div class="col-md-8">
                         <div class="login-container">
-                            <h2 class="text-center mb-4">Login</h2>
-                            <form (ngSubmit)="onSubmit()" class="d-flex flex-column">
+
+
+                            <h2 *ngIf="!isSignUpMode" class="text-center mb-4 sacramento-regular" style="color:#6bc513">
+                                Login</h2>
+                            <h2 *ngIf="isSignUpMode" class="text-center mb-4 sacramento-regular" style="color:#6bc513">
+                                Inscription</h2>
+                            <hr>
+                            <form *ngIf="!isSignUpMode" (ngSubmit)="onSubmit()" class="d-flex flex-column">
                                 <div class="form-group"
                                     [ngClass]="{'has-error': emailField.invalid && emailField.touched}">
                                     <label for="email">Email</label>
@@ -26,10 +32,15 @@
                                         sélectionner une option valide.
                                     </div>
                                 </div>
+                                <!-- <div class="form-group mt-3">
+                                    <label for="mot_de_passe">Email</label>
+                                    <input type="text" id="mot_de_passe" [(ngModel)]="credentials.email"
+                                        name="mot_de_passe" class="form-control" placeholder="Enter Email" required>
+                                </div> -->
 
                                 <div class="form-group mt-3">
                                     <label for="mot_de_passe">Password</label>
-                                    <input type="password" id="mot_de_passe" [ngModel]="credentials.mot_de_passe"
+                                    <input type="password" id="mot_de_passe" [(ngModel)]="credentials.mot_de_passe"
                                         name="mot_de_passe" class="form-control" placeholder="Enter Password" required>
                                 </div>
                                 <div class="text-center mt-3">
@@ -42,10 +53,57 @@
                                 </div>
                             </form>
 
+
+
+
+                            <form *ngIf="isSignUpMode" (ngSubmit)="signup()" class="d-flex flex-column">
+                                <div class="form-group mt-3">
+                                    <label for="nom">Nom</label>
+                                    <input type="text" id="nom" [(ngModel)]="inscription.nom" name="nom"
+                                        class="form-control" placeholder="Enter Nom" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="prenom">Prénom</label>
+                                    <input type="text" id="prenom" [(ngModel)]="inscription.prenom" name="prenom"
+                                        class="form-control" placeholder="Enter Prénom" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" [(ngModel)]="inscription.email" name="email"
+                                        class="form-control" placeholder="Enter Email" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="mot_de_passe">Mot de passe</label>
+                                    <input type="password" id="mot_de_passe" [(ngModel)]="inscription.mot_de_passe"
+                                        name="mot_de_passe" class="form-control" placeholder="Enter Password" required>
+                                </div>
+                                <div class="form-group mt-3">
+                                    <label for="confirm_mot_de_passe">Confirmer le mot de passe</label>
+                                    <input type="password" id="confirm_mot_de_passe"
+                                        [(ngModel)]="inscription.confirm_mot_de_passe" name="confirm_mot_de_passe"
+                                        class="form-control" placeholder="Confirm Password" required>
+                                </div>
+                                <div class="text-center mt-3">
+                                    <button type="submit" class="btn btn-primary btn-block ghost-button"
+                                        [disabled]="loading || !isValidFormS()">
+                                        <span *ngIf="!loading">S'inscrire</span>
+                                        <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status"
+                                            aria-hidden="true"></span>
+                                    </button>
+                                </div>
+
+
+                            </form>
+
+
+
                         </div>
                         <div class="text-center mt-3">
-                            <p class="mb-0">Don't have an account? <a href="#!" class="text-primary fw-bold">Sign Up</a>
-                            </p>
+                            <p *ngIf="!isSignUpMode" class="mb-0">Pas encore de compte? <a (click)="toggleSignUpMode()"
+                                    class="text-primary fw-bold" style="color:#6bc513">Inscription</a></p>
+                            <p *ngIf="isSignUpMode" class="mb-0">Vous avez deja un compte? <a
+                                    (click)="toggleSignUpMode()" class="text-primary fw-bold" style="color:#6bc513">Se
+                                    connecter</a></p>
                         </div>
                     </div>
                 </div>
@@ -55,4 +113,6 @@
 
         </ng-container>
     </nz-modal>
+
+
 </div>

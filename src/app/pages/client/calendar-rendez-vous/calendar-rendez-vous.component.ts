@@ -37,6 +37,8 @@ export class CalendarRendezVousComponent implements OnInit {
             labele: item.taches[0].id_service.designation
           };
         });
+        // console.log('test',this.rendezVous);
+        
       },
       (error) => {
         console.error('Error fetching services:', error);

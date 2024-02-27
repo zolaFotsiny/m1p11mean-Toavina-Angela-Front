@@ -19,6 +19,27 @@ export class LoginComponent {
   loading = false;
   isVisible = false;
   credentials: { email: string, mot_de_passe: string } = { email: '', mot_de_passe: 'cmcm' };
+  isSignUpMode = false; // Track the mode (login or signup)
+  toggleSignUpMode() {
+    this.isSignUpMode = !this.isSignUpMode;
+  }
+  inscription: {
+    email: string,
+    nom: string,
+    prenom: string,
+    contact: number,
+    mot_de_passe: string,
+    confirm_mot_de_passe: string,
+    type_utilisateur: string,
+  } = {
+      email: '',
+      nom: '',
+      prenom: '',
+      contact: 0,
+      mot_de_passe: '',
+      confirm_mot_de_passe: '',
+      type_utilisateur: 'client',
+    };
 
   showModal(): void {
     this.isVisible = true;
@@ -41,6 +62,15 @@ export class LoginComponent {
   isValidForm(): boolean {
     return !!this.credentials.email && !!this.credentials.mot_de_passe;
   }
+  isValidFormS(): boolean {
+    return !!this.inscription.email &&
+      !!this.inscription.nom &&
+      !!this.inscription.prenom &&
+      !!this.inscription.mot_de_passe &&
+      !!this.inscription.confirm_mot_de_passe;
+    // !!this.inscription.contact
+  }
+
 
   onSubmit(): void {
     // console.log('test', this.credentials);
@@ -87,5 +117,23 @@ export class LoginComponent {
 
   }
 
-
+  signup(): void {
+    if (this.isValidFormS()) {
+      this.loading = true;
+      // Call the registerUser method from ServicesService
+      this.servicesService.registerUser(this.inscription).subscribe(
+        response => {
+          // Handle successful registration
+          localStorage.setItem('token', response.data.token);
+          this.router.navigate(['/client']);
+          this.loading = false;
+        },
+        error => {
+          // Handle registration error
+          console.error('Error registering user:', error);
+          this.loading = false;
+        }
+      );
+    }
+  }
 }
