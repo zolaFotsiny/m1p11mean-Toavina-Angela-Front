@@ -11,7 +11,7 @@ import { Observable } from 'rxjs';
 })
 export class PermissionGuard implements CanActivate {
 
-    constructor( private router: Router) { }
+    constructor(private router: Router) { }
 
     canActivate(
         next: ActivatedRouteSnapshot,
@@ -24,7 +24,7 @@ export class PermissionGuard implements CanActivate {
         if (userToken !== null) {
             const decodedToken: any = jwtDecode(userToken);
 
-            if (decodedToken && decodedToken.type_utilisateur === 'admin') {
+            if (decodedToken && decodedToken.type_utilisateur === 'manager') {
                 return true;
             } else {
                 this.router.navigate(['/denied']);
