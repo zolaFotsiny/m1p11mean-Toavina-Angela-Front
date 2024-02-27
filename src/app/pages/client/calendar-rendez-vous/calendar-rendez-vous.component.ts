@@ -31,14 +31,14 @@ export class CalendarRendezVousComponent implements OnInit {
       (response: any) => {
         console.log('gerge', response);
 
-        this.rendezVous = response.map((item: any) => {
+        this.rendezVous = response.data.map((item: any) => {
           return {
             date: new Date(item.date_heure), // Change to match the actual date property
             labele: item.taches[0].id_service.designation
           };
         });
         // console.log('test',this.rendezVous);
-        
+
       },
       (error) => {
         console.error('Error fetching services:', error);
