@@ -96,11 +96,9 @@ export class LoginComponent {
           if (decodedToken && decodedToken.type_utilisateur) {
             console.log('test', decodedToken.type_utilisateur);
 
-            if (decodedToken.type_utilisateur === 'manager') {
+            if (decodedToken.type_utilisateur === 'manager' || decodedToken.type_utilisateur === 'employee') {
               this.router.navigate(['/manager/chart']);
             } else {
-              // alert('ato')
-              // console.log('token info',decodedToken);
               this.router.navigate(['/client/rendezvous/list']);
             }
           } else {

@@ -24,7 +24,7 @@ export class PermissionGuard implements CanActivate {
         if (userToken !== null) {
             const decodedToken: any = jwtDecode(userToken);
 
-            if (decodedToken && decodedToken.type_utilisateur === 'manager') {
+            if (decodedToken && decodedToken.type_utilisateur === 'manager' || decodedToken.type_utilisateur === 'employee') {
                 return true;
             } else {
                 this.router.navigate(['/denied']);
