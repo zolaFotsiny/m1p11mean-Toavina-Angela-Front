@@ -24,3 +24,27 @@ h2 {
 }
 
 /* Ajoutez des styles supplémentaires selon vos besoins */
+.custom-file-upload {
+    position: relative;
+
+    .custom-file-upload-btn {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #4CAF50;
+        /* Utilisez la couleur verte que vous souhaitez */
+        color: #fff;
+        border: 1px solid #4CAF50;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+    }
+}

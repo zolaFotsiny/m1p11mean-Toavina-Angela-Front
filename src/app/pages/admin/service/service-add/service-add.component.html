@@ -54,7 +54,7 @@
         </nz-form-control>
     </nz-form-item>
 
-
+<!-- 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>File</nz-form-label>
         <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
@@ -65,7 +65,22 @@
                 }
             </ng-template>
         </nz-form-control>
-    </nz-form-item>
+    </nz-form-item> -->
+<nz-form-item>
+    <nz-form-label [nzSpan]="24" nzRequired>Image </nz-form-label>
+    <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl" class="custom-file-upload">
+        <input type="file" id="file" (change)="onFileSelected($event)" class="form-control-file" required />
+        <label for="file" class="custom-file-upload-btn">
+            <i class="bi bi-cloud-upload"></i> Choisir un fichier
+        </label>
+        <ng-template #nomErrorTpl let-control>
+            @if (control.errors?.['required']) {
+            Veuillez choisir une image!
+            }
+        </ng-template>
+    </nz-form-control>
+</nz-form-item>
+
 
     
 
