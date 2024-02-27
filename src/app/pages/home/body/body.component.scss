@@ -15,6 +15,11 @@
     cursor: pointer;
 }
 
+.custom-tooltip .ant-tooltip {
+    z-index: 9999 !important;
+    /* ou toute autre valeur que vous trouvez appropriée */
+}
+
 h1 {
     font-weight: 500;
 }
@@ -127,6 +132,7 @@ p {
 
 .custom-card {
     height: 100%;
+    cursor: pointer;
     /* Définissez la hauteur souhaitée */
 }
 
