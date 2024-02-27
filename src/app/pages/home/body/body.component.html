@@ -1,5 +1,50 @@
 <!-- ======= About Us Section ======= -->
 
+<!-- Modal content -->
+<ng-template #content let-modal>
+    <div class="modal-header">
+
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <ng-container *ngIf="modalContent === 'favoris'">
+
+            <div *ngIf="!isUserLoggedIn" class="d-flex flex-column justify-content-center align-items-center">
+                <h2 class="modal-title error_font  logo" style=" text-align: center;">Information</h2>
+                <p style="padding: 50px; font-weight: bold; font-family: fangsong; text-align: center;">
+                    "Pour une meilleure expérience utilisateur,<br> veuillez vous connecter afin
+                    d'ajouter ceci à vos favoris."
+                </p>
+            </div>
+
+
+            <div *ngIf="isUserLoggedIn" class="d-flex flex-column justify-content-center align-items-center">
+                <h2 class="modal-title success_font  logo" style=" text-align: center;">Préférence</h2>
+
+
+                <div class="card custom-card">
+                    <img [src]="'data:image/png;base64,' + passedService.image" class="card-img-top custom-card-img"
+                        alt="Service Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ passedService.designation }}</h5>
+                        <p class="card-text">{{ passedService.description }}</p>
+
+                    </div>
+                </div>
+
+
+            </div>
+
+
+        </ng-container>
+
+    </div>
+</ng-template>
+
+
 
 
 <section id="why-us" class="why-us ">
@@ -66,19 +111,20 @@
                                 <h5 class="card-title">{{ service.designation }}</h5>
                                 <p class="card-text">{{ service.description }}</p>
                                 <div class="favorite-icon">
-                             
-                                <!-- si favoris
+
+                                    <!-- si favoris
                                 <i class="bi bi-heart-fill"></i>
                                 sinon -->
-                                <i class="bi bi-heart"></i>
-                                   
-                                <!-- Assuming isFavorited(service) returns a boolean indicating whether the item is favorited -->
-                                <!-- <div *ngIf="isFavorited(service)">
-                                    <i class="bi bi-heart-fill"></i> 
-                                </div>
-                                <div *ngIf="!isFavorited(service)">
-                                    <i class="bi bi-heart"></i> 
-                                </div> -->
+                                    <i nzTooltipTitle="Ajouter aux favoris." nzTooltipPlacement="top" nz-button
+                                        nz-tooltip class="bi bi-heart i-heart"
+                                        (click)="openModal('favoris',  service )"></i>
+
+
+
+
+
+
+
 
 
 
@@ -251,15 +297,15 @@
                         <h4>Call:</h4>
                         <p>+1 5589 55488 55s</p>
                     </div>
-<!-- 
+                    <!-- 
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
                         src="https://www.google.com/maps/place/IT+University/@-18.9835164,47.5354891,16z/data=!4m6!3m5!1s0x21f07bf95431f83d:0x7edb4de9ebd72707!8m2!3d-18.9859998!4d47.5327977!16s%2Fg%2F11b6b5gyfy?entry=ttu"
                         frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen></iframe> -->
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.339559558006!2d47.5327977!3d-18.9859998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07bf95431f83d%3A0x7edb4de9ebd72707!2sIT%20University!5e0!3m2!1sen!2smg!4v1647655338804!5m2!1sen!2smg"
-                            frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen>
-                        </iframe>
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3974.339559558006!2d47.5327977!3d-18.9859998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x21f07bf95431f83d%3A0x7edb4de9ebd72707!2sIT%20University!5e0!3m2!1sen!2smg!4v1647655338804!5m2!1sen!2smg"
+                        frameborder="0" style="border:0; width: 100%; height: 290px;" allowfullscreen>
+                    </iframe>
                 </div>
 
             </div>

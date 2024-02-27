@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { HomeComponent } from '../home.component';
 import { NzFlexModule } from 'ng-zorro-antd/flex';
 import { CommonModule } from '@angular/common';
@@ -7,11 +7,12 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { HeartFill, HeartOutline } from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { RendezvousAddComponent } from '../../client/rendezvous/rendezvous-add/rendezvous-add.component';
-
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NzToolTipModule } from 'ng-zorro-antd/tooltip';
 @Component({
   selector: 'home-body',
   standalone: true,
-  imports: [CommonModule, NzFlexModule, NzSpinModule, NzIconModule, RendezvousAddComponent],
+  imports: [NzToolTipModule, CommonModule, NzFlexModule, NzSpinModule, NzIconModule, RendezvousAddComponent],
   templateUrl: './body.component.html',
   styleUrl: './body.component.scss'
 })
@@ -24,8 +25,38 @@ export class BodyComponent implements OnInit {
 
   employee: any[] = [];
   isLoading = true; // Add a loading flag
+  get isUserLoggedIn(): boolean {
+    return !!localStorage.getItem('token');
+  }
 
-  constructor(private servicesService: ServicesService) {
+  @ViewChild('content') content: any; // Declare the template reference variable
+  modalContent: any; // Property to store the modal content
+
+
+  passedService: any;
+  openModal(content: any, servicePass: any) {
+    const modalOptions: NgbModalOptions = {
+      centered: true,
+      size: 'lg'
+    };
+
+    this.passedService = servicePass; // Assurez-vous que passedService est correctement initialisée
+    this.modalContent = content; // Set the content for the modal
+
+    console.log('test', servicePass);
+
+    const modalRef = this.modalService.open(this.content, modalOptions);
+
+    modalRef.result.then(
+      (result) => {
+        // Handle modal close
+      },
+      (reason) => {
+        // Handle modal dismiss
+      }
+    );
+  }
+  constructor(private servicesService: ServicesService, private modalService: NgbModal) {
     // this.iconService.addIcon(...[HeartFill, HeartOutline]);
   }
   isFavorited(service: any): boolean {
