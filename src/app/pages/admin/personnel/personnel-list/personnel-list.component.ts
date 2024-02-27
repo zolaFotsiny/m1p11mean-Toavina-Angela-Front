@@ -7,6 +7,9 @@ import { CommonModule } from '@angular/common';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzTableModule } from 'ng-zorro-antd/table';
+import { Router } from '@angular/router';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { EmployeeFicheComponent } from '../employee-fiche/employee-fiche.component';
 
 
 
@@ -49,7 +52,8 @@ export class PersonnelListComponent implements OnInit {
   isLoading = true;
   listOfData: EmployeeItem[] = [];
   listOfDisplayData: EmployeeItem[] = [];
-  constructor(private servicesService: ServicesService) { }
+  modalRef: NgbModalRef | null = null;
+  constructor(private servicesService: ServicesService, private router: Router, private modalService: NgbModal) { }
 
   reset(): void {
     this.searchValue = '';
@@ -91,6 +95,15 @@ export class PersonnelListComponent implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+
+
+  openModalEmpFiche(empId: string): void {
+    console.log(empId);
+    this.modalRef = this.modalService.open(EmployeeFicheComponent);
+    if (this.modalRef) { // Check if modalRef is not null
+      this.modalRef.componentInstance.empId = empId;
+    }
   }
 
 }
