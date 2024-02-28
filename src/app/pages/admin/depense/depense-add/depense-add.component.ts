@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { ServicesService } from '../../../../app.service';
@@ -20,28 +20,38 @@ import { NzNotificationService } from 'ng-zorro-antd/notification';
   styleUrl: './depense-add.component.scss'
 })
 export class DepenseAddComponent implements OnInit {
-  depenseForm: FormGroup = new FormGroup({
-    'designation': new FormControl(null, Validators.required),
-    'montant_total': new FormControl(null, Validators.required),
-    'mode_paiement': new FormControl(null, Validators.required)
-  });
+  depenseForm: FormGroup;
   loading = false;
 
-  constructor(private servicesService: ServicesService, private notification: NzNotificationService) { }
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private servicesService: ServicesService, private notification: NzNotificationService) {
+    // Initialiser depenseForm dans le constructeur
+    this.depenseForm = this.formBuilder.group({
+      designation: ['', Validators.required],
+      montant_total: ['', Validators.required],
+      mode_depense: ['', Validators.required],
+      details: this.formBuilder.array([])
+    });
   }
+
+  get details() {
+    return this.depenseForm.get('details') as FormArray;
+  }
+
+  addDetail(): void {
+    this.details.push(this.formBuilder.group({
+      designation: ['', Validators.required],
+      montant: ['', Validators.required]
+    }));
+  }
+
+  ngOnInit(): void { }
 
   onSubmit(): void {
     if (!this.depenseForm.valid) {
       return;
     }
     this.loading = true;
-    const formData = {
-      'designation': this.depenseForm.value.designation,
-      'montant_total': this.depenseForm.value.montant_total,
-      'mode_paiement': this.depenseForm.value.mode_paiement
-    };
+    const formData = this.depenseForm.value;
 
     this.servicesService.createDepense(formData).subscribe(
       (response) => {

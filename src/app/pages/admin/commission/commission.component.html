@@ -1,6 +1,6 @@
 <div class="section-title">
     <h2>Liste des comissions</h2>
-    <nz-spin [nzSpinning]="isLoading" [nzTip]="'Chargement en cours...'"></nz-spin>
+    <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
 </div>
 <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
     <thead>

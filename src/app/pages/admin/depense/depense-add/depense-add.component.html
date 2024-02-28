@@ -1,43 +1,69 @@
 <div class="section-title">
     <h2>Saisie depense</h2>
 </div>
+
 <form [formGroup]="depenseForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
     <nz-form-item>
-        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="designationErrorTpl">
             <input type="text" nz-input formControlName="designation" placeholder="Désignation" />
-            <ng-template #nomErrorTpl let-control>
+            <ng-template #designationErrorTpl let-control>
                 @if (control.errors?.['required']) {
-                Veuillez saisir votre nom!
+                Veuillez saisir la désignation!
                 }
             </ng-template>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
-            <input type="number" nz-input formControlName="montant_total" placeholder="Montant" />
-            <ng-template #nomErrorTpl let-control>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="montantTotalErrorTpl">
+            <input type="number" nz-input formControlName="montant_total" placeholder="Montant total" />
+            <ng-template #montantTotalErrorTpl let-control>
                 @if (control.errors?.['required']) {
-                Veuillez saisir votre montant total!
+                Veuillez saisir le montant total!
                 }
             </ng-template>
         </nz-form-control>
     </nz-form-item>
 
     <nz-form-item>
-        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
-            <input type="text" nz-input formControlName="mode_paiement" placeholder="Mode de Paiement" />
-            <ng-template #nomErrorTpl let-control>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="modeDepenseErrorTpl">
+            <input type="text" nz-input formControlName="mode_depense" placeholder="Mode de dépense" />
+            <ng-template #modeDepenseErrorTpl let-control>
                 @if (control.errors?.['required']) {
-                Veuillez saisir votre mode de paiement!
+                Veuillez saisir le mode de dépense!
                 }
             </ng-template>
         </nz-form-control>
     </nz-form-item>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Désignation du détail</th>
+                    <th>Montant du détail</th>
+                </tr>
+            </thead>
+            <tbody formArrayName="details">
+                <tr *ngFor="let detail of details.controls; let i = index" [formGroupName]="i">
+                    <td>
+                        <input type="text" nz-input formControlName="designation" placeholder="Désignation du détail" />
+                    </td>
+                    <td>
+                        <input type="number" nz-input formControlName="montant" placeholder="Montant du détail" />
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <div class="form-group">
+        <button type="button" class="btn btn-secondary" (click)="addDetail()">Ajouter détail</button>
+    </div>
 
     <div class="form-group">
         <button type="submit" class="btn btn-primary btn-block ghost-button" [disabled]="!depenseForm.valid">
-            <span *ngIf="!loading">Create Service</span>
+            <span *ngIf="!loading">Créer dépense</span>
             <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
     </div>

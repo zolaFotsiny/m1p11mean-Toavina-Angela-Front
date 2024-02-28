@@ -6,7 +6,7 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  // private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
+  //  private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
   private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
@@ -80,6 +80,17 @@ export class ServicesService {
   }
 
 
+  // Method to get a Service by its id
+  getServiceById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/service/${id}`)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching service with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
 
   // Method to get a Rendezvous by its id
   findClientById(id: string): Observable<any> {

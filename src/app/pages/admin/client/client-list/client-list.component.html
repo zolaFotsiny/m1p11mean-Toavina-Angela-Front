@@ -32,8 +32,8 @@
             <td>{{ data.date_creation | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
             <!-- <button nz-button nzType="primary" *ngIf="data" (click)="navigateToClientFiche(data._id)">Voir la
                 fiche</button> -->
-            <button nz-button nzType="primary" *ngIf="data" (click)="openModalClientFiche(data._id)">Voir la
-                fiche</button>
+            <td><button nz-button nzType="primary" *ngIf="data" (click)="openModalClientFiche(data._id)"><i
+                        class="bi bi-eye-fill"></i></button></td>
 
         </tr>
     </tbody>
