@@ -31,19 +31,24 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ passedService.designation }}</h5>
                                 <p class="card-text">{{ passedService.description }}</p>
-                                <p class="card-text"> <strong>A partir de:</strong>{{ passedService.prix }}MGA</p>
+                            <!-- Dans le balisage HTML -->
+                    <!-- Dans le balisage HTML -->
+                    <p class="card-text"><strong>A partir de:</strong> {{ passedService.prix.toLocaleString('fr-MG', { style: 'currency',
+                        currency: 'MGA', useGrouping: true }) }}</p>
+
+
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6" style="overflow-y: auto; max-height: 300px;">
-                        <div *ngFor="let employee of employee" class="card custom-card mt-4"
+                        <div *ngFor="let employee of employee; let i =index" class="card custom-card mt-4"
                             style="width: 100%; height: 80px;" data-aos-delay="100" nzTooltipTitle="Ajouter aux favoris"
                             nzTooltipPlacement="top" nz-button nz-tooltip>
 
                             <div class="card-body d-flex align-items-center">
                                 <div class="col-md-3 mr-3">
-                                    <img src="assets/img/team/team-1.jpg" style="width: 50px; height: 50px; "
-                                        class="img-fluid" alt="">
+                                    <img src="assets/img/team/team-{{ (i % 4) + 1 }}.jpg" alt="Membre {{ (i % 4) + 1 }}" style=" width: 50px; height: 50px; "
+                                                                            class=" img-fluid" alt="">
                                 </div>
 
                                 <div class="ml-3 custom-tooltip" nz-button [nz-tooltip]="'Choisie moi pour ce service'"
@@ -74,10 +79,10 @@
 
 
 
-<section id="why-us" class="why-us ">
+<section id="about" class="why-us ">
     <div class="container-fluid" data-aos="fade-up">
         <div class="section-title">
-            <h2>About Us</h2>
+            <h2>À Propos de Nous</h2>
         </div>
 
         <div class="row">
@@ -86,15 +91,18 @@
 
                 <div class="content">
                     <p>
-                        Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-                        in
-                        voluptate
-                        velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                        proident,
-                        sunt in
-                        culpa qui officia deserunt mollit anim id est laborum.
+                    Bienvenue à Beauty Place !
+                    
+                    Chez Beauty Place, notre mission est de vous offrir une expérience de beauté exceptionnelle. Nous mettons en avant
+                    l'excellence dans nos services pour vous aider à révéler votre beauté naturelle. Notre équipe dévouée, passionnée par
+                    l'industrie de la beauté, est là pour vous offrir des soins personnalisés et des conseils experts.
+                    
+                    Chez Beauty Place, chaque visite est une occasion de vous sentir bien dans votre peau. Nous sommes impatients de vous
+                    accueillir et de créer des moments de beauté inoubliables.
+                    
+                    Bienvenue à Beauty Place, où votre beauté prend vie !
                     </p>
-                    <a href="#" class="btn-learn-more">Learn More</a>
+                    <a href="#" class="btn-learn-more">En apprendre plus</a>
                 </div>
 
                 <div class="accordion-list">
@@ -124,7 +132,7 @@
             <p>Découvrez nos prestations de beauté, conçues pour améliorer votre apparence naturelle. Des soins
                 capillaires
                 aux traitements cosmétiques, nous offrons un environnement confortable pour vous détendre et vous
-                épanouir.</p>
+                épanouir et bien plus encore.</p>
         </div>
 
         <div class="row">
@@ -137,7 +145,8 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ service.designation }}</h5>
                                 <p class="card-text">{{ service.description }}</p>
-                                <p class="card-text"><strong>A partir de: </strong>{{ service.prix }}MGA</p>
+                            <p class="card-text"><strong>A partir de:</strong> {{ service.prix.toLocaleString('fr-MG', { style: 'currency',
+                                currency: 'MGA', useGrouping: true }) }}</p>
                                 <div class="favorite-icon">
 
                                     <i nzTooltipTitle="Ajouter aux favoris" nzTooltipPlacement="top" nz-button
@@ -150,13 +159,17 @@
                 </ng-container>
             </ng-container>
 
-            <button *ngIf="itemsToShow < services.length" (click)="showMoreServices()"
-                class="btn btn-primary rounded-pill px-2 py-2 mt-4">
-                Afficher plus
-            </button>
+<div class="container text-center"> <!-- Container avec centrage -->
+    <button *ngIf="itemsToShow < services.length" (click)="showMoreServices()"
+        class="btn btn-success rounded-pill px-2 py-2 mt-4" [style.width]="itemsToShow < services.length ? '20%' : ''">
+        Afficher plus
+    </button>
+</div>
+
 
             <ng-template #emptyList>
                 <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
+                <!-- <img src="/assets/loader.gif" alt="Contenu vide" style="width: 100%; height: 100%;"> -->
             </ng-template>
         </div>
 
@@ -168,15 +181,8 @@
 </div>
 
 
-
-
-
-
-
-
-
 <!-- ======= Pub video  ======= -->
-<section id="team" class="team section-bg">
+<section id="spot" class="team section-bg">
     <div class="container" data-aos="fade-up">
         <div class="section-title">
             <div class="section-title">
@@ -221,18 +227,16 @@
 
         <div class="row">
             <ng-container *ngIf="employee.length > 0; else emptyListEpm">
-                <div *ngFor="let employee of employee" class="col-lg-6  mt-4" data-aos="zoom-in" data-aos-delay="100">
+                <div *ngFor="let employee of employee; let i = index" class="col-lg-6  mt-4" data-aos="zoom-in" data-aos-delay="100">
                     <div class="member d-flex align-items-start">
-                        <div class="pic"><img src="assets/img/team/team-1.jpg" class="img-fluid" alt=""></div>
+                        <div class="pic">
+                            <img src="assets/img/team/team-{{ (i % 4) + 1 }}.jpg" alt="Membre {{ (i % 4) + 1 }}"
+                                 class=" img-fluid" alt="">
+                        </div>
                         <div class="member-info">
                             <h4>{{employee.id_utilisateur.nom}}</h4>
                             <span>{{employee.id_utilisateur.prenom}}</span>
-                            <p>Rejoignez-nous dans l'univers de la beauté, où chaque membre de notre équipe est dédié à
-                                créer
-                                des expériences uniques et à vous faire sentir exceptionnel. Avec une passion commune
-                                pour
-                                l'innovation et la satisfaction du client, nous sommes fiers de vous offrir des services
-                                personnalisés et de qualité.</p>
+                            <p>Rejoignez-nous dans l'univers de la beauté.</p>
                             <div class="social">
                                 <a href=""><i class="ri-twitter-fill"></i></a>
                                 <a href=""><i class="ri-facebook-fill"></i></a>
@@ -266,10 +270,10 @@
         <div class="row">
             <div class="col-lg-9 text-center text-lg-start">
                 <h3>Call To Action</h3>
-                <p> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-                    pariatur.
-                    Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id
-                    est laborum.
+                <p> "Transformez votre expérience beauté en une aventure exclusive ! Devenez membre de Beauty Place dès aujourd'hui et
+                débloquez des avantages exclusifs, des offres spéciales et des surprises beauté réservées uniquement à nos membres.
+                Rejoignez-nous pour révéler une beauté personnalisée et profiter d'une expérience unique chez Beauty Place. Laissez-nous
+                sublimer votre beauté de manière exceptionnelle, devenez membre maintenant !"
                 </p>
             </div>
             <div class="col-lg-3 cta-btn-container text-center">
@@ -285,10 +289,10 @@
     <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-            <h2>Prise de rendez vous</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint
-                consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat
-                sit in iste officiis commodi quidem hic quas.</p>
+            <h2>Contact</h2>
+            <p>Nous sommes idéalement situés à proximité de l'Université ITU, au cœur de l'activité éducative et de l'innovation. Notre
+            emplacement stratégique offre une accessibilité facile pour les étudiants, le personnel et les visiteurs de
+            l'université..</p>
         </div>
 
         <div class="row">
@@ -298,19 +302,19 @@
                     <div class="address">
                         <i class="bi bi-geo-alt"></i>
                         <h4>Location:</h4>
-                        <p>A108 Adam Street, New York, NY 535022</p>
+                        <p>Andoharanofotsy IIB 120</p>
                     </div>
 
                     <div class="email">
                         <i class="bi bi-envelope"></i>
                         <h4>Email:</h4>
-                        <p></p>
+                        <p>beautyplace&#64;gmail.com</p>
                     </div>
 
                     <div class="phone">
                         <i class="bi bi-phone"></i>
                         <h4>Call:</h4>
-                        <p>+1 5589 55488 55s</p>
+                        <p>+220 000 456</p>
                     </div>
                     <!-- 
                     <iframe
@@ -327,30 +331,21 @@
 
             <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
                 <form action="forms/contact.php" method="post" role="form" class="php-email-form">
-                    <div class="row">
-                        <div class="form-group col-md-6">
-                            <label for="name">Your Name</label>
-                            <input type="text" name="name" class="form-control" id="name" required>
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="name">Your Email</label>
-                            <input type="email" class="form-control" name="email" id="email" required>
-                        </div>
-                    </div>
+                    
                     <div class="form-group">
-                        <label for="name">Subject</label>
-                        <input type="text" class="form-control" name="subject" id="subject" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="name">Message</label>
+                        <label for="name">Quelque chose vous tracasse ?</label>
                         <textarea class="form-control" name="message" rows="10" required></textarea>
+                    <p>
+                        Posez-nous vos questions sans hésitation ! Nous sommes là pour vous aider et recueillir vos retours. Votre opinion est
+                        précieuse, n'hésitez pas à partager vos idées avec nous.
+                    </p>
                     </div>
                     <div class="my-3">
                         <div class="loading">Loading</div>
                         <div class="error-message"></div>
                         <div class="sent-message">Your message has been sent. Thank you!</div>
                     </div>
-                    <div class="text-center"><button type="submit">Send Message</button></div>
+                    <div class="text-center"><button type="submit">Envoyer Message</button></div>
                 </form>
             </div>
 
