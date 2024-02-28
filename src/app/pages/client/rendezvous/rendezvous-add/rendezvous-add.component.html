@@ -1,6 +1,11 @@
 <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="row php-email-form">
     <!-- Choices -->
     <div formArrayName="choix" class="row g-3">
+        <div class="mb-3">
+            <label for="remarque" class="form-label">Remarque:</label>
+            <input type="text" id="etat" formControlName="remarque" class="form-control">
+        </div>
+
         <h4>Choix <button type="button" class="btn btn-secondary me-2" (click)="addChoiceRow()"><i
                     class="bi bi-plus"></i></button></h4>
         <hr>

@@ -4,6 +4,7 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, Reacti
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ServicesService } from '../../../../app.service';
 import { NgbDropdownModule, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 interface Option {
   _id: any;
@@ -35,7 +36,10 @@ export class RendezvousAddComponent implements OnInit {
   listOfTagOptionsEmp: Array<{ _id: string; designation: string }> = []; // Define the correct type here
   selectedValue = 'Default';
 
-  constructor(private modalService: NgbModal, private fb: FormBuilder, private serviceService: ServicesService) { }
+  constructor(private modalService: NgbModal, private fb: FormBuilder, private serviceService: ServicesService, private notification: NzNotificationService) { }
+
+
+
 
   ngOnInit(): void {
     this.serviceService.getServices().subscribe(
@@ -97,6 +101,7 @@ export class RendezvousAddComponent implements OnInit {
       choix: this.fb.array([
         this.createChoiceFormGroup('', ''), // Initialise the first form group in the array
       ]),
+      remarque: ['', Validators.required],
       date_heure: ['', Validators.required],
       etat: [1, Validators.required]
     });
@@ -132,31 +137,23 @@ export class RendezvousAddComponent implements OnInit {
   }
 
 
-
-  // Add more helper methods as needed for dynamic form manipulation
-
-  // Handle form submission
   onSubmit() {
-    // Access the form values using this.myForm.value
+
     console.log(JSON.stringify(this.myForm.value));
 
     const formDataAsJson = JSON.stringify(this.myForm.value);
     console.log('submit', formDataAsJson);
 
-    // Check if the form is valid
-
-    // Call the registerUser method from ServicesService
     this.serviceService.addrendezvous(formDataAsJson).subscribe(
       response => {
-        // Handle successful registration
-        console.log('RDV registered successfully:', Response); // change 'response' to 'Response'
-        // You can also reset the form here if needed
+
+        this.notification.success('Succès', 'RDV enregistré avec succès');
         this.myForm.reset();
         this.modalService.dismissAll();
       },
       error => {
-        // Handle registration error
         console.error('Error registering user:', error);
+        this.notification.error('Erreur', 'Une erreur s\'est produite lors de l\'enregistrement du RDV');
       }
 
     );
