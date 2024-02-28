@@ -134,6 +134,26 @@ export class ServicesService {
   }
 
 
+  createDepense(data: any): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+    console.log('depense ', data);
+
+    return this.http.post<any>(`${this.apiUrl}/depense/add`, data, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error creating depense:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+
 
   addrendezvous(userData: any): Observable<any> {
     const httpOptions = {

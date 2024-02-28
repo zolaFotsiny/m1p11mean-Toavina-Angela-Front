@@ -21,6 +21,7 @@ import { ClientListComponent } from './pages/admin/client/client-list/client-lis
 import { ClientFicheComponent } from './pages/admin/client/client-fiche/client-fiche.component';
 import { PermissionGuard } from './utils/guards/permission.guard';
 import { DeniedComponent } from './utils/guards/denied/denied.component';
+import { DepenseAddComponent } from './pages/admin/depense/depense-add/depense-add.component';
 
 
 
@@ -43,6 +44,7 @@ export const routes: Routes = [
             { path: 'commission', component: CommissionComponent },
             { path: 'client', component: ClientListComponent },
             { path: 'client/:id', component: ClientFicheComponent },
+            { path: 'depense/add', component: DepenseAddComponent },
         ]
     },
 

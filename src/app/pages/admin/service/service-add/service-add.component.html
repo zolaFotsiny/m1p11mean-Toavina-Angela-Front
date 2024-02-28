@@ -1,5 +1,5 @@
 <div class="section-title">
-    <h2>Ajout service</h2>
+    <h2>Saisie service</h2>
 
 </div>
 <form [formGroup]="serviceForm" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
@@ -54,7 +54,7 @@
         </nz-form-control>
     </nz-form-item>
 
-<!-- 
+    <!-- 
     <nz-form-item>
         <nz-form-label [nzSpan]="7" nzRequired>File</nz-form-label>
         <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
@@ -66,26 +66,26 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item> -->
-<nz-form-item>
-    <nz-form-label [nzSpan]="24" nzRequired>Image </nz-form-label>
-    <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl" class="custom-file-upload">
-        <input type="file" id="file" (change)="onFileSelected($event)" class="form-control-file" required />
-        <label for="file" class="custom-file-upload-btn">
-            <i class="bi bi-cloud-upload"></i> Choisir un fichier
-        </label>
-        <ng-template #nomErrorTpl let-control>
-            @if (control.errors?.['required']) {
-            Veuillez choisir une image!
-            }
-        </ng-template>
-    </nz-form-control>
-</nz-form-item>
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired>Image </nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl" class="custom-file-upload">
+            <input type="file" id="file" (change)="onFileSelected($event)" class="form-control-file" required />
+            <label for="file" class="custom-file-upload-btn">
+                <i class="bi bi-cloud-upload"></i> Choisir un fichier
+            </label>
+            <ng-template #nomErrorTpl let-control>
+                @if (control.errors?.['required']) {
+                Veuillez choisir une image!
+                }
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
 
 
-    
+
 
     <div class="form-group">
-        <button type="submit" class="btn btn-primary btn-block ghost-button"  [disabled]="!serviceForm.valid">
+        <button type="submit" class="btn btn-primary btn-block ghost-button" [disabled]="!serviceForm.valid">
             <span *ngIf="!loading">Create Service</span>
             <span *ngIf="loading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
         </button>
