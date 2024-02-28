@@ -5,37 +5,44 @@
 
 </div>
 <nz-spin [nzSpinning]="isLoading" [nzTip]="'Chargement en cours...'">
-<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
-    <thead>
-        <tr>
-            <th nzCustomFilter>
-                Designation
-                <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
-                    <span nz-icon nzType="search"></span>
-                </nz-filter-trigger>
-            </th>
-            <th>Prix</th>
-            <th>Duree</th>
-            <th>Commission Pourcentage</th>
-            <th>Date Insertion</th>
-            <th>Etat</th>
-            <!-- <th>-+++++++++++++++Image</th> -->
-        </tr>
-    </thead>
-    <!-- <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"> -->
-       
-    <tbody>
-        <tr *ngFor="let data of listOfDisplayData">
-            <td>{{ data.designation }}</td>
-            <td>{{ data.prix }}</td>
-            <td>{{ getFormattedDuration(data.duree) }}</td>
-            <td>{{ data.commission_pourcentage }}%</td>
-            <td>{{ data.date_insertion | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
-            <td>{{ data.etat }}</td>
-            <!-- <td>{{ data.image }}</td> -->
-        </tr>
-    </tbody>
-</nz-table>
+    <nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
+        <thead>
+            <tr>
+                <th nzCustomFilter>
+                    Designation
+                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0"
+                        [nzDropdownMenu]="menu">
+                        <span nz-icon nzType="search"></span>
+                    </nz-filter-trigger>
+                </th>
+                <th>Prix</th>
+                <th>Duree</th>
+                <th>Commission Pourcentage</th>
+                <th>Date Insertion</th>
+                <th>Etat</th>
+                <th>Action</th>
+                <!-- <th>-+++++++++++++++Image</th> -->
+            </tr>
+        </thead>
+        <!-- <nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"> -->
+
+        <tbody>
+            <tr *ngFor="let data of listOfDisplayData">
+                <td>{{ data.designation }}</td>
+                <td>{{ data.prix }}</td>
+                <td>{{ getFormattedDuration(data.duree) }}</td>
+                <td>{{ data.commission_pourcentage }}%</td>
+                <td>{{ data.date_insertion | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
+                <td>{{ data.etat }}</td>
+                <!-- <td>{{ data.image }}</td> -->
+                <td>
+                    <button class="btn btn-danger" (click)="deleteService(data._id)">
+                        <i class="bi bi-trash-fill"></i>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
 </nz-spin>
 
 <nz-dropdown-menu #menu="nzDropdownMenu">

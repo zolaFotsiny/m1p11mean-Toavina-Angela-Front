@@ -142,6 +142,23 @@ export class ServicesService {
       );
   }
 
+  deleteService(serviceId: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.delete<any>(`${this.apiUrl}/services/${serviceId}`, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error deleting service:', error);
+          return throwError(error);
+        })
+      );
+  }
 
   createDepense(data: any): Observable<any> {
     const httpOptions = {

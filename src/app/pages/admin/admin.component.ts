@@ -29,7 +29,7 @@ export class AdminComponent implements OnInit {
         const token = localStorage.getItem('token');
         if (token !== null) {
             const decodedToken: any = jwtDecode(token);
-            console.log('Decoded Token:', decodedToken);
+
 
             // Check if 'type_utilisateur' exists in the decoded token
             if (decodedToken && decodedToken.type_utilisateur) {
@@ -48,9 +48,7 @@ export class AdminComponent implements OnInit {
         const token = localStorage.getItem('token');
         if (token !== null) {
             const decodedToken: any = jwtDecode(token);
-            console.log('Decoded Token:', decodedToken);
 
-            // Check if 'type_utilisateur' exists in the decoded token
             if (decodedToken && decodedToken.type_utilisateur) {
                 if (decodedToken.type_utilisateur === 'manager') {
                     return true;

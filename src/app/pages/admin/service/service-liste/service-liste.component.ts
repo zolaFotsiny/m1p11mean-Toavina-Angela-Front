@@ -11,6 +11,7 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 
 import { NzModalService } from 'ng-zorro-antd/modal'; // Import NzModalService
 import { ServicesService } from '../../../../app.service';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 
 interface ServiceItem {
@@ -46,7 +47,7 @@ export class ServiceListeComponent implements OnInit {
   listOfData: ServiceItem[] = [];
   listOfDisplayData: ServiceItem[] = [];
 
-  constructor(private servicesService: ServicesService) { }
+  constructor(private servicesService: ServicesService, private notification: NzNotificationService) { }
 
   reset(): void {
     this.searchValue = '';
@@ -91,4 +92,31 @@ export class ServiceListeComponent implements OnInit {
       }
     );
   }
+
+
+  deleteService(id: string): void {
+    this.servicesService.deleteService(id).subscribe(
+      (response: any) => {
+        console.log('Service deleted:', response);
+        // Update the list of services after deletion
+        this.listOfData = this.listOfData.filter(service => service._id !== id);
+        this.listOfDisplayData = [...this.listOfData];
+        // Notify the user
+        this.notification.success(
+          'Success',
+          'The service has been successfully deleted.'
+        );
+      },
+      (error) => {
+        console.error('Error deleting service:', error);
+        // Notify the user
+        this.notification.error(
+          'Error',
+          'There was an error deleting the service.'
+        );
+      }
+    );
+  }
+
+
 }
