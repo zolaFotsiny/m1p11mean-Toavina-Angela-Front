@@ -4,7 +4,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { NzIconModule } from 'ng-zorro-antd/icon';
 import { NzLayoutModule } from 'ng-zorro-antd/layout';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
-
+import { JwtPayload, jwtDecode } from 'jwt-decode';
 
 
 import { NzBreadCrumbModule } from 'ng-zorro-antd/breadcrumb';
@@ -25,7 +25,42 @@ export class AdminComponent implements OnInit {
     isCollapsed: boolean = false;
     showNotif: boolean = false;
 
+    isEmployee(): boolean {
+        const token = localStorage.getItem('token');
+        if (token !== null) {
+            const decodedToken: any = jwtDecode(token);
+            console.log('Decoded Token:', decodedToken);
 
+            // Check if 'type_utilisateur' exists in the decoded token
+            if (decodedToken && decodedToken.type_utilisateur) {
+                if (decodedToken.type_utilisateur === 'employee') {
+                    return true;
+                }
+            }
+        } else {
+            console.error('Token is null');
+        }
+        return false;
+    }
+
+
+    isManager(): boolean {
+        const token = localStorage.getItem('token');
+        if (token !== null) {
+            const decodedToken: any = jwtDecode(token);
+            console.log('Decoded Token:', decodedToken);
+
+            // Check if 'type_utilisateur' exists in the decoded token
+            if (decodedToken && decodedToken.type_utilisateur) {
+                if (decodedToken.type_utilisateur === 'manager') {
+                    return true;
+                }
+            }
+        } else {
+            console.error('Token is null');
+        }
+        return false;
+    }
     logout() {
         localStorage.removeItem('token');
         this.router.navigate(['/']);

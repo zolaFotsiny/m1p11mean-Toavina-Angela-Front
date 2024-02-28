@@ -1,5 +1,5 @@
 <div class="section-title">
-    <h2>Listes des taches</h2>
+    <h2> Suivi des tâches effectués</h2>
 </div>
 <div class="row">
     <div class="col-lg-6">
@@ -12,7 +12,7 @@
             </div>
             <div class="item" cdkDrag *ngFor="let item of todo">
                 <nz-ribbon nzText="Cree">
-                    <nz-card nzTitle="Tickets fanandramana beetay" nzSize="small">{{item.date_debut}}
+                    <nz-card nzTitle="{{item.remarque}}" nzSize="small">{{item.date_debut}}
 
                         <button type="button" class="btn btn-outline-secondary me-2 " placement="top"
                             ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
@@ -36,7 +36,7 @@
             </div>
             <div class="item" cdkDrag *ngFor="let item of done">
                 <nz-ribbon nzText="Terminee" nzColor="green">
-                    <nz-card nzTitle="Tickets fanandramana beetay" nzSize="small">{{item.date_debut}}
+                    <nz-card nzTitle="{{item.remarque}}" nzSize="small">{{item.date_debut}}
 
 
                         <button type="button" class="btn btn-outline-secondary me-2 " placement="top"

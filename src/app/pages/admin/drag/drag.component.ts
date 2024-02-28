@@ -14,6 +14,7 @@ interface Tache {
   id_service: string;
   id_rendezvous: string;
   date_debut: string;
+  remarque: string;
   etat: number;
   __v: number;
 }

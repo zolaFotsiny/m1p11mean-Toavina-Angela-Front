@@ -4,7 +4,7 @@ import { ServicesService } from '../../../app.service';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 @Component({
   selector: 'app-charts',
-  standalone:true,
+  standalone: true,
   imports: [
     NzSpinModule,
   ],
@@ -12,19 +12,30 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
   styleUrls: ['./charts.component.scss']
 })
 export class ChartsComponent implements OnInit {
-
+  financeData: any = null;
   constructor(private servicesService: ServicesService) { }
 
 
   labels: string[] = [];
   data: number[] = [];
-  loading:boolean = false;
+  loading: boolean = false;
 
   ngOnInit(): void {
-    this.loading= true;
+    this.loading = true;
+
+
+    this.servicesService.getFinance().subscribe(
+      (response: any) => {
+        this.financeData = response.data; // Mettez à jour les données de finance
+        // ...
+      },
+      (error) => {
+        console.error('Error fetching finance data:', error);
+      }
+    );
     this.servicesService.getRdvCountPerDay().subscribe(
       (response: any) => {
-        this.loading= false;
+        this.loading = false;
         console.log('Raw response:', response);
         if (response && response.labels && response.data) {
           this.labels = response.labels;
@@ -35,7 +46,7 @@ export class ChartsComponent implements OnInit {
         this.createChart();
       },
       (error) => {
-        this.loading= false;
+        this.loading = false;
         console.error('Error fetching services:', error);
       }
     );

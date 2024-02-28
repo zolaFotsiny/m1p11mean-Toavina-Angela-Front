@@ -23,6 +23,9 @@ export class ServicesService {
   getClients(): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/client`);;
   }
+  getFinance(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/finance`);
+  }
 
 
   getRdvCountPerDay(): Observable<any[]> {
@@ -153,6 +156,23 @@ export class ServicesService {
       );
   }
 
+  validerPaiement(id: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.put<any>(`${this.apiUrl}/paiement/valider/${id}`, {}, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error validating payment:', error);
+          return throwError(error);
+        })
+      );
+  }
 
 
   addrendezvous(userData: any): Observable<any> {

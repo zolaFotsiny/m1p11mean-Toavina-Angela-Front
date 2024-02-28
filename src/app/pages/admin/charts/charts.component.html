@@ -4,35 +4,35 @@
         <div class="col-md-12">
             <div class="row justify-content-center"> <!-- Utiliser une nouvelle rangée centrée -->
 
-                <div class="col-md-4 mb-3"> <!-- Utiliser col-md-4 pour trois cartes dans une rangée -->
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            Entrée
+                            Total Chiffre d’affaires
                         </div>
                         <div class="card-body">
-                            <h4>62.000 ar</h4>
+                            <h4>{{ financeData?.entree }} Ariary</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-3"> <!-- Utiliser col-md-4 pour trois cartes dans une rangée -->
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            Sortie
+                            Total Depense
                         </div>
                         <div class="card-body">
-                            <h4>30.000 ar</h4>
+                            <h4>{{ financeData?.sortie }} Ariary</h4>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-md-4 mb-3"> <!-- Utiliser col-md-4 pour trois cartes dans une rangée -->
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="card-header">
-                            Bénéfice
+                            Fond disponible
                         </div>
                         <div class="card-body">
-                            <h4>30.000 ar</h4>
+                            <h4>{{ financeData?.reste }} Ariary</h4>
                         </div>
                     </div>
                 </div>
@@ -42,23 +42,22 @@
     </div>
     <hr />
     <nz-spin [nzSpinning]="loading" [nzTip]="'Chargement en cours...'">
-    <div class="row">
-        <div class="col-md-8">
-            <canvas id="myChart"></canvas>
-        </div>
-        <div class="col-md-4">
-            <canvas id="myChart2"></canvas>
-        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <canvas id="myChart"></canvas>
+            </div>
+            <div class="col-md-4">
+                <canvas id="myChart2"></canvas>
+            </div>
 
-        <hr />
-        
-        <!-- Deuxième rangée pour les cartes -->
-        
-    </div>
-</nz-spin>
+            <hr />
+
+            <!-- Deuxième rangée pour les cartes -->
+
+        </div>
+    </nz-spin>
     <!-- <div class="row">
         <div class="col-md-6">
             <canvas id="myChart2"></canvas>
         </div>
     </div> -->
-

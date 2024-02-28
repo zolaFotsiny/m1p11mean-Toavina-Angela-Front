@@ -10,13 +10,20 @@
     <ul nz-menu nzTheme="dark" nzMode="inline" [nzInlineCollapsed]="isCollapsed">
       <li nz-submenu [nzOpen]="true" nzOpen nzTitle="Dashboard" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/chart']">
+          <li nz-menu-item [routerLink]="['/manager/chart']" *ngIf="isManager()">
             <span nz-icon nzType="file"></span>
             <span>Chart</span>
           </li>
 
+          <li nz-menu-item [routerLink]="['/manager/drag'] " *ngIf="isEmployee()">
+            <!-- Liste -->
+            <span nz-icon nzType="file"></span>
+            <span>Taches</span>
+          </li>
 
-          <li nz-menu-item [routerLink]="['/manager/drag']">
+
+
+          <li nz-menu-item [routerLink]="['/manager/drag']" *ngIf="isManager()">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
             <span>Taches</span>
@@ -26,21 +33,23 @@
             <span nz-icon nzType="file"></span>
             <span>Commissions</span>
           </li>
-        </ul>
-      </li>
-      <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard">
-        <ul>
+
           <li nz-menu-item [routerLink]="['/manager/rendezvous/list']">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
-            <span>Réservation</span>
+            <span>Rendez-vous</span>
           </li>
-          <li nz-menu-item [routerLink]="['/manager/sortie/add']">
+        </ul>
+      </li>
+      <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard" *ngIf="isManager()">
+        <ul>
+
+          <li nz-menu-item [routerLink]="['/manager/sortie/add']" *ngIf="isManager()">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
             <span>Saisie Sortie</span>
           </li>
-          <li nz-menu-item [routerLink]="['/manager/sortie']">
+          <li nz-menu-item [routerLink]="['/manager/sortie']" *ngIf="isManager()">
             <!-- Liste -->
             <span nz-icon nzType="file"></span>
             <span>Liste Sortie</span>
@@ -49,7 +58,7 @@
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Personnel & Client" nzIcon="dashboard">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/addUtilisateur']">
+          <li nz-menu-item [routerLink]="['/manager/addUtilisateur']" *ngIf="isManager()">
             <span nz-icon nzType="file"></span>
             <span>Ajout Utilisateur</span>
           </li>
@@ -65,7 +74,7 @@
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Gestion Service" nzIcon="form">
         <ul>
-          <li nz-menu-item [routerLink]="['/manager/service/add']">
+          <li nz-menu-item [routerLink]="['/manager/service/add']" *ngIf="isManager()">
             <span nz-icon nzType="file"></span>
             <span>Ajout</span>
           </li>

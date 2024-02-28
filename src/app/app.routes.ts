@@ -9,7 +9,7 @@ import { ClientComponent } from './pages/client/client.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ChartsComponent } from './pages/admin/charts/charts.component';
 import { RendezvousAddComponent } from './pages/client/rendezvous/rendezvous-add/rendezvous-add.component';
-import { DragComponent } from './pages/client/drag/drag.component';
+import { DragComponent } from './pages/admin/drag/drag.component';
 import { CommissionComponent } from './pages/admin/commission/commission.component';
 import { SortieComponent } from './pages/admin/finance/sortie/sortie.component';
 import { SaisiesortieComponent } from './pages/admin/finance/saisiesortie/saisiesortie.component';
