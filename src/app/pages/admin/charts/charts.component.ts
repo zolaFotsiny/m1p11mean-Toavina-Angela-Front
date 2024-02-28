@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js/auto';
 import { ServicesService } from '../../../app.service';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { forkJoin } from 'rxjs';
 @Component({
   selector: 'app-charts',
   standalone: true,
@@ -14,6 +15,8 @@ import { NzSpinModule } from 'ng-zorro-antd/spin';
 export class ChartsComponent implements OnInit {
   financeData: any = null;
   constructor(private servicesService: ServicesService) { }
+  revenueLabels: string[] = [];
+  revenueData: number[] = [];
 
 
   labels: string[] = [];
@@ -24,35 +27,34 @@ export class ChartsComponent implements OnInit {
     this.loading = true;
 
 
-    this.servicesService.getFinance().subscribe(
-      (response: any) => {
-        this.financeData = response.data; // Mettez à jour les données de finance
-        // ...
-      },
-      (error) => {
-        console.error('Error fetching finance data:', error);
-      }
-    );
-    this.servicesService.getRdvCountPerDay().subscribe(
-      (response: any) => {
+    const finance$ = this.servicesService.getFinance();
+    const rdvCountPerDay$ = this.servicesService.getRdvCountPerDay();
+    const revenueParMois$ = this.servicesService.getRevenueParMois();
+
+    forkJoin([finance$, rdvCountPerDay$, revenueParMois$]).subscribe(
+      (responses: any[]) => {
+        this.financeData = responses[0].data;
+        this.labels = responses[1].labels;
+        this.data = responses[1].data;
+        this.revenueLabels = responses[2].labels;
+        this.revenueData = responses[2].data;
+
         this.loading = false;
-        console.log('Raw response:', response);
-        if (response && response.labels && response.data) {
-          this.labels = response.labels;
-          this.data = response.data;
-        } else {
-          console.error('Invalid response structure:', response);
-        }
         this.createChart();
       },
       (error) => {
         this.loading = false;
-        console.error('Error fetching services:', error);
+        console.error('Error fetching data:', error);
       }
     );
+
+
+
+
   }
 
   createChart() {
+    const line = document.getElementById('lineChart') as HTMLCanvasElement | null;
     const bar = document.getElementById('myChart') as HTMLCanvasElement | null;
     const moyenneTravail = document.getElementById('myChart2') as HTMLCanvasElement | null;
 
@@ -85,6 +87,37 @@ export class ChartsComponent implements OnInit {
       });
     } else {
       console.error('Canvas element with ID "myChart" not found.');
+    }
+
+    if (line) {
+      new Chart(line, {
+        type: 'line',  // Change the type to 'line'
+        data: {
+          labels: this.revenueLabels,
+          datasets: [{
+            label: 'Revenue en Ariary',
+            data: this.revenueData,
+            fill: false,
+            borderColor: 'grey',
+            tension: 0.1
+          }]
+        },
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          },
+          plugins: {
+            title: {
+              display: true,
+              text: 'Chiffre d’affaires par jour de ce mois ci'
+            }
+          },
+        }
+      });
+    } else {
+      console.error('Canvas element with ID "line" not found.');
     }
 
 

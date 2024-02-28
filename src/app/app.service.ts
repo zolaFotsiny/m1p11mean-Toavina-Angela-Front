@@ -28,6 +28,12 @@ export class ServicesService {
   }
 
 
+  getRevenueParMois(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/paiement/revenue`);
+  }
+
+
+
   getRdvCountPerDay(): Observable<any[]> {
     return this.http.get<any>(`${this.apiUrl}/rendezvous/stat/getRdvCountPerDay`);;
   }
