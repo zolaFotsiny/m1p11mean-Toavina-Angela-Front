@@ -31,6 +31,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ passedService.designation }}</h5>
                                 <p class="card-text">{{ passedService.description }}</p>
+                                <p class="card-text"> <strong>A partir de:</strong>{{ passedService.prix }}MGA</p>
                             </div>
                         </div>
                     </div>
@@ -136,11 +137,12 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ service.designation }}</h5>
                                 <p class="card-text">{{ service.description }}</p>
+                                <p class="card-text"><strong>A partir de: </strong>{{ service.prix }}MGA</p>
                                 <div class="favorite-icon">
 
                                     <i nzTooltipTitle="Ajouter aux favoris" nzTooltipPlacement="top" nz-button
                                         nz-tooltip class="bi bi-heart i-heart"
-                                        (click)="openModal('favoris',  service )"></i>
+                                        (click)="openModal('favoris',  service )"> <span style="margin:5px;color:#6bc513">ajouter aux favoris</span> </i> 
                                 </div>
                             </div>
                         </div>
