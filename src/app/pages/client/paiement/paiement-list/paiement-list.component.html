@@ -40,7 +40,10 @@
             <td>{{ paiement.montant_total }}</td>
             <td>{{ paiement.date_paiement | date:'short' }}</td>
             <td>{{ paiement.mode_paiement }}</td>
-            <td>{{ paiement.etat }}</td>
+            <td>
+                <span *ngIf="paiement.etat === 1" class="badge text-bg-primary">non payee</span>
+                <span *ngIf="paiement.etat === 51" class="badge text-bg-success">paye</span>
+            </td>
         </tr>
     </tbody>
 </nz-table>

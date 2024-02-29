@@ -39,6 +39,7 @@ export const routes: Routes = [
             { path: 'service/add', component: ServiceAddComponent },
             { path: 'addUtilisateur', component: ClientAddComponent },
             { path: 'rendezvous/list', component: RendezvousListComponent },
+            { path: 'rendezvous/:id', component: RendezVousFicheComponent },
             { path: 'employee', component: PersonnelListComponent },
             { path: 'chart', component: ChartsComponent },
             { path: 'drag', component: DragComponent },

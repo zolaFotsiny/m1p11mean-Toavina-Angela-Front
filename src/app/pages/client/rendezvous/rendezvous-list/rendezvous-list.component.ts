@@ -10,6 +10,7 @@ import { ServicesService } from '../../../../app.service';
 import { RouterModule } from '@angular/router';
 import { NgbModal, NgbModalOptions, NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
 import { RendezvousAddComponent } from '../rendezvous-add/rendezvous-add.component';
+import { jwtDecode } from 'jwt-decode';
 
 interface RendezvousItem {
   _id: string;
@@ -136,8 +137,37 @@ export class RendezvousListComponent implements OnInit {
     );
   }
 
+  isClient(): boolean {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      const decodedToken: any = jwtDecode(token);
 
+      if (decodedToken && decodedToken.type_utilisateur) {
+        if (decodedToken.type_utilisateur === 'client') {
+          return true;
+        }
+      }
+    } else {
+      console.error('Token is null');
+    }
+    return false;
+  }
 
+  isManager(): boolean {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      const decodedToken: any = jwtDecode(token);
+
+      if (decodedToken && decodedToken.type_utilisateur) {
+        if (decodedToken.type_utilisateur === 'manager') {
+          return true;
+        }
+      }
+    } else {
+      console.error('Token is null');
+    }
+    return false;
+  }
   openModal(content: any) {
     const modalOptions: NgbModalOptions = {
       centered: true,

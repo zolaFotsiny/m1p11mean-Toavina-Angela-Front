@@ -26,6 +26,21 @@ export class ClientComponent implements OnInit {
   prenom: string = '';
   constructor(private modalService: NgbModal) { }
 
+  isClient(): boolean {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      const decodedToken: any = jwtDecode(token);
+
+      if (decodedToken && decodedToken.type_utilisateur) {
+        if (decodedToken.type_utilisateur === 'client') {
+          return true;
+        }
+      }
+    } else {
+      console.error('Token is null');
+    }
+    return false;
+  }
 
   ngOnInit(): void {
     let userToken = localStorage.getItem('token');

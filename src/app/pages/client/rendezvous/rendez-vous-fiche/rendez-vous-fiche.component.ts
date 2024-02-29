@@ -8,6 +8,7 @@ import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { CommonModule } from '@angular/common';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
+import { jwtDecode } from 'jwt-decode';
 
 @Component({
   selector: 'app-rendez-vous-fiche',
@@ -31,6 +32,22 @@ export class RendezVousFicheComponent implements OnInit {
     private servicesService: ServicesService
   ) { }
 
+
+  isClient(): boolean {
+    const token = localStorage.getItem('token');
+    if (token !== null) {
+      const decodedToken: any = jwtDecode(token);
+
+      if (decodedToken && decodedToken.type_utilisateur) {
+        if (decodedToken.type_utilisateur === 'client') {
+          return true;
+        }
+      }
+    } else {
+      console.error('Token is null');
+    }
+    return false;
+  }
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     if (id !== null) {

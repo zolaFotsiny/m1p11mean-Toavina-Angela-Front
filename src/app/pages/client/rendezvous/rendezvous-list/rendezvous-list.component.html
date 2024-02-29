@@ -68,7 +68,11 @@
                 <span *ngIf="data.etat === 1" class="badge text-bg-primary">non payee</span>
                 <span *ngIf="data.etat === 51" class="badge text-bg-success">paye</span>
             </td>
-            <td><a [routerLink]="['/client/rendezvous', data._id]">Voir la fiche</a></td>
+            <td><a *ngIf="isClient()" [routerLink]="['/client/rendezvous', data._id]"><i class="bi bi-eye-fill"></i></a>
+
+                <a *ngIf="isManager()" [routerLink]="['/manager/rendezvous', data._id]"><i
+                        class="bi bi-eye-fill"></i></a>
+            </td>
         </tr>
     </tbody>
 </nz-table>
