@@ -1,0 +1,30 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h2 class="modal-title">Dépense</h2> <!-- En-tête -->
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <div class="container">
+            <p><strong>ID de la dépense:</strong> {{ depense._id }}</p>
+            <p><strong>Désignation:</strong> {{ depense.designation }}</p>
+            <p><strong>Montant total:</strong> {{ depense.montant_total }}</p>
+            <p><strong>Mode de dépense:</strong> {{ depense.mode_depense }}</p>
+            <p><strong>État:</strong> {{ depense.etat ? 'Actif' : 'Inactif' }}</p>
+            <p><strong>Date de dépense:</strong> {{ depense.date_depense }}</p>
+            <h3>Détails de la dépense</h3>
+            <div *ngFor="let detail of depense.details" class="container">
+                <hr>
+                <p><strong>ID du détail:</strong> {{ detail._id }}</p>
+                <p><strong>Désignation:</strong> {{ detail.designation }}</p>
+                <p><strong>Montant:</strong> {{ detail.montant }}</p>
+                <p><strong>État:</strong> {{ detail.etat ? 'Actif' : 'Inactif' }}</p>
+                <hr>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" (click)="validerDepense(depense._id)">Valider</button>
+    </div>
+</div>

@@ -6,8 +6,8 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  //  private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
-  private apiUrl = 'http://localhost:8080';
+  private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
+  // private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -32,6 +32,9 @@ export class ServicesService {
     return this.http.get<any>(`${this.apiUrl}/paiement/revenue`);
   }
 
+  getDepenses(): Observable<any[]> {
+    return this.http.get<any>(`${this.apiUrl}/depense`);
+  }
 
 
   getRdvCountPerDay(): Observable<any[]> {
@@ -104,6 +107,17 @@ export class ServicesService {
       );
   }
 
+  // Method to get a FicheDepense by its id
+  findFicheDepenseById(id: string): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/depense/${id}`)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error(`Error during fetching fiche depense with id ${id}:`, error);
+          return throwError(error);
+        })
+      );
+  }
 
   payerRdv(id: string): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/rendezvous/payer/${id}`, {})
@@ -203,6 +217,25 @@ export class ServicesService {
         catchError(error => {
           // Handle errors here
           console.error('Error validating payment:', error);
+          return throwError(error);
+        })
+      );
+  }
+
+
+  validerDepense(id: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.put<any>(`${this.apiUrl}/depense/valider/${id}`, {}, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error validating expense:', error);
           return throwError(error);
         })
       );

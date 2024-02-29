@@ -1,0 +1,39 @@
+<div class="search-bar d-flex justify-content-end">
+    <input [(ngModel)]="searchValue" placeholder="Rechercher une dépense" (keyup)="search()" class="mr-2">
+    <button (click)="reset()"> <i class="bi bi-arrow-repeat"></i> </button>
+</div>
+<br>
+
+<nz-table [nzData]="listOfDisplayData" *ngIf="!isLoading; else loadingTemplate">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Désignation</th>
+            <th>Montant total</th>
+            <th>Date de dépense</th>
+            <th>Mode de dépense</th>
+            <th>État</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let depense of listOfDisplayData">
+            <td>{{ depense._id }}</td>
+            <td>{{ depense.designation }}</td>
+            <td>{{ depense.montant_total }}</td>
+            <td>{{ depense.date_depense | date }}</td>
+            <td>{{ depense.mode_depense }}</td>
+            <td>{{ depense.etat ? 'Actif' : 'Inactif' }}</td>
+
+
+            <td><button nz-button nzType="primary" *ngIf="depense" (click)="viewFiche(depense._id)">
+                    <i class="bi bi-eye-fill"></i>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</nz-table>
+
+<ng-template #loadingTemplate>
+    <nz-spin></nz-spin>
+</ng-template>

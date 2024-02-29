@@ -22,6 +22,7 @@ import { ClientFicheComponent } from './pages/admin/client/client-fiche/client-f
 import { PermissionGuard } from './utils/guards/permission.guard';
 import { DeniedComponent } from './utils/guards/denied/denied.component';
 import { DepenseAddComponent } from './pages/admin/depense/depense-add/depense-add.component';
+import { DepenseListComponent } from './pages/admin/depense/depense-list/depense-list.component';
 
 
 
@@ -45,6 +46,7 @@ export const routes: Routes = [
             { path: 'client', component: ClientListComponent },
             { path: 'client/:id', component: ClientFicheComponent },
             { path: 'depense/add', component: DepenseAddComponent },
+            { path: 'depense', component: DepenseListComponent },
         ]
     },
 
