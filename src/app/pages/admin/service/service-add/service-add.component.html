@@ -66,6 +66,45 @@
             </ng-template>
         </nz-form-control>
     </nz-form-item> -->
+
+
+    <nz-form-item>
+        <nz-form-label [nzSpan]="24" nzRequired>Offre spéciale</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="radio" nz-radio formControlName="isOffreSpeciale" value="true" /> Oui
+            <input type="radio" nz-radio formControlName="isOffreSpeciale" value="false" /> Non
+            <ng-template #nomErrorTpl let-control>
+                @if (control.errors?.['required']) {
+                Veuillez choisir une option!
+                }
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="serviceForm.value.isOffreSpeciale === 'true'">
+        <nz-form-label [nzSpan]="24" nzRequired>Date de début</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="date" nz-input formControlName="dateDebut" />
+            <ng-template #nomErrorTpl let-control>
+                @if (control.errors?.['required']) {
+                Veuillez saisir la date de début!
+                }
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item *ngIf="serviceForm.value.isOffreSpeciale === 'true'">
+        <nz-form-label [nzSpan]="24" nzRequired>Date de fin</nz-form-label>
+        <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl">
+            <input type="date" nz-input formControlName="dateFin" />
+            <ng-template #nomErrorTpl let-control>
+                @if (control.errors?.['required']) {
+                Veuillez saisir la date de fin!
+                }
+            </ng-template>
+        </nz-form-control>
+    </nz-form-item>
+
     <nz-form-item>
         <nz-form-label [nzSpan]="24" nzRequired>Image </nz-form-label>
         <nz-form-control [nzSpan]="24" nzHasFeedback [nzErrorTip]="nomErrorTpl" class="custom-file-upload">

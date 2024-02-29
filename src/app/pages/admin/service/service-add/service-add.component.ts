@@ -15,16 +15,13 @@ import { NzIconModule } from 'ng-zorro-antd/icon';
 import { ServicesService } from '../../../../app.service';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 
-
-// import { ServicesService } from '../../app.service';
-// import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
 @Component({
   selector: 'app-service-add',
   standalone: true,
   imports: [
     NzButtonModule,
     NzSpinModule,
-    NzSpinModule,NzIconModule, NzFormModule, NzUploadModule, NzInputModule, ReactiveFormsModule, CommonModule, NzButtonModule, NzInputNumberModule],
+    NzSpinModule, NzIconModule, NzFormModule, NzUploadModule, NzInputModule, ReactiveFormsModule, CommonModule, NzButtonModule, NzInputNumberModule],
   templateUrl: './service-add.component.html',
   styleUrl: './service-add.component.scss'
 })
@@ -39,6 +36,9 @@ export class ServiceAddComponent {
       duree: ['', Validators.required],
       commission_pourcentage: ['', Validators.required],
       file: [null, Validators.required], // Use 'file' as the field name for the file
+      isOffreSpeciale: [false], // Field for special offer status
+      dateDebut: [null], // Field for the start date of the special offer
+      dateFin: [null], // Field for the end date of the special offer
     });
   }
 
@@ -49,7 +49,6 @@ export class ServiceAddComponent {
       this.serviceForm.patchValue({ file });
     }
   }
-
 
   onSubmit(): void {
     console.log('Form submitted');
@@ -65,6 +64,12 @@ export class ServiceAddComponent {
       formData.append('duree', this.serviceForm.value.duree);
       formData.append('commission_pourcentage', this.serviceForm.value.commission_pourcentage);
       formData.append('file', this.serviceForm.value.file);
+      formData.append('isOffreSpeciale', this.serviceForm.value.isOffreSpeciale);
+      if (this.serviceForm.value.isOffreSpeciale === 'true') {
+        formData.append('dateDebut', this.serviceForm.value.dateDebut);
+        formData.append('dateFin', this.serviceForm.value.dateFin);
+      }
+
       console.log('Form data:', formData);
       console.log('Form values:', this.serviceForm.value);
 
@@ -92,9 +97,4 @@ export class ServiceAddComponent {
       console.log('Form is invalid');
     }
   }
-
-
-
-
-
 }
