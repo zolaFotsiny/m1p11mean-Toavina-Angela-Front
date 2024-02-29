@@ -15,6 +15,7 @@ import { jwtDecode } from 'jwt-decode';
 interface RendezvousItem {
   _id: string;
   id_client: string;
+  remarque: string;
   taches: [
     {
       _id: string;
@@ -89,7 +90,10 @@ export class RendezvousListComponent implements OnInit {
     this.searchValueDateDebut = '';
     this.searchDateDebut();
   }
-
+  onNewRendezvousAdded(newAppointmentData: any) {
+    // Add the new appointment to the list
+    this.listOfData.push(newAppointmentData);
+  }
   searchDateDebut(): void {
     this.visibleDateDebut = false;
     this.listOfDisplayData = this.listOfData.filter(

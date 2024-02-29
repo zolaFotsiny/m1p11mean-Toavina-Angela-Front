@@ -26,7 +26,7 @@
 
         </ng-container>
         <ng-template #otherContent>
-            <app-rendezvous></app-rendezvous>
+            <app-rendezvous (newRendezvousAdded)="onNewRendezvousAdded($event)"></app-rendezvous>
         </ng-template>
     </div>
 </ng-template>
@@ -35,6 +35,9 @@
         <tr>
             <th>
                 ID
+            </th>
+            <th>
+                Remarque
             </th>
             <th nzCustomFilter>
                 Date de début
@@ -62,6 +65,7 @@
     <tbody>
         <tr *ngFor="let data of nzTable.data">
             <td>{{ data._id }}</td>
+            <td>{{ data.remarque }}</td>
             <td>{{ data.taches[0].date_debut }}</td>
             <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
             <td>

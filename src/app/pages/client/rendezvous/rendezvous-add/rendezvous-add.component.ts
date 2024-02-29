@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
+import { Component, EventEmitter, NgModule, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NzSelectModule } from 'ng-zorro-antd/select';
 import { ServicesService } from '../../../../app.service';
@@ -30,6 +30,7 @@ interface Optione {
 })
 export class RendezvousAddComponent implements OnInit {
   myForm: FormGroup = new FormGroup({});
+  @Output() newRendezvousAdded = new EventEmitter<any>();
   listOfSelectedValue: Array<{ _id: string; designation: string }> = [];
   listOfSelectedValueEmp: Array<{ _id: string; designation: string }> = [];
   listOfTagOptions: Array<{ _id: string; designation: string }> = []; // Define the correct type here
@@ -46,13 +47,10 @@ export class RendezvousAddComponent implements OnInit {
       (response: any) => {
         if (response && response.data) {
           const data = response.data as Option[];
-          console.error('Invalid response structure:', data);
           this.listOfSelectedValue = data.map(option => ({
             designation: option.designation,
             _id: option._id
           }));
-        } else {
-          console.error('Invalid response structure:', response);
         }
       },
       (error) => {
@@ -68,13 +66,11 @@ export class RendezvousAddComponent implements OnInit {
         console.log('employeee:');
         if (response && response.data) {
           const data = response.data as Optione[];
-          console.log('employeee:', data);
+
           this.listOfSelectedValueEmp = data.map(optione => ({
             designation: optione.id_utilisateur.nom,
             _id: optione._id
           }));
-        } else {
-          console.error('Invalid response structure:', response);
         }
       },
       (error) => {
@@ -111,7 +107,7 @@ export class RendezvousAddComponent implements OnInit {
   createChoiceFormGroup(service: string, employee: string): FormGroup {
     return this.fb.group({
       id_service: [service, Validators.required],
-      id_employee: [employee, Validators.required]
+      id_employee: [employee, Validators.required],
     });
   }
 
@@ -149,6 +145,7 @@ export class RendezvousAddComponent implements OnInit {
 
         this.notification.success('Succès', 'RDV enregistré avec succès');
         this.myForm.reset();
+        this.newRendezvousAdded.emit(this.myForm.value);
         this.modalService.dismissAll();
       },
       error => {
