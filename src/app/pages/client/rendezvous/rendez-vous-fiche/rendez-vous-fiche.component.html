@@ -1,7 +1,7 @@
 <div class="container mt-5">
     <h2>Fiche Rendez-vous </h2>
-    <p><strong>Date de Rendez-vous:</strong> {{ rendezvous.date_heure | date:'short' }}</p>
-    <h3>Liste de réservation</h3> <!-- Add this line -->
+    <p><strong>Date du Rendez-vous:</strong> {{ rendezvous.date_heure | date:'short' }}</p>
+    <p>Liste des services associés à ce rendez-vous</p> <!-- Add this line -->
     <table class="table table-striped">
         <thead>
             <tr>
@@ -19,8 +19,8 @@
                 <td>{{ tache.id_employee.id_utilisateur.nom }}</td>
                 <td>{{ tache.id_employee.id_utilisateur.email }}</td>
                 <td>{{ tache.id_service.designation }}</td>
-                <td>{{ tache.id_service.prix }}</td>
-                <td>{{ tache.id_service.duree }}</td>
+                <td>{{ tache.id_service.prix | currency:'MGA':'':'1.0-0' }}</td>
+                <td>{{ tache.id_service.duree }} min</td>
             </tr>
         </tbody>
     </table>

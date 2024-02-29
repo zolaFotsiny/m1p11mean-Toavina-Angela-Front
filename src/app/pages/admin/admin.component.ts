@@ -65,18 +65,20 @@ export class AdminComponent implements OnInit {
         // Rediriger l'utilisateur vers la page de connexion ou actualiser la page
     }
 
-
+    // ok : boolean = false;
     constructor(
         private socketService: SocketService, private router: Router, private notification: NzNotificationService
     ) {
 
         this.socketService.listenForRdvEvent().subscribe((data) => {
             if (data) {
+                // this.ok = true
+                
                 this.showNotif = true;
                 this.notification.create(
                     'success',
                     'Notification',
-                    'Nouveaux rendez vous!',
+                    'Vous avez rendez vous!',
                     { nzPlacement: 'bottomLeft' }
                 );
             }

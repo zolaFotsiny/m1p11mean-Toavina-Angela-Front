@@ -47,7 +47,7 @@
                 </nz-filter-trigger>
             </th>
             <th nzCustomFilter>
-                Nom
+                Nom Employé
                 <nz-filter-trigger [(nzVisible)]="visibleNom" [nzActive]="searchValueNom.length > 0"
                     [nzDropdownMenu]="menuNom">
                     <span nz-icon nzType="search"></span>
@@ -66,7 +66,7 @@
         <tr *ngFor="let data of nzTable.data">
             <td>{{ data._id }}</td>
             <td>{{ data.remarque }}</td>
-            <td>{{ data.taches[0].date_debut }}</td>
+            <td>{{ data.taches[0].date_debut | date: 'dd/MM/yyyy HH:mm:ss' }}</td>
             <td>{{ data.taches[0].id_employee.id_utilisateur.nom }}</td>
             <td>
                 <span *ngIf="data.etat === 1" class="badge text-bg-primary">non payee</span>

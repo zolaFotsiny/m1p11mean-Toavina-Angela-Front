@@ -7,7 +7,6 @@
 <!-- Modal content -->
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title">Nouveaux rendez-vous</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -46,9 +45,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" (click)="openModal('calendar')">Calendrier</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link disabled" aria-disabled="true">Historique</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link " aria-disabled="true"
