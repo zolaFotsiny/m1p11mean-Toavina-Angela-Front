@@ -3,32 +3,25 @@
 </div>
 <div class="row">
     <div class="col-lg-6">
-
         <div class="container" cdkDropList id="todo" [cdkDropListConnectedTo]="['done']" [cdkDropListData]="todo"
             (cdkDropListDropped)="drop($event)" style="border: 1px solid black; padding: 10px;">
-
             <div class="section-title">
                 <h4>To do</h4>
             </div>
             <div class="item" cdkDrag *ngFor="let item of todo">
                 <nz-ribbon nzText="Cree">
                     <nz-card nzTitle="{{item.remarque}}" nzSize="small">{{item.date_debut}}
-
                         <button type="button" class="btn btn-outline-secondary me-2 " placement="top"
-                            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-                            popoverTitle="Details">
+                            ngbPopover="Tâche créée par {{item.id_employee.id_utilisateur.nom}} {{item.id_employee.id_utilisateur.prenom}} ({{item.id_employee.id_utilisateur.email}}) pour le service {{item.id_service.designation}} qui coûte {{item.id_service.prix}} et dure {{item.id_service.duree}} minutes."
+                            popoverTitle="Détails de la tâche">
                             +
                         </button>
                     </nz-card>
                 </nz-ribbon>
             </div>
-
-
         </div>
     </div>
-
     <div class="col-lg-6">
-
         <div class="container" cdkDropList id="done" [cdkDropListConnectedTo]="['todo']" [cdkDropListData]="done"
             (cdkDropListDropped)="drop($event)" style="border: 1px solid black; padding: 10px;">
             <div class="section-title">
@@ -37,21 +30,14 @@
             <div class="item" cdkDrag *ngFor="let item of done">
                 <nz-ribbon nzText="Terminee" nzColor="green">
                     <nz-card nzTitle="{{item.remarque}}" nzSize="small">{{item.date_debut}}
-
-
                         <button type="button" class="btn btn-outline-secondary me-2 " placement="top"
-                            ngbPopover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."
-                            popoverTitle="Details">
+                            ngbPopover="Tâche terminée par {{item.id_employee.id_utilisateur.nom}} {{item.id_employee.id_utilisateur.prenom}} ({{item.id_employee.id_utilisateur.email}}) pour le service {{item.id_service.designation}} qui coûte {{item.id_service.prix}} et dure {{item.id_service.duree}} minutes."
+                            popoverTitle="Détails de la tâche">
                             +
                         </button>
                     </nz-card>
-
                 </nz-ribbon>
-
             </div>
         </div>
     </div>
-
-
-
 </div>

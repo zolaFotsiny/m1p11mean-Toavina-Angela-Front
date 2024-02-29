@@ -8,15 +8,44 @@ import { NgbPopoverModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 
+interface Utilisateur {
+  _id: string;
+  nom: string;
+  prenom: string;
+  email: string;
+  type_utilisateur: string;
+  __v: number;
+}
+
+interface Employee {
+  _id: string;
+  id_utilisateur: Utilisateur;
+  date_creation: string;
+  __v: number;
+}
+
+interface Service {
+  isOffreSpeciale: boolean;
+  _id: string;
+  designation: string;
+  prix: number;
+  duree: number;
+  commission_pourcentage: number;
+  etat: number;
+  date_insertion: string;
+  __v: number;
+}
+
 interface Tache {
   _id: string;
-  id_employee: string;
-  id_service: string;
+  id_employee: Employee;
+  id_service: Service;
   id_rendezvous: string;
   date_debut: string;
   remarque: string;
   etat: number;
   __v: number;
+  date_fait: string;
 }
 
 @Component({
