@@ -34,11 +34,6 @@
             <span>Commissions</span>
           </li>
 
-          <li nz-menu-item [routerLink]="['/manager/depense/add']">
-            <!-- Liste -->
-            <span nz-icon nzType="file"></span>
-            <span>Depenses</span>
-          </li>
 
           <li nz-menu-item [routerLink]="['/manager/rendezvous/list']">
             <!-- Liste -->
@@ -50,16 +45,17 @@
       <li nz-submenu [nzOpen]="false" nzTitle="Finance" nzIcon="dashboard" *ngIf="isManager()">
         <ul>
 
-          <li nz-menu-item [routerLink]="['/manager/sortie/add']" *ngIf="isManager()">
-            <!-- Liste -->
-            <span nz-icon nzType="file"></span>
-            <span>Saisie Sortie</span>
-          </li>
-          <li nz-menu-item [routerLink]="['/manager/sortie']" *ngIf="isManager()">
-            <!-- Liste -->
-            <span nz-icon nzType="file"></span>
-            <span>Liste Sortie</span>
-          </li>
+                  <li nz-menu-item [routerLink]="['/manager/depense']">
+                    <!-- Liste -->
+                    <span nz-icon nzType="file"></span>
+                    <span>Liste Dépense</span>
+                  </li>
+                  
+                  <li nz-menu-item [routerLink]="['/manager/depense/add']">
+                    <!-- Liste -->
+                    <span nz-icon nzType="file"></span>
+                    <span>Saisie Dépenses</span>
+                  </li>
         </ul>
       </li>
       <li nz-submenu [nzOpen]="false" nzTitle="Personnel & Client" nzIcon="dashboard">
