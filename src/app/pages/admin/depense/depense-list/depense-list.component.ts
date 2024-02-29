@@ -21,7 +21,7 @@ interface DepenseItem {
   montant_total: number;
   date_depense: Date;
   mode_depense: string;
-  etat: boolean;
+  etat: any;
   details: any[];
 }
 @Component({

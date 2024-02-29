@@ -23,7 +23,12 @@
             <td>{{ depense.montant_total }}</td>
             <td>{{ depense.date_depense | date }}</td>
             <td>{{ depense.mode_depense }}</td>
-            <td>{{ depense.etat ? 'Actif' : 'Inactif' }}</td>
+            <td>
+                <span *ngIf="depense.etat === 1" class="badge text-bg-primary">non payee</span>
+                <span *ngIf="depense.etat === 51" class="badge text-bg-success">paye</span>
+            </td>
+
+
 
 
             <td><button nz-button nzType="primary" *ngIf="depense" (click)="viewFiche(depense._id)">
