@@ -49,6 +49,8 @@
             <td>{{ data.id_employee.id_utilisateur.email }}</td>
             <td>{{ data.montant.toLocaleString('mg-MG', { style: 'decimal' }) }}</td>
 
+            <button nz-button nzType="primary" (click)="validerPaiement(data._id)">Valider Paiement</button>
+
 
             <!-- <td>{{ data._id }}</td> -->
         </tr>

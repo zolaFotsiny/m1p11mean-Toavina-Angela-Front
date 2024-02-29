@@ -6,8 +6,6 @@ import { Observable, catchError, throwError } from 'rxjs';
   providedIn: 'root'
 })
 export class ServicesService {
-  private apiUrl = 'https://m1p11mean-toavina-angela.onrender.com';
-  // private apiUrl = 'http://localhost:8080';
 
   constructor(private http: HttpClient) { }
 
@@ -222,6 +220,24 @@ export class ServicesService {
       );
   }
 
+
+  payerCommision(id: string): Observable<any> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'token': localStorage.getItem('token') ?? ''
+      })
+    };
+
+    return this.http.put<any>(`${this.apiUrl}/comission/valider/${id}`, {}, httpOptions)
+      .pipe(
+        catchError(error => {
+          // Handle errors here
+          console.error('Error validating expense:', error);
+          return throwError(error);
+        })
+      );
+  }
 
   validerDepense(id: string): Observable<any> {
     const httpOptions = {

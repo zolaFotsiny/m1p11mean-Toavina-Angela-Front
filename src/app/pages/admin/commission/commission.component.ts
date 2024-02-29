@@ -127,6 +127,19 @@ export class CommissionComponent {
     );
   }
 
+  validerPaiement(id: string): void {
+    this.servicesService.payerCommision(id).subscribe(
+      response => {
+        console.log('Payment validated successfully:', response);
+        // Handle successful validation here
+      },
+      error => {
+        console.error('Error validating payment:', error);
+        // Handle error here
+      }
+    );
+  }
+
   ngOnInit(): void {
     console.log('ngOnInit called');
 
