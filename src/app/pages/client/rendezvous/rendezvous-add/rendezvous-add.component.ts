@@ -144,8 +144,8 @@ export class RendezvousAddComponent implements OnInit {
       response => {
 
         this.notification.success('Succès', 'RDV enregistré avec succès');
-        this.myForm.reset();
         this.newRendezvousAdded.emit(this.myForm.value);
+        this.myForm.reset();
         this.modalService.dismissAll();
       },
       error => {

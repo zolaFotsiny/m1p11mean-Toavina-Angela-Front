@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, ViewChild } from '@angular/core';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzSpinModule } from 'ng-zorro-antd/spin';
 import { NzDividerModule } from 'ng-zorro-antd/divider';
@@ -82,7 +82,7 @@ export class RendezvousListComponent implements OnInit {
   modalContent: any;
 
 
-  constructor(private modalService: NgbModal, private servicesService: ServicesService) { }
+  constructor(private modalService: NgbModal, private servicesService: ServicesService, private cdRef: ChangeDetectorRef) { }
 
 
 
@@ -90,10 +90,13 @@ export class RendezvousListComponent implements OnInit {
     this.searchValueDateDebut = '';
     this.searchDateDebut();
   }
-  onNewRendezvousAdded(newAppointmentData: any) {
-    // Add the new appointment to the list
-    this.listOfData.push(newAppointmentData);
+  // Dans le composant parent
+  onNewRendezvousAdded(newRendezvous: any) {
+    this.listOfData.push(newRendezvous);
+    this.listOfDisplayData = [...this.listOfData];
+    this.cdRef.detectChanges(); // Manually trigger change detection
   }
+
   searchDateDebut(): void {
     this.visibleDateDebut = false;
     this.listOfDisplayData = this.listOfData.filter(

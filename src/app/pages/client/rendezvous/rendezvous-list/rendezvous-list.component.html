@@ -9,7 +9,7 @@
         <i class="bi bi-plus-lg"></i>
     </button>
 </p>
-
+<nz-spin class="loading-container" [nzSize]="'large'" *ngIf="isLoading"></nz-spin>
 
 <!-- Modal content -->
 <ng-template #content let-modal>
@@ -30,7 +30,7 @@
         </ng-template>
     </div>
 </ng-template>
-<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed">
+<nz-table #nzTable [nzData]="listOfDisplayData" nzTableLayout="fixed" *ngIf="!isLoading">
     <thead>
         <tr>
             <th>
